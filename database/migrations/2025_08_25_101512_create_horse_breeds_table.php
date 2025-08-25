@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('technical_support_requests', function (Blueprint $table) {
+        Schema::create('horse_breeds', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('technical_support_request_topic_id')->constrained('technical_support_request_topics', 'id', 'tsr_topic_fk');
-            $table->text('content');
-            $table->boolean('closed');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('technical_support_requests');
+        Schema::dropIfExists('horse_breeds');
     }
 };
