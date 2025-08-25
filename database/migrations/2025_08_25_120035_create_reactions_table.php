@@ -12,15 +12,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('blog_reactions', function (Blueprint $table) {
+        Schema::create('reactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('blog_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->morphs('reactionable');
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->cascadeOnDelete();
             $table->enum('type', ReactionType::cases())
                 ->default(ReactionType::Like);
             $table->timestamps();
 
-            $table->unique(['blog_id', 'user_id']);
+            $table->unique(['reactionable_id', 'reactionable_type', 'user_id']);
         });
     }
 
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('blog_reactions');
+        Schema::dropIfExists('reactions');
     }
 };

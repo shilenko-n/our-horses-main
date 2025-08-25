@@ -11,6 +11,11 @@ use Illuminate\Notifications\Notifiable;
 
 use App\Models\Traits\HasLocation;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ */
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
