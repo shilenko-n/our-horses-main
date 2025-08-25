@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasBookmarks;
 use App\Models\Traits\HasLocation;
 use App\Models\Traits\HasReactions;
 use App\Models\Traits\HasSubscriptions;
@@ -30,7 +31,8 @@ class Horse extends Model
         HasLocation,
         HasReactions,
         HasUser,
-        HasSubscriptions;
+        HasSubscriptions,
+        HasBookmarks;
 
     protected $fillable = [
         'name',
