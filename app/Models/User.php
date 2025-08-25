@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Traits\HasBlogs;
+use App\Models\Traits\HasCards;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -23,7 +24,8 @@ class User extends Authenticatable
         HasFactory,
         Notifiable,
         HasLocation,
-        HasBlogs;
+        HasBlogs,
+        HasCards;
 
     /**
      * The attributes that are mass assignable.

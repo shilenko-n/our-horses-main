@@ -21,8 +21,10 @@ return new class extends Migration
                 ->constrained('horses');
             $table->integer('views')->default(0);
             $table->text('content');
+            $table->boolean('published')->default(false);
             $table->integer('likes')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

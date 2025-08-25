@@ -2,10 +2,26 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasCard;
+use App\Models\Traits\HasUser;
 use Illuminate\Database\Eloquent\Model;
 
+
+/**
+ * Модель банковской транзакции
+ *
+ * @property Card $card
+ * @property string $about
+ * @property int $amount
+ * @property Currency $currency
+ *
+ */
 class Transaction extends Model
 {
+    use
+        HasUser,
+        HasCard;
+
     protected $fillable = [
         'card_id',
         'about',
