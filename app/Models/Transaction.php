@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\HasCard;
+use App\Models\Traits\HasCurrency;
 use App\Models\Traits\HasUser;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,7 +21,8 @@ class Transaction extends Model
 {
     use
         HasUser,
-        HasCard;
+        HasCard,
+        HasCurrency;
 
     protected $fillable = [
         'card_id',
