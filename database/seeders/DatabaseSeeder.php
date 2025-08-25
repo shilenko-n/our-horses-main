@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\City;
+use App\Models\Country;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Factories\CountryFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,11 +15,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        for($i = 0; $i < 10; $i++) {
+            $country = Country::factory()->create();
+
+            for($j = 0; $j < 5; $j++) {
+                City::factory()->create([
+                    'country_id' => $country->id,
+                ]);
+            }
+
+        }
+
     }
 }
