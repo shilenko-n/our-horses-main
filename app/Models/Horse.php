@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Traits\HasLocation;
 use App\Models\Traits\HasReactions;
+use App\Models\Traits\HasSubscriptions;
 use App\Models\Traits\HasUser;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -28,7 +29,8 @@ class Horse extends Model
     use
         HasLocation,
         HasReactions,
-        HasUser;
+        HasUser,
+        HasSubscriptions;
 
     protected $fillable = [
         'name',
