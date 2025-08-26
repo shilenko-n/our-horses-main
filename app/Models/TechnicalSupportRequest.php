@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Модель запроса технической поддержки
  *
+ * @property int $id
  * @property User $user
  * @property TechnicalSupportRequestTopic $technicalSupportRequestTopic
  * @property string $content

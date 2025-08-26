@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * Модель жалобы
  *
+ * @property int $id
  * @property User $user
  * @property ComplaintTopic $complaintTopic
  * @property string $body

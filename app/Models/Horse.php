@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @property Collection|Reaction[] $reactions
  *
+ * @property int $id
  * @property string $name
  * @property string $description
  * @property User $user

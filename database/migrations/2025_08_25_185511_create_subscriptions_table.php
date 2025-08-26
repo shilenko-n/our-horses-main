@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->morphs('subscriptionable');
             $table->foreignId('user_id')
-                ->constrained('users')
+                ->constrained('users', 'id', 'sub_usr_fk')
                 ->cascadeOnDelete();
             $table->timestamps();
 
-            $table->unique(['user_id', 'subscriptionable_id', 'subscriptionable_type']);
+            $table->unique(['user_id', 'subscriptionable_id', 'subscriptionable_type'], 'subs_user_unique');
         });
     }
 

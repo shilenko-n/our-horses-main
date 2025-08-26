@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Модель настроек сайта
  *
+ * @property int $id
  * @property string $key
  * @property string $value
  */

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Модель уведомления
  *
+ * @property int $id
  * @property User $user
  * @property string $content
  */

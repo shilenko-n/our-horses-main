@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Модель блога
  *
+ * @property int $id
  * @property string $title
  * @property string $content
  * @property boolean $published

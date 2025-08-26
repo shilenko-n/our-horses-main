@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * Модель темы жалобы
  *
+ * @property int $id
  * @property string $name
  * @property Collection|Complaint[] $complaints
  */

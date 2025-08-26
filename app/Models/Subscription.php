@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 /**
  * Модель подписки
  *
+ * @property int $id
  * @property string $subscriptionableType
  * @property int $subscriptionableId
  * @property User $user

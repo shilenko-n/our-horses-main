@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * Модель страны
  *
+ * @property int $id
  * @property string $name
  * @property Collection|City[] $cities
  */

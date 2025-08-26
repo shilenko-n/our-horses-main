@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Модель банковской транзакции
  *
+ * @property int $id
  * @property Card $card
  * @property string $about
  * @property int $amount

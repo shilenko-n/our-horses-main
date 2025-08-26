@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * Модель темы запроса технической поддержки
  *
+ * @property int $id
  * @property string $title
  * @property Collection|TechnicalSupportRequest[] $technicalSupportRequests
  */

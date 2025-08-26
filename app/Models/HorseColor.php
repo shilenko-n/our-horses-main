@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Масть лошади
  *
+ * @property int $id
  * @property Collection|Horse[] $horses
  * @property string $name
  */

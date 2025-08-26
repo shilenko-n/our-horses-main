@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 /**
  * Модель реакции
  *
+ * @property int $id
  * @property User $user
  * @property ReactionType $type
  * @property string $reactionableType

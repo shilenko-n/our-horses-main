@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 /**
  * Модель закладки пользователя
  *
+ * @property int $id
  * @property User $user
  * @property string $bookmarkableType
  * @property int $bookmarkableId

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Банковская карта пользователя
  *
+ * @property int $id
  * @property User $user
  * @property string $number
  * @property boolean $valid

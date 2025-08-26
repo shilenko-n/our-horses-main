@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Модель предложения/аренды лошади
  *
+ * @property int $id
  * @property Horse $horse
  * @property Currency $currency
  * @property int $price

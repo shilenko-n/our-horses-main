@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * Модель города
  *
+ * @property int $id
  * @property string $name
  * @property Country $country
  */
