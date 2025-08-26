@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\IndexController;
 
+
+
+
 if (app()->environment() != 'production') {
 	Route::get('front/{view?}', function (string $view = null) {
 		$view = str_replace('/', '.', $view);

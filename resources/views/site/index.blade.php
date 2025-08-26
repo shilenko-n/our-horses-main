@@ -7,8 +7,8 @@
 @section('page.content')
 	<div class="main__cover test">
 		<div class="main__cover-content">
-			<div class="main__cover-content_title">{{ \App\Helpers\setting('main.title') }}</div>
-			<div class="main__cover-content_description">{{ \App\Helpers\setting('main.description') }}</div>
+			<div class="main__cover-content_title">{{ setting('main.title') }}</div>
+			<div class="main__cover-content_description">{{ setting('main.description') }}</div>
 			<div class="main__cover-content_search">
 				{{-- <label class="input input_primary input_size-medium header__search-input"><input class="input__field input__field_icon-right" type="text" name="search" placeholder="Имя человека, кличка лошади или название товара"><i class="icon icon-search-solid input__icon" aria-hidden="true"></i></label> --}}
 				<x-forms.input size="big" icon="search-solid" icon-right placeholder="Имя человека, кличка лошади или название товара" />
