@@ -1,0 +1,193 @@
+@use "../../../../config" as *;
+@use "../../../../@mixins/media-queries" as *;
+@use "../../../../@mixins/order" as *;
+@use "../../../../base/typography";
+@use "../../../components/button/default" as *;
+@use "../../../components/button/variants" as *;
+
+
+$field-padding-x: 16rem;
+$field-padding-y: 8rem;
+$icon-padding: 48rem;
+$icon-size: 24rem;
+
+.js-password-input .input__icon {
+	cursor: pointer;
+}
+
+.input {
+	$parent: &;
+
+	position: relative;
+	display: grid;
+	grid-auto-rows: max-content;
+	grid-template-columns: minmax(0, 1fr);
+
+	&[required] {
+		#{$parent}__label #{$parent}__label-required-char {
+			display: initial;
+		}
+	}
+
+	&_horizontal {
+		display: flex;
+
+		& #{$parent}__field {
+			width: 424rem;
+
+			@include mobile {
+				width: 100%;
+			}
+		}
+
+		@include mobile {
+			display: block;
+		}
+	}
+
+	&__field {
+		@include order(2);
+		appearance: none;
+		position: relative;
+		padding: $field-padding-y $field-padding-x;
+		font-size: 16rem;
+		line-height: 24rem;
+		font-family: $common-font;
+		font-weight: normal;
+		text-transform: none;
+		border: 1rem solid $stroke-field;
+		border-radius: 4rem;
+		transition: $transition;
+		width: 100%;
+
+		#{$parent}_big > & {
+			padding: 16rem;
+		}
+
+		#{$parent}_small > & {
+			padding: 12rem 8rem;
+			font-size: 12rem;
+			line-height: 16rem;
+		}
+
+		&:required {
+			& ~ #{$parent}__label #{$parent}__label-required-char {
+				display: initial;
+			}
+		}
+
+		&_icon-left {
+			padding-left: $icon-padding !important;
+
+			& + #{$parent}__icon {
+				left: $field-padding-x;
+			}
+		}
+
+		&_icon-right {
+			padding-right: $icon-padding !important;
+
+			& + #{$parent}__icon {
+				justify-self: end;
+				right: $field-padding-x;
+			}
+		}
+
+		&[type="number"] {
+			// text-align: right;
+		}
+
+		&[type="file"] {
+			cursor: pointer;
+			border: 0;
+
+			@include phone {
+				width: 170rem;
+			}
+
+			&::file-selector-button,
+			&::-webkit-file-upload-button {
+				appearance: none;
+				padding: $field-padding-y $field-padding-x;
+				margin: (-$field-padding-y) (-$field-padding-x);
+				-webkit-margin-end: 24rem;
+				margin-inline-end: 24rem;
+				pointer-events: none;
+				border: 0;
+				border-radius: 4rem;
+
+				font-family: $common-font;
+				font-size: 16rem;
+				line-height: 24rem;
+				font-weight: 700;
+
+				transition: $transition;
+			}
+		}
+	}
+
+	&__label {
+		@include order(1);
+		display: block;
+		line-height: 24rem;
+		width: 100%;
+		margin-bottom: 8rem;
+		color: $type-text;
+
+		&-required-char {
+			display: none;
+		}
+	}
+
+	&__icon {
+		@include order(3);
+		position: relative;
+		top: calc(($icon-size + $field-padding-y + 1rem) * -1);
+		margin-bottom: -$icon-size;
+		width: max-content;
+		// z-index: 10;
+
+		#{$parent}_big > & {
+			top: calc(($icon-size + 16rem + 1rem) * -1);
+		}
+
+		&::before {
+			font-size: $icon-size;
+			line-height: $icon-size;
+		}
+	}
+
+	&__hint {
+		@extend .hint;
+		@include order(4);
+		margin-top: 6rem;
+	}
+
+	&__error {
+		@extend .hint;
+		@include order(5);
+		margin-top: 6rem;
+	}
+
+	& > select {
+		// Чиним селект в safari
+		appearance: none;
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		// Стрелка
+		background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='%23222222' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 11L2.80385 5L13.1962 5L8 11Z' /%3E%3C/svg%3E");
+		background-repeat: no-repeat, repeat;
+		background-position: right 8rem top 50%;
+		background-size: 16rem auto;
+	}
+
+	&-file {
+		input {
+			display: none;
+		}
+		&__button {
+			@extend .btn;
+			@extend .btn_pale;
+		}
+	}
+}

@@ -1,0 +1,44 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+
+.comment-form {
+	&__form {
+		display: flex;
+		justify-content: stretch;
+		gap: 16rem;
+		width: 100%;
+	}
+
+	&__avatar {
+		width: 44rem;
+		height: 44rem;
+		border-radius: 50%;
+
+		@include phone {
+			width: 32rem;
+			height: 32rem;
+		}
+	}
+
+	&__inputs {
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 8rem;
+	}
+
+	&__buttons {
+		align-self: end;
+		display: flex;
+		gap: 8rem;
+
+		@include phone {
+			gap: 16rem;
+			width: 100%;
+		}
+
+		.btn:last-child {
+			flex-grow: 1;
+		}
+	}
+}

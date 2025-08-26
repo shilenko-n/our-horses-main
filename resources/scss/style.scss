@@ -1,0 +1,161 @@
+/*
+ * Файл оглавления
+ *
+ * Подключает остальные компоненты системы стилизации
+ */
+
+@use "@functions/str-replace" as *;
+
+// @import "@wangeditor/editor";
+
+// Конфигурация
+@use "config" as *;
+
+// MIXINS
+@use "@mixins/media-queries" as *;
+@use "@mixins/order" as *;
+@use "@mixins/line-clamp" as *;
+
+// BASE
+@use "base/reset" as *;
+@use "base/rem" as *;
+@use "base/typography" as *;
+
+// TEMPLATE
+@use "template/layout" as *;
+@use "template/icons" as *;
+@use "template/scrollbar" as *;
+@use "template/header-banner" as *;
+@use "template/feed-sidebar-modal" as *;
+@use "template/dropdown" as *;
+@use "template/complaint" as *;
+@use "template/container" as *;
+
+// BLOCKS
+@use "template/blocks/article" as *;
+@use "template/blocks/footer" as *;
+@use "template/blocks/header" as *;
+@use "template/blocks/main-menu" as *;
+@use "template/blocks/paginator" as *;
+@use "template/blocks/up-button" as *;
+@use "template/blocks/video" as *;
+@use "template/blocks/comments" as *;
+@use "template/blocks/diary-block" as *;
+@use "template/blocks/editor" as *;
+
+// TEMPLATE COMPONENTS
+@use "template/components/button-tabs" as *;
+@use "template/components/post-button" as *;
+@use "template/components/mobile-menu/menu" as *;
+@use "template/components/mobile-menu/item" as *;
+@use "template/components/notification-counter" as *;
+@use "template/components/feed-actions" as *;
+@use "template/components/tab" as *;
+@use "template/components/breadcrumbs" as *;
+@use "template/components/post-comment" as *;
+@use "template/components/alert" as *;
+@use "template/components/user-status" as *;
+@use "template/components/mention" as *;
+@use "template/components/file-link" as *;
+@use "template/components/image-preview" as *;
+@use "template/components/filter-history" as *;
+@use "template/components/post-controls" as *;
+@use "template/components/share" as *;
+@use "template/components/add-post-block" as *;
+@use "template/components/notice" as *;
+@use "template/components/search-card" as *;
+@use "template/components/chat-user-card" as *;
+@use "template/components/chat-message" as *;
+
+@use "template/components/button/default" as *;
+@use "template/components/button/variants" as *;
+@use "template/components/link" as *;
+
+@use "template/components/user/mini-card" as *;
+@use "template/components/user/profile-card" as *;
+@use "template/components/user/subscribe-card" as *;
+@use "template/components/user/owners" as *;
+
+@use "template/components/horse/advertisement" as *;
+@use "template/components/horse/big-card" as *;
+@use "template/components/horse/horse" as *;
+@use "template/components/horse/small-card" as *;
+
+@use "template/components/comment/comment" as *;
+@use "template/components/comment/form" as *;
+
+@use "template/components/breed/subscribe-card" as *;
+
+@use "template/components/post/small-card" as *;
+
+@use "template/components/feed-blocks/horse-card" as *;
+@use "template/components/feed-blocks/feed-with-title" as *;
+@use "template/components/feed-blocks/post-card" as *;
+@use "template/components/feed-blocks/banner" as *;
+
+@use "template/components/right-sidebar-blocks/post-type" as *;
+@use "template/components/right-sidebar-blocks/feed-filter" as *;
+@use "template/components/right-sidebar-blocks/about-user" as *;
+@use "template/components/right-sidebar-blocks/sidebar-banner" as *;
+
+// forms
+@use "template/components/forms/flag" as *;
+@use "template/components/forms/input" as *;
+@use "template/components/forms/textarea" as *;
+// @import "template/components/forms/label";
+@use "template/components/forms/select" as *;
+@use "template/components/forms/range" as *;
+@use "template/components/forms/errors" as *;
+@use "template/components/forms/from-to-input" as *;
+
+// sliders
+@use "template/components/slider/base" as *;
+@use "template/components/slider/variants" as *;
+
+// galleries
+@use "template/components/gallery" as *;
+
+// modals
+@use "template/modals/default" as *;
+@use "template/modals/admin-filter" as *;
+@use "template/modals/contacts" as *;
+@use "template/modals/recall-notice" as *;
+@use "template/modals/search" as *;
+
+// PAGES
+@use "template/pages/auth" as *;
+@use "template/pages/feed" as *;
+@use "template/pages/main" as *;
+@use "template/pages/subscribers" as *;
+@use "template/pages/notices" as *;
+
+@use "template/pages/diary/diary" as *;
+@use "template/pages/diary/post" as *;
+@use "template/pages/diary/form" as *;
+
+@use "template/pages/horses/horse-form" as *;
+@use "template/pages/horses/horse-profile" as *;
+@use "template/pages/horses/horses-breeds" as *;
+@use "template/pages/horses/horses-buy" as *;
+@use "template/pages/horses/horses-feed" as *;
+@use "template/pages/horses/horses-sale-and-rent" as *;
+
+@use "template/pages/profile/profile-posts" as *;
+@use "template/pages/profile/settings" as *;
+@use "template/pages/profile/payment-settings" as *;
+@use "template/pages/profile/personal-settings" as *;
+@use "template/pages/profile/prev-horses" as *;
+
+@use "template/pages/support" as *;
+@use "template/pages/search" as *;
+@use "template/pages/chat" as *;
+
+@use "template/pages/admin/advertisement" as *;
+@use "template/pages/admin/article-hub-page" as *;
+@use "template/pages/admin/article" as *;
+@use "template/pages/admin/new-article" as *;
+@use "template/pages/admin/edit-article" as *;
+@use "template/pages/admin/guide" as *;
+@use "template/pages/admin/settings" as *;
+
+@use "base/atom" as *;

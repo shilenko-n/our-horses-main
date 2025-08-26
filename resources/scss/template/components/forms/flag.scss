@@ -1,0 +1,119 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+@use "sass:color";
+
+.flag {
+	position: relative;
+	display: flex;
+	cursor: pointer;
+
+	&__label {
+		// display: flex;
+		// flex-wrap: wrap;
+		margin-left: 10rem;
+		line-height: 24rem;
+		color: $type-heading;
+	}
+
+	input {
+		height: 16rem;
+		width: 16rem;
+		top: 3rem;
+		border: 1rem solid transparent;
+
+		position: relative;
+		appearance: none;
+		padding: 0;
+		vertical-align: middle;
+		flex-shrink: 0;
+		background-color: transparent;
+		background-origin: border-box;
+		background-size: 100% 100%;
+		background-position: 50%;
+		background-repeat: no-repeat;
+		background-color: currentColor;
+		cursor: pointer;
+		transition: 0.1s;
+		border: 2rem solid $b;
+
+		&:checked {
+			border-color: transparent;
+		}
+
+		&[type="radio"] {
+			border-radius: 50%;
+
+			&:checked::after {
+				content: "";
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: calc(100% - 2.5rem);
+				height: calc(100% - 2.5rem);
+				border: 1.5rem solid $w;
+				border-radius: 50%;
+				background-color: $accent-button-default;
+				transition: 0.2s;
+			}
+		}
+
+		&[type="checkbox"] {
+			border-radius: 2rem;
+
+			&:checked::after {
+				content: "";
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: calc(100% - 2.5rem);
+				height: calc(100% - 2.5rem);
+				border: 1.5rem solid $w;
+				background-color: $accent-button-default;
+				transition: 0.2s;
+			}
+		}
+	}
+
+	&.flag_disabled {
+		&,
+		input {
+			cursor: default;
+		}
+	}
+
+	// VARIANTS
+	&_primary {
+		input {
+			color: $w;
+			border-color: $accent-button-default;
+
+			&:not(:disabled):hover {
+				color: color.adjust($accent-button-default, $alpha: -0.9);
+
+				&:checked {
+					color: $accent-button-hover;
+				}
+			}
+
+			&:checked {
+				color: $accent-button-default;
+			}
+		}
+
+		&.flag_disabled {
+			.flag__label {
+				color: $gray4;
+			}
+
+			input {
+				border-color: $gray4;
+
+				&:checked {
+					color: $gray4;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,37 @@
+@use "../config" as *;
+@use "../@mixins/media-queries" as *;
+
+.dropdown {
+	position: relative;
+
+	&__menu {
+		position: absolute;
+		right: 0;
+		display: none !important;
+		flex-direction: column;
+		justify-content: stretch;
+		align-items: start;
+		border: 1px solid $stroke-field;
+		border-radius: 4rem;
+		z-index: 9999;
+
+		&_opened {
+			display: flex !important;
+		}
+	}
+
+	&__item {
+		background-color: $w;
+		padding: 8rem 16rem;
+		font-size: 16rem;
+		line-height: 24rem;
+		font-weight: 400;
+		color: $type-heading;
+		width: 100%;
+		cursor: pointer;
+
+		&:hover {
+			background-color: $pale-button-default;
+		}
+	}
+}

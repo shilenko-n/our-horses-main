@@ -1,0 +1,11 @@
+@use "../../config" as *;
+
+.notification-counter {
+	border-radius: 4rem;
+	padding: 0 4rem;
+	background-color: $attention-danger;
+	color: $pale-button-white;
+	font-size: 12rem;
+	line-height: 16rem;
+	font-weight: 600;
+}

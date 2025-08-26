@@ -1,0 +1,70 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+
+.search-page {
+    border: 1px solid $stroke-line;
+	border-radius: 8rem;
+	padding: 40rem 32rem;
+	background-color: $w;
+
+	@include phone {
+		padding: 24rem 16rem;
+	}
+
+	&__title {
+		margin-top: 8rem;
+        margin-bottom: 24rem;
+
+		@include phone {
+			margin-top: 0;
+		}
+	}
+
+    &__form {
+        display: flex;
+		gap: 24rem;
+        margin-bottom: 32rem;
+
+        > * {
+            &:nth-child(1) {
+                flex: 4;
+            }
+            &:nth-child(2) {
+                flex: 2;
+            }
+            &:nth-child(3) {
+                flex: 1;
+                align-self: flex-end;
+            }
+        }
+
+        @include tablet {
+            display: grid;
+			grid-template-columns: repeat(10, minmax(0, 1fr));
+
+            > * {
+                &:nth-child(1) {
+                    grid-column: span 5;
+                }
+                &:nth-child(2) {
+                    grid-column: span 5;
+                }
+                &:nth-child(3) {
+                    grid-column: span 2;
+                }
+            }
+        }
+
+		@include phone {
+            display: grid;
+			grid-template-columns: repeat(1, minmax(0, 1fr));
+		}
+    }
+
+    &__result {
+        display: flex;
+        flex-direction: column;
+        gap: 24rem;
+        margin-bottom: 32rem;
+    }
+}

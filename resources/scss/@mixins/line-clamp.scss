@@ -1,0 +1,19 @@
+@use "media-queries" as *;
+
+/*
+ * Устанавливает ограничение на количество строк в текстовом поле
+ *
+ */
+@mixin line-clamp($value, $mq: null) {
+	@include mqs($mq) {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		box-orient: vertical;
+		-moz-box-orient: vertical;
+		-webkit-box-orient: vertical;
+		display: -webkit-box;
+		display: -moz-box;
+		-webkit-line-clamp: $value;
+		line-clamp: $value;
+	}
+}

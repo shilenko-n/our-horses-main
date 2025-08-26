@@ -1,0 +1,169 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+
+.header {
+	position: sticky;
+	top: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 16rem 40rem 16rem 40rem;
+	background-color: $content-dark-brown;
+	z-index: 99;
+
+	@include tablet {
+		padding: 16rem 32rem;
+	}
+
+	@include phone {
+		flex-direction: column;
+		gap: 8rem;
+		padding: 8rem 0rem 0rem 0rem;
+	}
+
+	&_logined {
+		@include phone {
+			flex-direction: row;
+			padding: 4rem 16rem;
+		}
+	}
+
+	&__left-side {
+		display: flex;
+		align-items: center;
+		gap: 40rem;
+	}
+
+	&__logo {
+		$parent: &;
+
+		&_short {
+			display: none;
+		}
+
+		&_logined {
+			@include phone {
+				#{$parent}_full {
+					display: none;
+				}
+				#{$parent}_short {
+					display: block;
+					height: 32rem;
+				}
+			}
+		}
+	}
+
+	&__search {
+		@include mobile {
+			display: none;
+		}
+	}
+
+	&__account {
+		@include mobile {
+			display: none;
+		}
+	}
+
+	&__buttons {
+		display: flex;
+		gap: 12rem;
+		align-items: center;
+
+		@include phone {
+			width: 100%;
+			gap: 0;
+		}
+
+		&_logined {
+			@include phone {
+				width: fit-content;
+				gap: 12rem;
+			}
+		}
+	}
+
+	&__balance {
+		display: flex;
+		align-items: center;
+		gap: 16rem;
+		margin-right: 28rem; // из отступа 40rem вычитается геп в 12rem из класса .header__buttons_logined
+
+		@include mobile {
+			display: none;
+		}
+
+		&-value {
+			font-size: 24rem;
+			line-height: 32rem;
+			font-weight: 700;
+			color: $w;
+		}
+	}
+
+	&__button {
+		@include phone {
+			&:not(.header__button_logined) {
+				flex-grow: 1;
+				padding: 8rem 16rem;
+				border-radius: 0;
+				font-size: 12rem;
+				line-height: 16rem;
+				font-weight: 700;
+			}
+		}
+
+		&_transforming {
+			@include phone {
+				border-width: 0px 0px 1px 1px;
+				border-style: solid;
+				border-color: $stroke-line;
+				box-sizing: border-box;
+			}
+
+			&_accent {
+				@include phone {
+					border-width: 0px 0px 1px 1px;
+					border-style: solid;
+					border-color: $accent-button-default;
+					box-sizing: border-box;
+				}
+			}
+		}
+
+		&_search {
+			display: none;
+
+			@include mobile {
+				display: inherit;
+			}
+		}
+
+		&_comments {
+			@include mobile {
+				display: none;
+			}
+		}
+
+		&_logined {
+			padding: 8rem;
+
+			@include phone {
+				padding: 4rem;
+				font-size: 16rem;
+				line-height: 24rem;
+			}
+		}
+
+		&_with-counter {
+			position: relative;
+		}
+	}
+
+	&__notification-counter {
+		position: absolute;
+		top: 0;
+		right: -8rem;
+	}
+}

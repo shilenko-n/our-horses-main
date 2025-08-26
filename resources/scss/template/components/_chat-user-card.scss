@@ -1,0 +1,57 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+@use "../../@mixins/line-clamp" as *;
+@use "../../base/typography" as *;
+
+.chat-user-card {
+	display: flex;
+	gap: 16rem;
+	padding: 12rem 8rem;
+	border-radius: 8rem;
+
+	&:hover, &_active {
+		background-color: $content-beige;
+	}
+
+	&__photo {
+		position: relative;
+		width: 44rem;
+		height: 44rem;
+		border-radius: 50%;
+	}
+
+	&__wrap {
+		display: flex;
+		flex-direction: column;
+		justify-content: stretch;
+		width: 100%;
+
+		&__name {
+			display: block;
+			color: $type-heading;
+			font-weight: 600;
+			margin-bottom: 4rem;
+		}
+		&__message-block {
+			margin-top: 8rem;
+			margin-bottom: 4rem;
+			display: grid;
+			grid-template-columns: 1fr auto;
+			align-items: start;
+			column-gap: 8rem;
+
+			&__last-message {
+				@include line-clamp(2);
+				overflow: hidden;
+				text-overflow: ellipsis;
+				@extend .hint;
+				color: $type-text;
+			}
+		}
+
+		&__date-message {
+			@extend .hint;
+			color: $type-hint;
+		}
+	}
+}

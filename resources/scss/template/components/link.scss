@@ -1,0 +1,52 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+
+
+.link {
+	text-decoration: none;
+	font-size: 16rem;
+	line-height: 24rem;
+	font-weight: 700;
+	transition: color 0.2s;
+	box-sizing: border-box;
+	cursor: pointer;
+
+	&_icon {
+		display: flex;
+		align-items: center;
+		flex-wrap: nowrap;
+
+		&:not(.btn) .icon + span,
+		&:not(.btn) span + .icon {
+			margin-left: 8rem;
+		}
+	}
+
+	// Variants
+	&_accent {
+		color: $type-heading;
+		$parent: &;
+
+		&:hover {
+			color: $type-text;
+
+			&.link_icon {
+				.icon:last-child,
+				.icon:first-child {
+					color: $accent-button-hover;
+				}
+			}
+		}
+
+		&.link_icon {
+			.icon:last-child,
+			.icon:first-child {
+				color: $accent-button-active;
+
+				#{$parent}:hover & {
+					color: $accent-button-hover;
+				}
+			}
+		}
+	}
+}

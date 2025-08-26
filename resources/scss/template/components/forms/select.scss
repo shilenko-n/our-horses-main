@@ -1,0 +1,155 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+@use "../../../base/typography" as *;
+
+@charset "UTF-8";
+
+.select {
+	display: flex;
+	flex-direction: column;
+	gap: 8rem;
+	$parent: &;
+
+	&__select {
+		@extend .p;
+		order: 1;
+		padding: 8rem;
+		padding-left: 16rem;
+		padding-right: 24rem;
+		border: 1px solid $stroke-line;
+		border-radius: 4rem;
+		background-color: $w;
+
+		// Чиним селект в safari
+		appearance: none;
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		// Стрелка
+		background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='%23222222' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 11L2.80385 5L13.1962 5L8 11Z' /%3E%3C/svg%3E");
+		background-repeat: no-repeat, repeat;
+		background-position: right 8rem top 50%;
+		background-size: 16rem auto;
+
+		#{$parent}_error & {
+			border-color: $attention-danger;
+		}
+
+		#{$parent}_big & {
+			font-size: 16rem;
+			line-height: 24rem;
+			padding: {
+				top: 16rem;
+				bottom: 16rem;
+			}
+		}
+
+		#{$parent}_small & {
+			padding: {
+				top: 4rem;
+				bottom: 4rem;
+			}
+		}
+
+		#{$parent}_adaptive & {
+			@include phone {
+				font-size: 12rem;
+				line-height: 16rem;
+				padding: {
+					top: 8rem;
+					bottom: 8rem;
+					left: 8rem;
+				}
+			}
+		}
+
+		#{$parent}_small &_dropdown {
+			padding: {
+				top: 8rem;
+				bottom: 8rem;
+			}
+		}
+
+		&_dropdown {
+			font-weight: 600;
+			background-image: url('data:image/svg+xml,<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.4688 15.9375C11.75 16.2188 12.2188 16.2188 12.5 15.9375L18.5938 9.875C18.875 9.5625 18.875 9.09375 18.5938 8.8125L17.875 8.09375C17.5938 7.8125 17.125 7.8125 16.8125 8.09375L12 12.9062L7.15625 8.09375C6.84375 7.8125 6.375 7.8125 6.09375 8.09375L5.375 8.8125C5.09375 9.09375 5.09375 9.5625 5.375 9.875L11.4688 15.9375Z" fill="%23222222"/></svg>');
+		}
+
+		&:disabled {
+			background-color: $content-grey;
+		}
+	}
+
+	&__label {
+		@extend .p;
+		order: 0;
+		color: $type-text;
+
+		&_required {
+			display: none;
+			color: $attention-danger;
+		}
+	}
+
+	&[required] {
+		#{$parent}__label #{$parent}__label_required {
+			display: initial;
+		}
+	}
+
+	&__hint {
+		@extend .hint;
+		order: 2;
+		color: $type-hint;
+	}
+
+	&__error {
+		@extend .hint;
+		order: 3;
+		color: $attention-danger;
+	}
+
+	&_inline {
+		display: inline-flex;
+	}
+}
+
+// .select {
+// 	position: relative;
+// 	padding: 8rem 16rem;
+// 	font-size: 16rem;
+// 	line-height: 24rem;
+// 	font-weight: 600;
+// 	text-transform: none;
+// 	border: 1rem solid $stroke-line;
+// 	border-radius: 4rem;
+// 	cursor: pointer;
+// 	background-color: $w;
+// 	transition:
+// 		color 0.1s ease-in,
+// 		border-color 0.1s ease-in,
+// 		box-shadow 0.3s;
+
+// 	&:not(:disabled):hover {
+// 		// border-color: $primary;
+// 	}
+
+// 	&:not(:disabled):focus {
+// 		// box-shadow: transparentize($primary, 0.75) 0 0 0 2rem;
+// 	}
+
+// 	&:disabled {
+// 		background-color: #eeeeee;
+// 	}
+
+// 	&_small {
+// 		padding: 8rem;
+// 		font-size: 12rem;
+// 		line-height: 16rem;
+// 	}
+
+// 	@include phone {
+// 		padding: 8rem;
+// 		font-size: 12rem;
+// 		line-height: 16rem;
+// 	}
+// }

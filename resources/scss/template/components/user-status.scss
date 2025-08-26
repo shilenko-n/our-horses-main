@@ -1,0 +1,39 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+
+.user-status {
+	display: flex;
+	align-items: center;
+	gap: 8rem;
+	font-size: 16rem;
+	line-height: 24rem;
+	font-weight: 600;
+	color: $type-hint;
+
+	&::before {
+		content: "";
+		display: inline-block;
+		width: 8rem;
+		height: 8rem;
+		border-radius: 50%;
+		background-color: $type-hint;
+	}
+
+	&_online {
+		color: $attention-success;
+
+		&::before {
+			background-color: $attention-success;
+		}
+	}
+
+	&_small {
+		font-size: 12rem;
+		line-height: 16rem;
+
+		&::before {
+			width: 6rem;
+			height: 6rem;
+		}
+	}
+}

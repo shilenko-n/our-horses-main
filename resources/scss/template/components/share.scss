@@ -1,0 +1,23 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+@use "../../base/typography" as *;
+
+.share {
+	display: flex;
+	align-items: center;
+	gap: 24rem;
+
+	// @include phone {
+	// 	padding: 16rem;
+	// }
+
+	&__text {
+		@extend .p_bold;
+		color: $type-text;
+	}
+
+	&__buttons {
+		display: flex;
+		gap: 8rem;
+	}
+}

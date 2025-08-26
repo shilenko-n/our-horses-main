@@ -1,0 +1,53 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+
+.mobile-menu {
+	position: relative;
+
+	@include desktop {
+		display: none;
+	}
+
+	@include laptop {
+		display: none;
+	}
+
+	&__items {
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		box-shadow: 0px -2px 11px 0px #c5baae40;
+		z-index: 99999;
+	}
+
+	&__item {
+		align-self: center;
+		justify-self: center;
+	}
+}
+
+.extended-menu {
+	display: flex;
+	flex-direction: column;
+	gap: 40rem;
+	padding: 24rem 16rem;
+	margin-top: 16rem;
+	width: 360rem;
+	border-radius: 8rem;
+	border-right: 1px solid #eae3d9;
+	border: 0px 1px 0px 0px;
+	background: $w;
+
+	&__balance {
+		&-value {
+			font-size: 16rem;
+			line-height: 24rem;
+			font-weight: 700;
+			color: $content-dark-brown;
+			margin-bottom: 16rem;
+		}
+	}
+}

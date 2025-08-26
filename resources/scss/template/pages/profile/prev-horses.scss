@@ -1,0 +1,9 @@
+.prev-horses {
+	&__block {
+		display: none !important;
+
+		&_visible {
+			display: inherit !important;
+		}
+	}
+}

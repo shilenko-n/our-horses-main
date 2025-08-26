@@ -1,0 +1,146 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+@use "../../base/typography" as *;
+@use "../../template/components/forms/input/_default.scss" as *;
+
+.main {
+	&__cover {
+		position: relative;
+		width: 1920rem;
+		height: auto;
+		background-image: url("/img/layout/index/cover-d.png");
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+
+		@include laptop {
+			width: 1366rem;
+			background-image: url("/img/layout/index/cover-l.png");
+		}
+
+		@include tablet {
+			width: 768rem;
+			height: 572rem;
+			background-image: url("/img/layout/index/cover-t.png");
+		}
+
+		@include phone {
+			width: 360rem;
+			height: 376rem;
+			background-image: url("/img/layout/index/cover-p.png");
+		}
+	}
+
+	&__cover-content {
+		padding: 88rem 608rem 136rem 608rem;
+
+		&_title {
+			@extend .h1;
+			color: $content-beige;
+			text-align: center;
+		}
+
+		&_description {
+			@extend .lead;
+			color: $content-beige;
+			text-align: center;
+			margin-top: 16rem;
+
+			@include phone {
+				margin-top: 8rem;
+			}
+		}
+
+		&_search {
+			margin-top: 48rem;
+			border-radius: 8rem;
+			overflow: hidden;
+			border: 1px solid $stroke-field;
+
+			@include phone {
+				margin-top: 24rem;
+				display: none;
+			}
+
+			&_phone {
+				@extend .input_small;
+
+				margin-top: 48rem;
+				border-radius: 8rem;
+				overflow: hidden;
+				border: 1px solid $stroke-field;
+				display: none;
+
+				@include phone {
+					margin-top: 24rem;
+					display: block;
+				}
+			}
+		}
+
+		@include laptop {
+			padding: 88rem 344rem 136rem 344rem;
+		}
+
+		@include tablet {
+			padding: 48rem 32rem 136rem 32rem;
+		}
+
+		@include phone {
+			padding: 32rem 16rem 176rem 16rem;
+		}
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: 32rem;
+		padding: 48rem 160rem 48rem 160rem;
+
+		@include laptop {
+			padding: 48rem 40rem;
+		}
+
+		@include tablet {
+			padding: 48rem 32rem;
+		}
+
+		@include phone {
+			padding: 0;
+		}
+	}
+
+	&__hub {
+		display: flex;
+		flex-direction: column;
+		gap: 24rem;
+		border-radius: 8rem;
+		border: 1px solid $stroke-line;
+		padding: 32rem;
+		background-color: $w;
+
+		@include phone {
+			padding: 24rem 16rem;
+		}
+
+		&-title {
+			@extend.h2;
+			color: $type-heading;
+			text-align: center;
+		}
+
+		&-items {
+			display: grid;
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			gap: 24rem;
+
+			@include tablet {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+
+			@include phone {
+				grid-template-columns: repeat(1, minmax(0, 1fr));
+			}
+		}
+	}
+}

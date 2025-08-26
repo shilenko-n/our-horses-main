@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+.label {
+	display: block;
+	width: 100%;
+	line-height: 24rem;
+	margin-bottom: 8rem;
+	color: $gray5;
+
+	&_required {
+		&::after {
+			content: " *";
+			// position: absolute;
+			top: 0;
+			right: -10rem;
+			color: $primary;
+		}
+	}
+}

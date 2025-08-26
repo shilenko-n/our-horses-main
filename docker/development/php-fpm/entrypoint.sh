@@ -8,6 +8,6 @@ done
 
 php artisan key:generate
 
-php artisan migrate --force
+php artisan migrate --seed --force
 
 exec php-fpm

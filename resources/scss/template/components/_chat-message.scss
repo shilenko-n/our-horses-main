@@ -1,0 +1,53 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+@use "../../@mixins/line-clamp" as *;
+@use "../../base/typography" as *;
+
+.chat-message {
+	max-width: 418rem;
+	padding: 12rem;
+	border-radius: 8rem;
+
+	@include phone {
+		max-width: 304rem;
+	}
+
+	.input_chat-message {
+		width: 394rem;
+	}
+
+	&_incoming {
+		background-color: $content-beige;
+		margin-left: auto;
+	}
+	&_outgoing {
+		background-color: $content-green;
+	}
+
+	&__content {
+		@extend .p;
+		color: $type-heading;
+		margin-bottom: 8rem;
+	}
+	&__time {
+		@extend .hint;
+		color: $type-hint;
+	}
+
+	&__deleted {
+		display: flex;
+		gap: 8rem;
+	}
+
+	&__controls {
+		display: flex;
+		gap: 4rem;
+		align-items: center;
+
+		&_edite {
+			justify-content: flex-end;
+			margin-top: 8rem;
+			gap: 24rem;
+		}
+	}
+}
