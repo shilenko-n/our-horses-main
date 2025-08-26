@@ -1,0 +1,40 @@
+// ЭТОТ ФАЙЛ АВТОМАТИЧЕСКИ СГЕНЕРИРОВАН С ПОМОЩЬЮ FANTASTICON
+// НЕ РЕДАКТИРУЙТЕ ЭТОТ ФАЙЛ Т.К. ОН БУДЕТ ПЕРЕЗАПИСАН ПРИ СЛЕДУЮЩЕМ ЗАПУСКЕ FANTASTICON
+// Для изменения шаблона этого файла, отредактируйте шаблон storage/fantasticon/css.hbs
+
+@font-face {
+    font-family: "{{ name }}";
+    {{!--src: {{{ fontSrc }}};--}}
+    src: url('{{ fontsUrl }}/{{ name }}.woff2') format('woff2'),
+         url('{{ fontsUrl }}/{{ name }}.woff') format('woff');
+}
+
+{{# if selector }}
+{{!-- {{ selector }}:before { --}}
+{{ selector }} {
+{{ else }}
+{{!-- {{ tag }}[class^="{{prefix}}-"]:before, {{ tag }}[class*=" {{prefix}}-"]:before { --}}
+{{ tag }}[class^="{{prefix}}-"]:before, {{ tag }}[class*=" {{prefix}}-"] {
+{{/ if }}
+    font-family: "{{ name }}" !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+	font-size: 1.5em;
+}
+
+{{# each codepoints }}
+{{# if ../selector }}
+{{!-- {{ ../selector }}.{{ ../prefix }}-{{ @key }}:before { --}}
+.{{ ../prefix }}-{{ @key }}:before {
+{{ else }}
+{{ tag }}.{{ ../prefix }}-{{ @key }}:before {
+{{/ if }}
+    content: "\\{{ codepoint this }}";
+}
+{{/ each }}

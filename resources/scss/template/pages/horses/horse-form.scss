@@ -1,0 +1,285 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+@use "../../../base/typography" as *;
+
+.horse-form {
+	display: flex;
+	flex-direction: column;
+	gap: 24rem;
+	padding: 40rem 32rem;
+	background-color: $w;
+	border: 1px solid $stroke-line;
+	border-radius: 8rem;
+
+	@include phone {
+		padding: 24rem 0;
+		gap: 16rem;
+		border-radius: 0;
+	}
+
+	&_two {
+		padding: 40rem 32rem;
+
+		@include phone {
+			padding: 24rem 0;
+		}
+	}
+
+	&__breadcrumbs {
+		@include phone {
+			padding: {
+				left: 16rem;
+				right: 16rem;
+			}
+		}
+	}
+
+	&__inputs {
+		display: flex;
+		justify-content: stretch;
+		gap: 32rem;
+
+		@include phone {
+			flex-direction: column;
+			gap: 24rem;
+		}
+	}
+
+	&__documents-section {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 24rem 32rem;
+		padding-bottom: 32rem;
+		border-bottom: 1px solid $stroke-line;
+
+		@include phone {
+			display: flex;
+			flex-direction: column;
+			padding: 0 16rem 24rem;
+		}
+
+		&-alerts {
+			grid-column: span 2;
+		}
+	}
+
+	&__horse-information {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 32rem;
+		padding: 32rem 0;
+		border-bottom: 1px solid $stroke-line;
+
+		@include mobile {
+			display: flex;
+			flex-direction: column;
+		}
+
+		@include phone {
+			padding: 24rem 16rem;
+		}
+	}
+
+	&__photos-section {
+		padding: 32rem 0 24rem;
+
+		@include phone {
+			padding: 24rem 16rem;
+		}
+	}
+
+	&__buttons-section {
+		display: flex;
+		flex-direction: column;
+		gap: 16rem;
+
+		@include phone {
+			padding: {
+				left: 16rem;
+				right: 16rem;
+			}
+		}
+	}
+
+	&__ad-informations {
+		display: flex;
+		flex-direction: column;
+		gap: 24rem;
+		padding-bottom: 32rem;
+		border-bottom: 1px solid $stroke-line;
+	}
+
+	&__ad-contacts {
+		padding: 32rem 0 32rem;
+		border-bottom: 1px solid $stroke-line;
+
+		@include phone {
+			padding: 24rem 0 24rem;
+		}
+	}
+
+	&__ad-status {
+		padding-top: 32rem;
+
+		@include phone {
+			padding-top: 24rem;
+		}
+	}
+
+	&-ad {
+		&__info {
+			display: flex;
+			flex-direction: column;
+			gap: 16rem;
+		}
+
+		&__price {
+			display: flex;
+			flex-direction: column;
+			gap: 8rem;
+		}
+
+		&__price-unit {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 24rem;
+		}
+
+		&__info_contacts {
+			display: flex;
+			flex-direction: column;
+			gap: 8rem;
+		}
+
+		&__contacts {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			row-gap: 24rem;
+			column-gap: 32rem;
+			margin-top: 16rem;
+
+			@include phone {
+				grid-template-columns: minmax(0, 1fr);
+			}
+		}
+
+		&__contacts-phone {
+			display: flex;
+			column-gap: 24rem;
+			margin-top: 8rem;
+		}
+
+		&__status {
+			display: flex;
+			flex-direction: column;
+			gap: 16rem;
+			margin-top: 16rem;
+			margin-bottom: 24rem;
+		}
+	}
+	&__input {
+		&_1 {
+			grid-column: span 2;
+
+			&-files {
+				grid-column: span 2;
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 24rem;
+			}
+		}
+
+		&_2 {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 32rem;
+			grid-column: span 3;
+
+			.flag {
+				align-self: center;
+
+				@include mobile {
+					align-self: start;
+				}
+			}
+
+			@include mobile {
+				display: flex;
+				flex-direction: column;
+			}
+		}
+
+		&_3 {
+			display: flex;
+			flex-direction: column;
+			gap: 8rem;
+
+			label {
+				color: $type-text;
+			}
+
+			&-checkboxes {
+				display: flex;
+				gap: 16rem;
+			}
+
+			&-static {
+				margin-top: 4rem;
+			}
+		}
+
+		&_4 {
+			display: flex;
+			flex-direction: column;
+			gap: 8rem;
+		}
+
+		&_5 {
+			grid-column: span 3;
+		}
+	}
+
+	&__hint {
+		@extend .hint;
+		color: $type-heading;
+	}
+
+	&__step-two-buttons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 16rem;
+
+		button:last-child {
+			margin-left: 32rem;
+
+			@include mobile {
+				margin-left: 0;
+			}
+		}
+
+		button:first-child {
+			margin-left: 0;
+		}
+	}
+
+	&__tabs {
+		@include phone {
+			overflow-x: auto;
+		}
+	}
+}
+
+.image-previews {
+	display: grid;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+	gap: 16rem;
+	margin-top: 24rem;
+
+	@include tablet {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	@include phone {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}

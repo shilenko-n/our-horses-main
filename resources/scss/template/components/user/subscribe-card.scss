@@ -1,0 +1,104 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+@use "../../../@mixins/line-clamp" as *;
+@use "../../../base/typography" as *;
+
+.user-subscribe-card {
+	display: flex;
+	gap: 16rem;
+	$parent: &;
+
+	&:hover {
+		#{$parent}__name {
+			color: $links-light;
+		}
+	}
+
+	&_unsubscribed {
+		#{$parent}__name {
+			color: $links-light;
+		}
+
+		#{$parent}__age {
+			color: $type-disabled-text;
+		}
+
+		#{$parent}__location {
+			color: $type-disabled-text;
+		}
+
+		#{$parent}__photo::after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 88rem;
+			height: 88rem;
+			background-color: rgba(167, 167, 167, 0.69);
+			border-radius: 50%;
+		}
+	}
+
+	&__photo {
+		position: relative;
+
+		img {
+			width: 88rem;
+			height: 88rem;
+			border-radius: 50%;
+		}
+	}
+
+	&__personal {
+		display: flex;
+		flex-direction: column;
+		justify-content: stretch;
+		gap: 8rem;
+		width: 100%;
+	}
+
+	&__info {
+		flex-grow: 1;
+	}
+
+	&__name {
+		color: $type-heading;
+		margin-bottom: 4rem;
+	}
+
+	&__age {
+		@extend .hint;
+		margin-top: 8rem;
+		color: $type-text;
+	}
+
+	&__location {
+		@extend .hint;
+		margin-top: 4rem;
+		color: $type-text;
+	}
+
+	&__message {
+		@extend .hint;
+		display: flex;
+		gap: 8rem;
+		color: $type-text;
+		margin-top: 8rem;
+
+		&__message {
+			@include line-clamp(2);
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+	}
+
+	&__ago {
+		@extend .hint;
+		margin-top: 4rem;
+		color: $type-hint;
+	}
+
+	&__buttons {
+		// margin-top: 8rem;
+	}
+}

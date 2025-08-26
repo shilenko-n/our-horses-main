@@ -1,0 +1,48 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+@use "../../base/typography" as *;
+
+.alert {
+	display: flex;
+	gap: 7rem; // из-за бордеров не 8, а 7
+	padding: 16rem;
+	border: 1px solid $attention-yellow;
+	border-radius: 4rem;
+	background-color: $attention-pale;
+	box-sizing: border-box;
+
+	@include phone {
+		padding: 8rem;
+	}
+
+	&__icon {
+		font-size: 16rem;
+		line-height: 0;
+		color: $attention-yellow;
+
+		@include phone {
+			font-size: 10rem;
+		}
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		gap: 16rem;
+
+		@include phone {
+			gap: 8rem;
+		}
+	}
+
+	&__message {
+		@extend .p;
+		color: $type-heading;
+
+		@include phone {
+			font-size: 12rem;
+			line-height: 16rem;
+			font-weight: 400;
+		}
+	}
+}

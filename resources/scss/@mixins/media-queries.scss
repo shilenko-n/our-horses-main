@@ -1,0 +1,124 @@
+@use "sass:list";
+
+// Все настольные устройства
+@mixin desktop {
+	@media screen and (min-width: 1281px) {
+		@content;
+	}
+}
+
+// Широкоэкранные устройства
+@mixin wide {
+	@media screen and (min-width: 1600px) {
+		@content;
+	}
+}
+
+// Ноутбуки
+@mixin laptop {
+	@media screen and (min-width: 1281px) and (max-width: 1599px) {
+		@content;
+	}
+}
+
+// Все мобильные устройства
+@mixin mobile {
+	@media screen and (max-width: 1280px) {
+		@content;
+	}
+}
+
+// Планшеты
+@mixin tablet {
+	@media screen and (min-width: 768px) and (max-width: 1280px) {
+		@content;
+	}
+}
+
+// Смартфоны
+@mixin phone {
+	@media screen and (max-width: 767px) {
+		@content;
+	}
+}
+
+// Все устройства, кроме смартфонов
+@mixin not-phone {
+	@media screen and (min-width: 768px) {
+		@content;
+	}
+}
+
+// Принтер
+@mixin print {
+	@media print {
+		@content;
+	}
+}
+
+/* Комбайн медиа запросов по сокращениям */
+@mixin mqs(
+	$args: (
+		null,
+		d,
+		w,
+		l,
+		m,
+		t,
+		p,
+		np,
+		print
+	)
+) {
+	@if (list.index($args, null)) {
+		@content;
+	}
+
+	@if (list.index($args, d)) {
+		@include desktop {
+			@content;
+		}
+	}
+
+	@if (list.index($args, w)) {
+		@include wide {
+			@content;
+		}
+	}
+
+	@if (list.index($args, l)) {
+		@include laptop {
+			@content;
+		}
+	}
+
+	@if (list.index($args, m)) {
+		@include mobile {
+			@content;
+		}
+	}
+
+	@if (list.index($args, t)) {
+		@include tablet {
+			@content;
+		}
+	}
+
+	@if (list.index($args, p)) {
+		@include phone {
+			@content;
+		}
+	}
+
+	@if (list.index($args, np)) {
+		@include not-phone {
+			@content;
+		}
+	}
+
+	@if (list.index($args, print)) {
+		@include print {
+			@content;
+		}
+	}
+}

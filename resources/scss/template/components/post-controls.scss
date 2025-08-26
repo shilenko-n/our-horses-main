@@ -1,0 +1,24 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+@use "../../base/typography" as *;
+
+.post-controls {
+	display: flex;
+	align-items: center;
+	gap: 16rem;
+
+	@include phone {
+		gap: 12rem;
+	}
+
+	&__ago {
+		@extend .p;
+		color: $type-hint;
+
+		@include phone {
+			font-size: 12rem;
+			line-height: 16rem;
+			font-weight: 400;
+		}
+	}
+}

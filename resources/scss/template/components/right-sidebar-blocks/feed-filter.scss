@@ -1,0 +1,89 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+@use "../../../base/typography" as *;
+
+.feed-filter {
+	padding: 24rem;
+	border: 1px solid $stroke-line;
+	border-radius: 8rem;
+	background-color: $w;
+	$parent: &;
+
+	@include mobile {
+		display: none;
+
+		.modal-container > & {
+			display: inherit;
+			//width: 360rem;
+		}
+	}
+
+	&_modal {
+		max-width: 360rem;
+		border: none;
+		padding: 0;
+
+		@include tablet {
+			width: 360rem;
+		}
+	}
+
+	&__heading {
+		@extend .h3;
+		color: $type-heading;
+	}
+
+	&__fields {
+		display: flex;
+		flex-direction: column;
+		gap: 24rem;
+		margin-top: 16rem;
+	}
+
+	&__buttons {
+		display: flex;
+		gap: 16rem;
+		margin-top: 24rem;
+	}
+
+	&__button {
+		&:first-child {
+			flex-grow: 1;
+		}
+
+		&:last-child {
+			width: 40rem;
+		}
+	}
+
+	&__history {
+		margin-top: 32rem;
+		display: flex;
+		flex-direction: column;
+		gap: 16rem;
+
+		&-title {
+			@extend .p;
+			color: $type-heading;
+		}
+
+		&-item {
+			display: flex;
+			flex-direction: row;
+
+			&-name {
+				color: $type-heading;
+				font-weight: bold;
+			}
+
+			&-reset {
+				color: $links-default;
+				margin-left: auto;
+
+				&:hover {
+					color: $type-heading;
+				}
+			}
+		}
+	}
+}

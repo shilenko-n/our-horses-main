@@ -1,0 +1,28 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+@use "../../../base/typography" as *;
+
+.owners {
+	display: flex;
+	flex-direction: column;
+	gap: 24rem;
+
+	&__date {
+		@extend .p;
+		color: $type-text;
+	}
+
+	&__user {
+		margin-top: 8rem;
+	}
+
+	&__previous {
+		display: none;
+		flex-direction: column;
+		gap: 24rem;
+
+		&_show {
+			display: flex;
+		}
+	}
+}

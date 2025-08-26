@@ -1,0 +1,136 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+
+.feed {
+	&__heading {
+		display: flex;
+		flex-direction: column;
+
+		@include tablet {
+			.feed__container-title {
+				margin-bottom: 16rem;
+			}
+		}
+
+		@include phone {
+			margin: 0 16rem;
+
+			.feed__container-title {
+				margin-top: 24rem;
+				margin-bottom: 8rem;
+			}
+		}
+
+		&__controls {
+			margin-top: 16rem;
+		}
+	}
+
+	&__content {
+		display: flex;
+		align-items: start;
+		gap: 24rem;
+		margin-top: 32rem;
+
+		@include mobile {
+			flex-direction: column-reverse;
+			margin: 0;
+		}
+		@include phone {
+			gap: 0;
+		}
+	}
+
+	&__newsline {
+		display: flex;
+		flex-direction: column;
+		gap: 24rem;
+		width: 810rem;
+
+		@include laptop {
+			width: 668rem;
+		}
+
+		@include mobile {
+			width: 100%;
+		}
+
+		.feed-with-title {
+			padding: 24rem;
+			border: 1px solid $stroke-line;
+			border-radius: 8rem;
+			background-color: $w;
+
+			@include phone {
+				padding: 16rem;
+			}
+
+			&__feed_grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 24rem;
+
+				@include phone {
+					grid-template-columns: repeat(1, 1fr);
+					gap: 16rem;
+				}
+			}
+		}
+
+		.horse-card__info {
+			@include phone {
+				padding: 16rem;
+			}
+		}
+	}
+
+	&__filter {
+		display: flex;
+		flex-direction: column;
+		gap: 24rem;
+		max-width: 310rem;
+		position: sticky;
+		top: 74rem;
+
+		@include laptop {
+			max-width: 322rem;
+		}
+
+		@include mobile {
+			position: relative;
+			top: 0;
+		}
+
+		@include tablet {
+			margin-top: 32rem;
+		}
+
+		@include phone {
+			margin-top: 16rem;
+		}
+
+		&_flex-row {
+			@include mobile {
+				flex-direction: row;
+				max-width: 100%;
+			}
+
+			@include phone {
+				gap: 0;
+			}
+		}
+
+		&-banner img {
+			border-radius: 8rem;
+			overflow: hidden;
+
+			@include tablet {
+				width: 286rem;
+			}
+
+			@include phone {
+				display: none;
+			}
+		}
+	}
+}

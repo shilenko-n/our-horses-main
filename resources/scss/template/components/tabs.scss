@@ -1,0 +1,98 @@
+.tabs {
+	&__tabs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 16rem;
+		margin-bottom: 16rem;
+
+		@include mobile {
+			flex-wrap: nowrap;
+			gap: 8rem;
+			overflow-x: auto;
+		}
+
+		@include tablet {
+			margin-left: -24rem;
+			margin-right: -24rem;
+			padding: 0 24rem;
+		}
+
+		@include phone {
+			margin-left: -16rem;
+			margin-right: -16rem;
+			padding: 0 16rem;
+		}
+	}
+
+	&__tab {
+		@extend .font-bold;
+		padding: 8rem 16rem;
+		border: 1px solid $gray1;
+		background-color: $w;
+
+		font-size: 16rem;
+		line-height: 24rem;
+
+		white-space: nowrap;
+		cursor: pointer;
+		transition: 0.2s;
+
+		&:hover {
+			// border-color: $primary;
+		}
+
+		&_active {
+			color: $w;
+			// border-color: $primary;
+			// background-color: $primary;
+			cursor: default;
+			pointer-events: none;
+		}
+	}
+
+	&__tab-content {
+		background-color: $gray1;
+		padding: 32rem;
+		width: 100%;
+		margin: 0 -1rem;
+	}
+
+	&__content {
+		position: relative;
+		overflow: hidden;
+		transition: 0.3s;
+	}
+}
+
+// Стили переходов от transition
+.tab-leave-active {
+	position: relative;
+	transform: translateX(0);
+}
+
+.tab-leave-to,
+.tab-enter-active {
+	position: absolute;
+	top: 0;
+	left: 0;
+	// transform: translateX(100%);
+}
+
+.tab-enter-to ~ .tab-leave-to {
+	transform: translateX(100%);
+}
+
+.tab-leave-active ~ .tab-enter-active {
+	transform: translateX(100%);
+}
+
+.tab-enter-to {
+	position: relative;
+	transform: translateX(0) !important;
+}
+
+.tab-enter-active,
+.tab-leave-active {
+	transition: 0.5s ease-in-out;
+	z-index: 1;
+}

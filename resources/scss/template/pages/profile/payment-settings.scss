@@ -1,0 +1,366 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+@use "../../../base/typography" as *;
+
+.payment-settings {
+	border: 1px solid $stroke-line;
+	border-radius: 8rem;
+	padding: 40rem 0 0;
+	background-color: $w;
+
+	@include phone {
+		padding: 24rem 0;
+	}
+
+	&__header {
+		padding: 0 32rem;
+
+		@include phone {
+			padding: 0 16rem;
+		}
+	}
+
+	&__title {
+		margin-top: 8rem;
+
+		@include phone {
+			margin-top: 0;
+		}
+	}
+
+	&__block {
+		display: flex;
+		flex-direction: column;
+		gap: 24rem;
+		padding: 32rem;
+		border-bottom: 1px solid $stroke-line;
+
+		@include phone {
+			padding: 16rem;
+			gap: 16rem;
+		}
+
+		&:last-child {
+			border-bottom: 0;
+		}
+	}
+
+	&__block-title {
+		@extend .h3;
+		color: $type-heading;
+	}
+
+	&__balance {
+		display: flex;
+		gap: 24rem;
+
+		@include phone {
+			flex-direction: column;
+			gap: 16rem;
+		}
+	}
+
+	&__current-balance {
+		padding: 24rem;
+		border-radius: 8rem;
+		background-color: $accent-button-default;
+		width: 252rem;
+
+		@include laptop {
+			width: 300rem;
+		}
+
+		@include tablet {
+			width: 315rem;
+		}
+
+		@include phone {
+			padding: 16rem;
+			width: 100%;
+		}
+
+		&-title {
+			@extend .p;
+			color: $type-heading;
+		}
+
+		&-amount {
+			@extend .h2;
+			color: $content-dark-brown;
+			margin-top: 8rem;
+
+			@include phone {
+				margin-top: 4rem;
+			}
+		}
+	}
+
+	&__top-up-balance {
+		padding: 24rem;
+		border: 1px solid $stroke-line;
+		border-radius: 8rem;
+		background-color: $content-beige;
+
+		@include phone {
+			padding: 16rem;
+		}
+
+		&-title {
+			@extend .p;
+			color: $type-heading;
+		}
+
+		&-form {
+			display: flex;
+			gap: 24rem;
+			margin-top: 16rem;
+			width: 390rem;
+
+			@include laptop {
+				width: 480rem;
+			}
+
+			@include mobile {
+				width: 100%;
+			}
+
+			@include phone {
+				gap: 16rem;
+				flex-direction: column;
+
+				.btn {
+					width: 100%;
+				}
+			}
+		}
+
+		&-input {
+			display: flex;
+			align-items: center;
+			gap: 8rem;
+
+			&::after {
+				@extend .h2;
+				content: "₽";
+				color: $type-heading;
+
+				@include phone {
+					font-size: 32rem;
+					line-height: 40rem;
+					font-weight: 700;
+				}
+			}
+		}
+	}
+
+	&__payment-cards {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 24rem;
+
+		@include laptop {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		@include tablet {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		@include phone {
+			display: flex;
+			width: max-content;
+		}
+
+		&-wrapper {
+			@include phone {
+				overflow-x: auto;
+				width: 328rem;
+			}
+		}
+	}
+
+	&__payment-card {
+		width: 252rem;
+		height: 168rem;
+		border-radius: 8rem;
+		border: 1px solid $stroke-line;
+		background-color: $content-beige;
+		padding: 24rem;
+		color: $type-heading;
+
+		@include laptop {
+			width: 100%;
+		}
+
+		@include tablet {
+			width: 100%;
+		}
+
+		@include phone {
+			width: 192rem;
+			padding: 16rem;
+			height: auto;
+		}
+
+		&_new {
+			display: flex;
+			flex-direction: column;
+			gap: 4rem;
+			align-items: center;
+			justify-content: center;
+			background-color: $w;
+
+			@include phone {
+				width: 192rem;
+				height: 128rem;
+			}
+
+			&-text {
+				font-size: 16rem;
+				line-height: 24rem;
+				font-weight: 700;
+			}
+		}
+	}
+
+	&__payment-card-icon {
+		font-size: 43rem;
+		line-height: 33rem;
+
+		@include phone {
+			font-size: 21rem;
+			line-height: 16rem;
+		}
+	}
+
+	&__payment-number-type {
+		display: flex;
+		justify-content: space-between;
+		align-items: end;
+	}
+
+	&__payment-card-number {
+		@extend .h3;
+	}
+
+	&__payment-card-type {
+		@extend .p;
+		color: $accent-button-active;
+
+		@include phone {
+			font-size: 12rem;
+			line-height: 16rem;
+			font-weight: 600;
+		}
+	}
+
+	&__payment-card-valid-thru {
+		margin-top: 8rem;
+
+		@include phone {
+			margin-top: 4rem;
+			font-size: 12rem;
+			line-height: 16rem;
+			font-weight: 400;
+		}
+	}
+
+	&__payment-card-delete {
+		margin-top: 24rem;
+
+		@include phone {
+			margin-top: 16rem;
+		}
+	}
+
+	&__table {
+		display: table;
+
+		@include mobile {
+			display: flex;
+			flex-direction: column;
+		}
+
+		&-header,
+		&-tr {
+			display: table-row;
+
+			@include mobile {
+				display: flex;
+				flex-direction: column;
+			}
+		}
+
+		&-header {
+			@include mobile {
+				display: none;
+			}
+		}
+
+		&-tr {
+			@include mobile {
+				box-sizing: border-box;
+				border-width: 1px 0px 1px 0px;
+				border-style: solid;
+				border-color: $stroke-line;
+			}
+		}
+
+		&-tr:nth-child(even) {
+			background-color: $content-beige;
+		}
+
+		&-th {
+			@extend .p;
+			color: $type-heading;
+			font-weight: 700;
+		}
+
+		&-th,
+		&-td {
+			display: table-cell;
+			padding: 8rem 12rem;
+			border-bottom: 1px solid $stroke-line;
+
+			@include mobile {
+				display: flex;
+				align-items: baseline;
+				border: none;
+			}
+		}
+
+		&-th_mobile {
+			@extend .p;
+			display: none;
+
+			@include mobile {
+				display: block;
+				color: $type-heading;
+				font-weight: 600;
+				width: 162rem;
+			}
+
+			@include phone {
+				width: 128rem;
+			}
+		}
+
+		&-body {
+			display: table-row-group;
+		}
+
+		&-cell {
+			&_right {
+				text-align: right;
+
+				@include mobile {
+					text-align: left;
+				}
+			}
+		}
+	}
+
+	&__paginator > .paginator {
+		justify-content: left;
+	}
+}

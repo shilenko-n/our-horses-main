@@ -1,0 +1,63 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+@use "../../../base/typography" as *;
+
+.about-user {
+	display: flex;
+	flex-direction: column;
+	gap: 40rem;
+	padding: 24rem;
+	border: 1px solid $stroke-line;
+	border-radius: 8rem;
+	background-color: $w;
+
+	&__heading {
+		font-size: 16rem;
+		line-height: 24rem;
+		font-weight: 600;
+		color: $type-heading;
+	}
+
+	&__description {
+		font-size: 16rem;
+		line-height: 24rem;
+		font-weight: 400;
+		color: $type-text;
+		margin-top: 8rem;
+	}
+
+	&__registered,
+	&__comments {
+		@extend .hint;
+		color: $type-text;
+	}
+
+	&__registered {
+		margin-top: 24rem;
+	}
+
+	&__comments {
+		margin-top: 8rem;
+	}
+
+	&__links {
+		display: flex;
+		flex-direction: column;
+		gap: 16rem;
+	}
+
+	&__link {
+		display: flex;
+		gap: 8rem;
+
+		&-text {
+			@extend .h4;
+			color: $type-heading;
+		}
+
+		&-number {
+			@extend .h4;
+			color: $type-hint;
+		}
+	}
+}

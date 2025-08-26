@@ -1,0 +1,84 @@
+@use "../../config" as *;
+@use "sass:color";
+@use "../../@mixins/media-queries" as *;
+@use "../../@mixins/line-clamp" as *;
+@use "../../base/typography" as *;
+
+.search-card {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	grid-column-gap: 24rem;
+	border-radius: 4rem;
+
+	&:hover {
+		background-color: $gray1;
+		box-shadow: 0 0 0 4rem $gray1;
+	}
+
+	@include phone {
+		grid-column-gap: 16rem;
+	}
+
+	&__img {
+		width: 120rem;
+		height: 120rem;
+		border-radius: 50%;
+
+		@include phone {
+			width: 48rem;
+			height: 48rem;
+		}
+	}
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+
+		.expandable {
+			padding-top: 8rem;
+			flex-grow: 1;
+			display: flex;
+			flex-direction: column;
+		}
+	}
+
+	&__name, &__header {
+		@extend .h4;
+	}
+
+	&__age, &__location, &__owner, &__breed {
+		@extend .hint;
+		color: $type-text;
+		display: inline-block;
+		margin-bottom: 4rem;
+	}
+
+	&__status, &__description, &__publication-date {
+		@extend .hint;
+	}
+
+	&__description {
+		//display: inline-block;
+		@include line-clamp(3);
+	}
+
+	&__status {
+		display: inline-block;
+		margin-right: 24rem;
+	}
+
+	&__price {
+		@extend .hint;
+		font-weight: bold;
+		color: $type-heading;
+		background-color: $accent-button-hover;
+		padding: 4rem 8rem;
+		border-radius: 4rem;
+	}
+
+	&__footer {
+		display: inline-block;
+		margin-top: 8rem;
+	}
+
+}

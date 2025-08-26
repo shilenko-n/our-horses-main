@@ -1,0 +1,15 @@
+.paginator {
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	gap: 4rem;
+
+	&_center {
+		justify-self: center;
+	}
+
+	&__item {
+		padding: 8rem;
+		border-radius: 4rem;
+	}
+}

@@ -1,0 +1,41 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+@use "../../base/typography" as *;
+
+.file-link {
+	display: flex;
+	gap: 8rem;
+	$parent: &;
+
+	&__icon {
+		#{$parent}:hover & {
+			color: $accent-button-hover;
+		}
+
+		#{$parent}:active & {
+			color: $accent-button-active;
+		}
+	}
+
+	&__content {
+		//
+	}
+
+	&__name {
+		@extend .h4;
+		color: $type-heading;
+
+		#{$parent}:hover & {
+			color: $links-light;
+		}
+
+		#{$parent}:active & {
+			color: $links-dark;
+		}
+	}
+
+	&__data {
+		@extend .hint;
+		text-transform: uppercase;
+	}
+}

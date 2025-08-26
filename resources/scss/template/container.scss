@@ -1,0 +1,67 @@
+@use "../config" as *;
+@use "../@mixins/media-queries" as *;
+
+.container {
+	display: grid;
+	grid-template-columns: 296rem minmax(0, 1fr);
+
+	@include laptop {
+		grid-template-columns: 272rem minmax(0, 1fr);
+	}
+
+	@include mobile {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	@include tablet {
+		margin-bottom: 54rem;
+	}
+
+	@include phone {
+		margin-bottom: 48rem;
+	}
+
+	&__sidebar {
+		display: flex;
+		flex-direction: column;
+		gap: 40rem;
+		width: 296rem;
+		border-left: 1px solid $stroke-line;
+		padding: 48rem 16rem;
+		background-color: $w;
+		min-height: fit-content;
+		max-height: calc(100vh - 74rem);
+		position: sticky;
+		top: 74rem;
+		overflow-y: auto;
+
+		@include laptop {
+			width: 272rem;
+		}
+
+		@include mobile {
+			display: none;
+		}
+
+		&_scrolled {
+			padding-top: 120rem; // паддинг из макета 48rem + высота меню 72rem
+		}
+	}
+
+	&__content {
+		flex-grow: 1;
+		padding: 48rem 240rem;
+
+		@include laptop {
+			padding: 48rem 40rem;
+		}
+
+		@include tablet {
+			padding: 48rem 32rem;
+		}
+
+		@include phone {
+			padding: 0 0 24rem;
+		}
+	}
+}

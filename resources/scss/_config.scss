@@ -1,0 +1,60 @@
+/*
+ * Конфигурация оформления
+ */
+@use "base/fonts" as *;
+
+$headings-font: "Montserrat", sans-serif;
+$common-font: "Montserrat", sans-serif;
+
+/* Цветовая палитра */
+$w: white;
+$gray1: #eeeeee;
+$gray2: #d3d3d3;
+$gray3: #bbbbbb;
+$gray4: #999999;
+$gray5: #666666;
+$gray6: #222222;
+$b: black;
+
+$transition: 0.2s;
+
+$type-heading: #3e352c;
+$type-text: #54514d;
+$type-hint: #8d8a84;
+$type-disabled-text: #8f877f;
+
+$accent-button-default: #acd418;
+$accent-button-hover: #d2ec74;
+$accent-button-active: #93b615;
+$accent-button-disabled: #c0cb9b;
+
+$pale-button-dark: #dacaab;
+$pale-button-default: #ebe4d4;
+$pale-button-light: #e5dcc6;
+$pale-button-disabled: #e1e1df;
+$pale-button-white: $w;
+
+$stroke-field: #cac2b1;
+$stroke-line: #eae3d9;
+
+$content-white: $w;
+$content-grey: #f2efeb;
+$content-beige: #f4f2eb;
+$content-green: #f2fccd;
+$content-dark-brown: #402f1b;
+
+$links-default: #aca6a1;
+$links-light: #79726d;
+$links-dark: #25201a;
+$links-pale: #d0cac4;
+
+$attention-yellow: #f5c61e;
+$attention-success: #3db921;
+$attention-danger: #e31818;
+$attention-pale: #fffded;
+$attention-neutral: #b4e4ff;
+
+$social-whatsapp: #23d265;
+$social-viber: #7b61ff;
+$social-vk: #5181b8;
+$social-telegram: #179dd9;

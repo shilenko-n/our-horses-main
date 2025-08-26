@@ -1,0 +1,12 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+
+.feed-actions {
+	display: flex;
+	gap: 16rem;
+
+	@include phone {
+		overflow-x: auto;
+		max-width: 328rem;
+	}
+}

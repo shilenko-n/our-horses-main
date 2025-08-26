@@ -1,0 +1,42 @@
+@use "sass:list";
+
+// # Шрифт #type font_list
+$font-family: "Montserrat";
+
+$font-weight-thin: 100; //thin
+$font-weight-extra-light: 200; //extra Light
+$font-weight-light: 300; //light
+$font-weight-regular: 400; //regular
+$font-weight-medium: 500; //medium
+$font-weight-semi-bold: 600; //semi Bold
+$font-weight-bold: 700; //bold
+$font-weight-extra-bold: 800; //extra Bold
+$font-weight-black: 900; //black
+
+$font-weights: (
+		(100, "Thin", "Thin"),
+		(200, "Extra Light", "ExtraLight"),
+		(300, "Light", "Light"),
+		(400, "Regular", "Regular"),
+		(500, "Medium", "Medium"),
+		(600, "Semi Bold", "SemiBold"),
+		(700, "Bold", "Bold"),
+		(800, "Extra Bold", "ExtraBold"),
+		(900, "Black", "Black")
+);
+
+@each $data in $font-weights {
+	$font-weight: list.nth($data, 1);
+	$font-style: list.nth($data, 2);
+	$file-name: list.nth($data, 3);
+
+	@font-face {
+		font-family: $font-family;
+		src:
+			local($font-family + " " + $font-style),
+			url("/fonts/Montserrat/" + $font-family + "-" + $file-name + ".ttf")
+			format("truetype");
+		font-weight: $font-weight;
+		font-style: normal;
+	}
+}

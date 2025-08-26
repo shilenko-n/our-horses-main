@@ -1,0 +1,80 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+
+.auth {
+	padding: 48rem 712rem 48rem 712rem;
+
+	@include phone {
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__form,
+	&__notice {
+		display: flex;
+		flex-direction: column;
+		gap: 24rem;
+		background-color: $w;
+		border-radius: 8rem;
+		border: 1px solid $stroke-line;
+		padding: 48rem;
+
+		@include phone {
+			gap: 16rem;
+			padding: 24rem 16rem 24rem 16rem;
+			border-radius: 0;
+			border: 0;
+			flex-grow: 1;
+		}
+	}
+
+	&__notice {
+		gap: 32rem;
+	}
+
+	&__notice-text {
+		display: flex;
+		flex-direction: column;
+		gap: 24rem;
+	}
+
+	&__fields {
+		display: flex;
+		flex-direction: column;
+		gap: 24rem;
+	}
+
+	&__restore-link {
+		display: inline-block;
+		margin-top: 8rem;
+		font-size: 12rem;
+		line-height: 16rem;
+		font-weight: 700;
+		color: $type-heading;
+
+		@include mobile {
+			font-size: 16rem;
+			line-height: 24rem;
+			font-weight: 700;
+		}
+	}
+
+	&__buttons {
+		display: flex;
+		flex-direction: column;
+		gap: 16rem;
+	}
+
+	@include laptop {
+		padding: 48rem 435rem 48rem 435rem;
+	}
+
+	@include tablet {
+		padding: 48rem 136rem 48rem 136rem;
+	}
+
+	@include phone {
+		padding: 0;
+	}
+}

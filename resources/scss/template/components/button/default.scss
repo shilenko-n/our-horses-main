@@ -1,0 +1,83 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+@use "../../../base/typography" as *;
+
+.btn {
+	@extend .font-bold;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 4rem;
+	position: relative;
+	padding: 8rem 16rem;
+	width: max-content;
+	max-width: 100%;
+	font-size: 16rem;
+	line-height: 24rem;
+	font-family: $common-font;
+	text-decoration: none;
+	border-radius: 4rem;
+	box-sizing: border-box;
+	color: $type-heading;
+	cursor: pointer;
+	$parent: &;
+
+	&[disabled] {
+		pointer-events: none;
+	}
+
+	&_big {
+		padding: 16rem 24rem;
+		@include phone {
+			font-size: 16rem;
+		}
+	}
+
+	&_small {
+		font-size: 16rem;
+	}
+
+	&_responsive {
+		@include phone {
+			font-size: 16rem !important;
+		}
+	}
+
+	&_icon {
+		padding: 8rem;
+		line-height: 24rem;
+
+		&#{$parent}_big {
+			padding: 12rem;
+			line-height: 32rem;
+		}
+
+		&#{$parent}_small {
+			padding: 4rem;
+		}
+
+		&#{$parent}_responsive {
+			@include phone {
+				padding: 4rem !important;
+			}
+		}
+	}
+
+	&_narrow {
+		padding: 0;
+	}
+
+	&_bordered {
+		border: 1px solid $stroke-line;
+	}
+
+	&_link {
+		background-color: transparent;
+		color: $type-heading !important;
+		font-size: 16rem;
+		line-height: 24rem;
+		font-weight: 700;
+		font-family: $common-font;
+		cursor: pointer;
+	}
+}

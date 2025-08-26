@@ -1,0 +1,48 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+
+.user-mini-card {
+	display: flex;
+	gap: 12rem;
+	align-items: center;
+	text-decoration: none;
+	$parent: &;
+
+	&__photo {
+		width: 40rem;
+		height: 40rem;
+		border-radius: 50%;
+	}
+
+	&__author,
+	&__nickname {
+		font-size: 16rem;
+		font-weight: 600;
+		line-height: 24rem;
+		color: $w;
+	}
+
+	&:hover {
+		#{$parent}__author,
+		#{$parent}__nickname {
+			color: $pale-button-light;
+		}
+	}
+
+	&_dark {
+		#{$parent}__author,
+		#{$parent}__nickname {
+			color: $type-heading;
+		}
+
+		&:hover {
+			#{$parent}__author {
+				color: $links-default;
+			}
+
+			#{$parent}__nickname {
+				color: $links-light;
+			}
+		}
+	}
+}

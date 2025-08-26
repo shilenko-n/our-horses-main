@@ -1,0 +1,174 @@
+@use "../config" as *;
+@use "../@mixins/media-queries" as *;
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+	@extend .font-bold;
+	font-family: $headings-font;
+	color: $type-heading;
+}
+
+h1,
+.h1 {
+	font-size: 40rem;
+	line-height: 48rem;
+	font-weight: 700;
+	// font-feature-settings: "ss01";
+
+	@include phone {
+		font-size: 24rem;
+		line-height: 32rem;
+	}
+}
+
+h2,
+.h2 {
+	font-size: 32rem;
+	line-height: 40rem;
+	font-weight: 700;
+
+	@include phone {
+		font-size: 24rem;
+		line-height: 32rem;
+	}
+}
+
+h3,
+.h3 {
+	font-size: 24rem;
+	line-height: 32rem;
+	font-weight: 700;
+
+	@include phone {
+		font-size: 16rem;
+		line-height: 24rem;
+	}
+}
+
+h4,
+.h4 {
+	font-size: 16rem;
+	line-height: 24rem;
+	font-weight: 600;
+}
+
+h5,
+.h5 {
+	font-size: 24rem;
+	line-height: 32rem;
+}
+
+h6,
+.h6 {
+	font-size: 16rem;
+	line-height: 24rem;
+}
+
+/* Параграфы */
+
+// Лид
+.lead {
+	font-size: 24rem;
+	line-height: 32rem;
+
+	@include phone {
+		font-size: 16rem;
+		line-height: 24rem;
+	}
+}
+
+// Параграф
+p,
+.p {
+	font-family: $common-font;
+	font-size: 16rem;
+	line-height: 24rem;
+	font-weight: 400;
+	color: $type-text;
+
+	&_bold {
+		font-weight: 600;
+	}
+}
+
+.list {
+	padding-left: 16rem;
+	font-size: 16rem;
+	line-height: 24rem;
+
+	li {
+		list-style-type: disc;
+		color: $type-text;
+	}
+}
+
+// Жирность шрифта
+.font {
+	&-medium {
+		font-weight: 500 !important;
+	}
+
+	&-semi-bold {
+		font-weight: 600 !important;
+	}
+
+	&-bold {
+		font-weight: 700 !important;
+	}
+
+	&-italic {
+		font-style: italic;
+	}
+}
+
+// Без разбивки на строки
+.text-nowrap {
+	white-space: nowrap;
+}
+
+.hint {
+	font-size: 12rem;
+	line-height: 16rem;
+	font-weight: 400;
+	color: $type-hint;
+
+	&_bold {
+		font-weight: 600;
+	}
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.lowercase {
+	text-transform: lowercase;
+}
+
+a {
+	color: $accent-button-active;
+	text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea,
+fieldset,
+legend,
+optgroup,
+option,
+meter,
+progress {
+	font-family: $common-font;
+}

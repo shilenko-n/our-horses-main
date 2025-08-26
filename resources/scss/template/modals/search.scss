@@ -1,0 +1,9 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+
+.search-modal {
+	&__title {
+		color: $type-heading;
+		margin-bottom: 32rem;
+	}
+}

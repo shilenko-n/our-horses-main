@@ -1,0 +1,287 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+@use "../../base/typography" as *;
+
+.article {
+	padding: 72rem 0;
+	margin: 0 auto;
+	max-width: 864rem;
+
+	@include tablet {
+		padding: 72rem 32rem;
+	}
+
+	@include phone {
+		padding: 48rem 16rem;
+	}
+}
+
+.article__content {
+	// У первого элемента в статье не должно быть отступа сверху
+	&:first-child {
+		margin-top: 0;
+	}
+
+	// У последнего элемента в статье не должно быть отступа снизу
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	/* Титульные заголовки */
+
+	// Заголовок первого уровня
+
+	h1 {
+		margin-bottom: 16rem;
+	}
+
+	// Заголовок второго уровня
+	h2 {
+		@extend .h2;
+
+		margin: {
+			top: 80rem;
+			bottom: 24rem;
+		}
+
+		@include phone {
+			margin: {
+				top: 56rem;
+				bottom: 24rem;
+			}
+		}
+	}
+
+	// Заголовок третьего уровня
+	h3 {
+		@extend .h3;
+		margin: {
+			top: 64rem;
+			bottom: 32rem;
+		}
+
+		@include not-phone {
+			font-size: 32rem;
+			line-height: 40rem;
+		}
+
+		@include phone {
+			margin: {
+				top: 48rem;
+				bottom: 24rem;
+			}
+		}
+
+		& + h4 {
+			margin-top: 0;
+		}
+	}
+
+	/* Контентные заголовки */
+
+	// Заголовок четвертого уровня
+	h4 {
+		@extend .h4;
+
+		margin: {
+			top: 48rem;
+			bottom: 24rem;
+		}
+
+		@include phone {
+			font-size: 16rem;
+			line-height: 24rem;
+
+			margin: {
+				top: 32rem;
+				bottom: 16rem;
+			}
+		}
+	}
+
+	// Заголовок пятого уровня
+	h5 {
+		@extend .h5;
+
+		margin: {
+			top: 64rem;
+			bottom: 64rem;
+		}
+
+		@include phone {
+			margin: {
+				top: 56rem;
+				bottom: 24rem;
+			}
+		}
+	}
+
+	// Заголовок шестого уровня
+	h6 {
+		@extend .h6;
+
+		margin: {
+			top: 48rem;
+			bottom: 24rem;
+		}
+
+		@include phone {
+			margin: {
+				top: 48rem;
+				bottom: 24rem;
+			}
+		}
+	}
+
+	/* Параграфы */
+	p {
+		@extend .p;
+		margin-bottom: 24rem;
+	}
+
+	// Лид
+	.lead {
+		@extend .lead;
+		margin-bottom: 24rem;
+		color: $gray6;
+	}
+
+	// Маркированный список
+	ul:not(.breadcrumbs) {
+		@extend p;
+		padding-left: 16rem;
+		list-style: disc;
+
+		margin: {
+			top: 24rem;
+			bottom: 24rem;
+		}
+
+		@include phone {
+			margin: {
+				top: 24rem;
+				bottom: 24rem;
+			}
+		}
+	}
+
+	// Нумерованный список
+	ol {
+		@extend p;
+		padding-left: 16rem;
+		list-style: decimal;
+
+		margin: {
+			top: 24rem;
+			bottom: 24rem;
+		}
+
+		@include phone {
+			margin: {
+				top: 24rem;
+				bottom: 24rem;
+			}
+		}
+	}
+
+	.hint {
+		@extend .hint;
+	}
+
+	/* Инлайновые элементы */
+
+	// Жирный текст
+	strong,
+	b {
+		@extend .font-bold;
+	}
+
+	// Курсив
+	em,
+	i {
+		@extend .font-italic;
+	}
+
+	// Надстрочный индекс
+	sup {
+		vertical-align: super;
+		font-size: 0.5em;
+	}
+
+	// Подстрочный индекс
+	sub {
+		font-size: 0.5em;
+	}
+
+	// Код
+	code {
+		font-family: monospace;
+
+		padding: {
+			left: 0.25em;
+			right: 0.25em;
+		}
+
+		border-radius: min(3rem, 2rem);
+	}
+
+	/* Таблицы */
+
+	table {
+		width: 100%;
+
+		// Все ячейки
+		th,
+		td {
+			padding: 4rem;
+			@extend .p;
+		}
+
+		// Заголовочные ячейки
+		th {
+			font-weight: bold;
+			border-bottom: 2rem solid;
+		}
+
+		// Обычные ячейки
+		td {
+			border: {
+				top: 1rem solid;
+				bottom: 1rem solid;
+			}
+		}
+
+		tr:last-child td {
+			border-bottom: none;
+		}
+
+		// Футер
+		tfoot td {
+			border-top: 2rem solid;
+		}
+	}
+
+	table,
+	.table-wrapper {
+		margin-bottom: 24rem;
+	}
+}
+
+.admin__article {
+	padding: 13rem 24rem !important;
+
+	// У первого элемента в статье не должно быть отступа сверху
+	&:first-child {
+		margin-top: 0;
+	}
+
+	// У последнего элемента в статье не должно быть отступа снизу
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	p {
+		line-height: 16rem;
+		margin-bottom: 16rem;
+	}
+}
