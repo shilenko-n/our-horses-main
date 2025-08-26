@@ -1,0 +1,149 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+@use "../../../base/typography" as *;
+
+.profile-card {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	background-color: $w;
+	width: 100%;
+	border-radius: 8rem;
+
+	&__item-phone-hide {
+		@include phone {
+			display: none !important;
+		}
+	}
+
+	&__item-phone-show {
+		display: none !important;
+
+		@include phone {
+			display: inherit !important;
+		}
+	}
+
+	&__cover {
+		height: 304rem;
+		object-fit: cover;
+	}
+
+	&__content {
+		display: flex;
+		gap: 32rem;
+		padding: 24rem;
+
+		@include phone {
+			gap: 16rem;
+			flex-direction: column;
+		}
+	}
+
+	&__account {
+		display: flex;
+		align-items: center;
+		gap: 16rem;
+	}
+
+	&__photo {
+		width: 136rem;
+		height: 136rem;
+		border-radius: 50%;
+		object-fit: cover;
+
+		@include phone {
+			width: 64rem;
+			height: 64rem;
+		}
+	}
+
+	&__info {
+		position: relative;
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 24rem;
+		padding-top: 4rem;
+
+		@include phone {
+			padding-top: 0;
+			gap: 8rem;
+		}
+	}
+
+	&__username {
+		display: flex;
+		flex-direction: column;
+		gap: 8rem;
+		max-width: 540rem;
+	}
+
+	&__name {
+		@extend .h2;
+		color: $type-heading;
+	}
+
+	&__description {
+		@extend .p;
+		color: $type-heading;
+		max-width: 400rem;
+
+		@include phone {
+			max-width: 100%;
+		}
+	}
+
+	&__personal {
+		@extend .p;
+
+		display: flex;
+		gap: 16rem;
+		color: $type-hint;
+	}
+
+	&__location {
+		@extend .p;
+		display: flex;
+		align-items: center;
+		color: $type-hint;
+
+		&-icon {
+			font-size: 24rem;
+		}
+	}
+
+	&__buttons {
+		position: absolute;
+		top: 4rem;
+		right: 0;
+		display: flex;
+		align-items: start;
+		gap: 12rem;
+
+		@include mobile {
+			position: relative;
+			top: inherit;
+		}
+
+		@include phone {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 12rem;
+		}
+	}
+
+	&__button {
+		flex-grow: 1;
+
+		&:first-child {
+			@include phone {
+				flex-basis: 100%;
+			}
+		}
+
+		&:last-child {
+			flex-grow: 0;
+		}
+	}
+}

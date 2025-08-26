@@ -1,0 +1,93 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+
+
+.btn {
+	&_accent {
+		background-color: $accent-button-default;
+
+		&:hover {
+			background-color: $accent-button-hover;
+		}
+		&:active,
+		&_active {
+			background-color: $accent-button-active;
+		}
+		&[disabled] {
+			background-color: $accent-button-disabled;
+			color: $type-disabled-text;
+		}
+	}
+
+	&_pale {
+		background-color: $pale-button-default;
+
+		&:hover {
+			background-color: $pale-button-light;
+		}
+		&:active,
+		&_active {
+			background-color: $pale-button-dark;
+		}
+		&[disabled] {
+			background-color: $pale-button-disabled;
+			color: $type-disabled-text;
+		}
+	}
+
+	&_white {
+		background-color: $pale-button-white;
+
+		&:hover {
+			background-color: $pale-button-light;
+		}
+		&:active,
+		&_active {
+			background-color: $pale-button-dark;
+		}
+		&[disabled] {
+			background-color: $pale-button-disabled;
+			color: $type-disabled-text;
+		}
+
+		&.selected {
+			background-color: white;
+			color: $type-heading;
+			box-shadow: 0px 7px 15px 0px rgba(206, 196, 174, 0.4196078431);
+			border: 1px solid #eae3d9;
+			pointer-events: none;
+			cursor: default;
+			box-sizing: border-box;
+		}
+	}
+
+	&_transparent {
+		background-color: transparent;
+
+		&:hover {
+			background-color: transparent;
+		}
+
+		&:active,
+		&_active {
+			background-color: transparent;
+		}
+
+		&[disabled] {
+			background-color: transparent;
+			color: $type-disabled-text;
+		}
+	}
+
+	&_shapeless {
+		color: $type-heading;
+
+		&:hover {
+			color: $links-light;
+		}
+	}
+	&_msg-control {
+		font-size: 12rem !important;
+		line-height: 16rem !important;
+	}
+}

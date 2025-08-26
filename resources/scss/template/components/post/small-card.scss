@@ -1,0 +1,45 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+@use "../../../base/typography" as *;
+
+.post-small-card {
+	display: flex;
+	gap: 16rem;
+	$parent: &;
+
+	&__image {
+		width: auto;
+		height: 96rem;
+		border-radius: 4rem;
+
+		@include phone {
+			height: 48rem;
+		}
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		@include phone {
+			gap: 8rem;
+		}
+	}
+
+	&__text {
+		//
+	}
+
+	&__title {
+		#{$parent}:hover & {
+			color: $links-light;
+		}
+	}
+
+	&__category {
+		@extend .hint;
+		margin-top: 8rem;
+		color: $type-text;
+	}
+}

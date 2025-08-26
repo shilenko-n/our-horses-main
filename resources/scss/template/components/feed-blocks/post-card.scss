@@ -1,0 +1,132 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+@use "../../../@mixins/line-clamp" as *;
+@use "../../../base/typography" as *;
+
+.post-card {
+	position: relative;
+	display: block;
+	border: 1px solid $stroke-line;
+	border-radius: 8rem;
+	background-color: $w;
+	overflow: hidden;
+
+	@include phone {
+		border-width: 1px 0px 1px 0px;
+	}
+
+	&_shadow {
+		box-shadow: 0rem 6rem 25rem 0rem #afa6996b;
+	}
+
+	&__user {
+		padding: 24rem 24rem 0 24rem;
+
+		@include phone {
+			padding: 16rem;
+		}
+	}
+
+	&__alert {
+		margin: 24rem 24rem 0;
+
+		@include laptop {
+			margin: 16rem 24rem 0;
+		}
+
+		@include tablet {
+			margin: 16rem 24rem 0;
+		}
+
+		@include phone {
+			margin: 16rem 16rem 0;
+		}
+	}
+
+	&__slider {
+		padding: 24rem 24rem 0;
+		border-radius: 8rem;
+		overflow: hidden;
+		object-fit: cover;
+		box-sizing: border-box;
+
+		&:first-child {
+			@include phone {
+				padding-top: 0;
+				margin-top: 0 !important;
+			}
+		}
+
+		@include tablet {
+			width: 702rem;
+			// height: 352rem;
+		}
+
+		@include phone {
+			width: 360rem;
+			// height: 184rem;
+			border-radius: 0;
+			padding: 0;
+			margin: 0;
+			margin-top: 16rem;
+		}
+
+		img {
+			border-radius: 8rem;
+
+			@include phone {
+				border-radius: 0;
+			}
+		}
+	}
+
+	&__text {
+		padding: 24rem;
+
+		@include phone {
+			padding: 16rem;
+		}
+	}
+
+	&__heading {
+		color: $type-heading;
+	}
+
+	&__announcement {
+		@extend .p;
+		@include line-clamp(5);
+
+		margin-top: 8rem;
+		color: $type-text;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	&__controls {
+		margin-top: 16rem;
+	}
+
+	&__buttons {
+		margin-top: 24rem;
+
+		@include phone {
+			margin-top: 16rem;
+		}
+
+		button {
+			@include phone {
+				width: 100%;
+			}
+		}
+	}
+
+	&__comments {
+		padding: 24rem;
+		border-top: 1px solid $stroke-line;
+		color: $type-text;
+
+		@include phone {
+			padding: 16rem;
+		}
+	}
+}

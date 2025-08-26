@@ -1,0 +1,119 @@
+@use "../config" as *;
+@use "../@mixins/media-queries" as *;
+
+.pt-0 {
+	padding-top: 0;
+}
+
+.w-100 {
+	width: 100%;
+
+	&-p {
+		@include phone {
+			width: 100%;
+		}
+	}
+}
+
+.t-align {
+	&-center {
+		text-align: center;
+	}
+}
+
+.d {
+	&-block {
+		display: block;
+
+		&-m {
+			display: none;
+
+			@include mobile {
+				display: block;
+			}
+		}
+
+		&-t {
+			display: none;
+
+			@include tablet {
+				display: block;
+			}
+		}
+
+		&-p {
+			display: none;
+
+			@include phone {
+				display: block;
+			}
+		}
+	}
+
+	&-none {
+		display: none !important;
+
+		&-w {
+			@include wide {
+				display: none !important;
+			}
+		}
+
+		&-l {
+			@include laptop {
+				display: none !important;
+			}
+		}
+
+		&-d {
+			@include desktop {
+				display: none !important;
+			}
+		}
+
+		&-t {
+			@include tablet {
+				display: none !important;
+			}
+		}
+
+		&-p {
+			@include phone {
+				display: none !important;
+			}
+		}
+
+		&-m {
+			@include mobile {
+				display: none !important;
+			}
+		}
+	}
+}
+
+.main-content-width {
+	width: 1144rem;
+
+	@include laptop {
+		width: 1014rem;
+	}
+
+	@include tablet {
+		width: 704rem;
+	}
+
+	@include phone {
+		padding: 24rem 16rem;
+		width: 360rem;
+	}
+}
+
+.c-hint {
+	color: $type-hint;
+}
+
+.rotate {
+	&-180 {
+		transform: rotate(180deg);
+	}
+}

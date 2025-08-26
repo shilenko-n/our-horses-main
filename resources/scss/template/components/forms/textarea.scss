@@ -1,0 +1,64 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+
+@charset "UTF-8";
+
+textarea {
+	width: 100% !important;
+}
+
+.textarea {
+	position: relative;
+	padding: 16rem;
+	font-size: 16rem;
+	line-height: 24rem;
+	font-family: $common-font;
+	font-weight: normal;
+	min-height: calc(16rem * 2 + 24rem);
+	color: $b;
+	border: none;
+	text-transform: none;
+	cursor: text;
+	background-color: #f4f3f3;
+	transition:
+		color 0.1s ease-in,
+		border-color 0.1s ease-in,
+		box-shadow 0.2s;
+	resize: none;
+
+	// &:not(:disabled):hover {
+	//     border-color: $primary;
+	// }
+
+	&:not(:disabled):focus {
+		// box-shadow: transparentize($primary, 0.75) 0 0 0 2rem;
+	}
+
+	&:disabled {
+		background-color: #eeeeee;
+	}
+
+	&::placeholder {
+		// color: $primary;
+		font-weight: 300;
+	}
+
+	&.transparent {
+		background-color: transparent;
+		border: 1px solid #e0e0e0;
+	}
+
+	&.error {
+		// border-color: $error;
+
+		&:hover,
+		&:active {
+			// border-color: $error;
+		}
+
+		&:focus {
+			// border-color: transparentize($error, 0.5);
+			// box-shadow: transparentize($error, 0.75) 0 0 0 2rem;
+		}
+	}
+}

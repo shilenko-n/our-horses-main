@@ -1,0 +1,39 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+@use "../../base/typography" as *;
+
+.breadcrumbs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8rem;
+
+	&__item {
+		@extend .p;
+		display: flex;
+		gap: 4rem;
+		color: $type-heading;
+		white-space: nowrap;
+		$item: &;
+
+		&-icon {
+			color: $type-hint;
+			line-height: 0;
+
+			#{$item}:hover > & {
+				color: $links-default;
+			}
+
+			#{$item}:active > & {
+				color: $type-hint;
+			}
+		}
+
+		&:hover {
+			color: $links-default;
+		}
+
+		&:active {
+			color: $links-dark;
+		}
+	}
+}

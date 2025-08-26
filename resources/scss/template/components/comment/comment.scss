@@ -1,0 +1,144 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+@use "../../../base/typography" as *;
+
+.comment {
+	display: flex;
+	flex-direction: column;
+	gap: 16rem;
+
+	&__comment {
+		display: flex;
+		flex-direction: column;
+		gap: 8rem;
+	}
+
+	&__avatar {
+		width: 44rem;
+		height: 44rem;
+		border-radius: 50%;
+
+		@include phone {
+			width: 32rem;
+			height: 32rem;
+		}
+	}
+
+	&__author {
+		display: flex;
+		gap: 12rem;
+
+		&-info {
+			display: flex;
+			flex-direction: column;
+			gap: 4rem;
+		}
+
+		&-name {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 4rem 16rem;
+		}
+	}
+
+	&__username {
+		@extend .p_bold;
+		color: $type-heading;
+
+		@include phone {
+			font-size: 12rem;
+			line-height: 16rem;
+			font-weight: 600;
+		}
+	}
+
+	&__role {
+		@extend .p_bold;
+		color: $attention-success;
+
+		@include phone {
+			font-size: 12rem;
+			line-height: 16rem;
+			font-weight: 600;
+		}
+	}
+
+	&__reply {
+		@extend .p;
+		color: $type-hint;
+
+		@include phone {
+			font-size: 12rem;
+			line-height: 16rem;
+			font-weight: 400;
+		}
+	}
+
+	&__location {
+		@extend .hint;
+	}
+
+	&__content {
+		@extend .p;
+		display: flex;
+		flex-direction: column;
+		gap: 8rem;
+	}
+
+	&__image {
+		width: 240rem;
+		height: auto;
+		border-radius: 4rem;
+	}
+
+	&__actions {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	&__action {
+		display: flex;
+		align-items: center;
+		gap: 16rem;
+
+		@include phone {
+			gap: 12rem;
+		}
+	}
+
+	&__ago {
+		@extend .p;
+		color: $type-hint;
+
+		@include phone {
+			font-size: 12rem;
+			line-height: 16rem;
+			font-weight: 400;
+		}
+	}
+
+	&__more .icon {
+		color: $links-default;
+	}
+
+	&__answer-form {
+		display: none;
+
+		&_show {
+			display: block;
+		}
+	}
+
+	&__subcomments {
+		display: flex;
+		flex-direction: column;
+		gap: 24rem;
+		margin-top: 24rem;
+		margin-left: 56rem;
+
+		@include phone {
+			margin-left: 32rem;
+		}
+	}
+}

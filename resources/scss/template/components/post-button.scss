@@ -1,0 +1,42 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+
+.post-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: transparent;
+	font-size: 16rem;
+	line-height: 24rem;
+	font-weight: 700;
+	color: $links-default;
+	cursor: pointer;
+
+	@include phone {
+		font-size: 12rem;
+		line-height: 16rem;
+
+		.icon {
+			font-size: 20rem;
+		}
+	}
+
+	&:hover {
+		color: $links-light;
+	}
+
+	&:active,
+	&_active {
+		color: $accent-button-active;
+	}
+
+	&_repeat:hover {
+		color: $links-light;
+	}
+
+	&:disabled {
+		color: $links-pale;
+		cursor: default;
+		pointer-events: none;
+	}
+}

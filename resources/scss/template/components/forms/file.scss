@@ -1,0 +1,33 @@
+.file-input {
+	&__add {
+		display: flex;
+		// align-items: center;
+		position: relative;
+		color: $primary;
+		cursor: pointer;
+		transition: 0.3s;
+
+		&:hover {
+			color: $primary-light;
+		}
+	}
+
+	&__hint {
+		color: $ink;
+
+		strong {
+			color: $gray4;
+		}
+	}
+
+	&__input {
+		opacity: 0;
+		position: absolute;
+		height: 100%;
+		cursor: pointer;
+
+		&::-webkit-file-upload-button {
+			cursor: pointer;
+		}
+	}
+}

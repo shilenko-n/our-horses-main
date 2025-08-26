@@ -1,0 +1,180 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+@use "../../../base/typography" as *;
+
+.horse-big-card {
+	display: flex;
+	flex-direction: column;
+	gap: 24rem;
+	padding: 40rem 32rem;
+	background-color: $w;
+	border: 1px solid $stroke-line;
+	border-radius: 8rem;
+
+	@include phone {
+		gap: 16rem;
+		padding: 24rem 0;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+
+	&__heading {
+		display: flex;
+		align-items: end;
+		justify-content: space-between;
+		gap: 32rem;
+
+		@include mobile {
+			flex-direction: column;
+			align-items: normal;
+			justify-content: start;
+			gap: 16rem;
+		}
+
+		@include phone {
+			padding: 0 16rem;
+		}
+	}
+
+	&__title {
+		color: $type-heading;
+		margin-top: 8rem;
+
+		@include phone {
+			margin-top: 0;
+		}
+	}
+
+	&__location {
+		display: flex;
+		align-items: center;
+		font-size: 16rem;
+		line-height: 24rem;
+		font-weight: 400;
+		color: $type-disabled-text;
+		margin-top: 8rem;
+	}
+
+	&__actions {
+		display: flex;
+		gap: 16rem;
+
+		@include phone {
+			flex-direction: column;
+			gap: 12rem;
+		}
+	}
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+		gap: 16rem;
+
+		@include phone {
+			gap: 8rem;
+		}
+	}
+
+	&__slider {
+		width: 1080rem;
+		height: auto;
+		border-radius: 4rem;
+		overflow: hidden;
+
+		@include laptop {
+			width: 968rem;
+		}
+
+		@include tablet {
+			width: 640rem;
+		}
+
+		@include phone {
+			width: 360rem;
+			border-radius: 0;
+			margin-left: -1px;
+		}
+	}
+
+	&__footer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		@include mobile {
+			flex-direction: column;
+			justify-content: left;
+			align-items: start;
+			gap: 8rem;
+		}
+
+		@include phone {
+			padding: 0 16rem;
+		}
+	}
+
+	&__stat {
+		display: flex;
+		gap: 16rem;
+	}
+
+	&__controls-ago {
+		color: $type-hint;
+
+		@include phone {
+			font-size: 12rem;
+			line-height: 16rem;
+			font-weight: 400;
+		}
+	}
+
+	&__badges {
+		display: flex;
+		align-items: center;
+		gap: 12rem;
+	}
+
+	&__params {
+		display: grid;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		gap: 24rem;
+
+		@include tablet {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		@include phone {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			padding: 0 16rem;
+		}
+	}
+
+	&__param {
+		min-width: 163rem;
+		display: flex;
+		flex-direction: column;
+		gap: 4rem;
+	}
+
+	&__param-name {
+		@extend .p;
+		color: $type-hint;
+	}
+
+	&__param-value {
+		@extend .p;
+		color: $type-heading;
+	}
+
+	&__param-link {
+		font-weight: 600;
+
+		&:hover {
+			color: $links-light;
+		}
+
+		&:active {
+			color: $links-dark;
+		}
+	}
+}

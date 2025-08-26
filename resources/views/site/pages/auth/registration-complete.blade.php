@@ -1,0 +1,18 @@
+@extends('site.layout.template')
+
+@section('page.title', 'Регистрация')
+@section('page.description', '')
+@section('page.keywords', '')
+
+@section('page.content')
+	<div class="auth">
+		<div class="auth__notice">
+			<div class="auth__notice-text">
+				<h2>Подтвердите электронный адрес</h2>
+				<p>Мы отправили на электронный адрес <a href="#">example@mail.ru</a> письмо с инструкцией. Пожалуйста, проверьте вашу почту.</p>
+			</div>
+
+			<x-link icon="long-arrow-right" icon-right href="/front/pages/auth/login">Перейти на страницу входа</x-link>
+		</div>
+	</div>
+@stop

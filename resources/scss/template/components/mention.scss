@@ -1,0 +1,33 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+@use "../../base/typography" as *;
+
+.mention {
+	display: flex;
+	gap: 16rem;
+	$parent: &;
+
+	&__photo {
+		width: 44rem;
+		height: 44rem;
+		border-radius: 50%;
+	}
+
+	&__info {
+		//
+	}
+
+	&__title {
+		color: $type-heading;
+
+		#{$parent}:hover & {
+			color: $links-light;
+		}
+	}
+
+	&__description {
+		@extend .hint;
+		margin-top: 4rem;
+		color: $type-text;
+	}
+}

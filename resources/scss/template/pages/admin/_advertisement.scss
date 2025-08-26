@@ -1,0 +1,44 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+
+.advertisement-page {
+	border: 1px solid $stroke-line;
+	border-radius: 8rem;
+	padding: 40rem 32rem;
+	background-color: $w;
+
+	@include phone {
+		padding: 24rem 16rem;
+		border-radius: 0;
+	}
+
+	&__title {
+		margin-bottom: 16rem;
+	}
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		gap: 16rem;
+		margin-top: 24rem;
+	}
+
+	.img_size-auto {
+		margin-bottom: 8rem;
+
+		@include phone {
+			display: block;
+		}
+
+		img {
+			width: auto;
+			height: auto;
+			max-width: none;
+			max-height: none;
+
+			@include phone {
+				max-width: 100%;
+			}
+		}
+	}
+}

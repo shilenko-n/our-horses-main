@@ -1,0 +1,18 @@
+{
+	"inputDir": "./public/img/font-icons",
+	"outputDir": "./public/fonts/icons",
+	"fontsUrl": "@icons",
+	"name": "icons",
+	"fontTypes": ["woff2", "woff"],
+  	"assetTypes": ["css"],
+	"templates": {
+		"css": "./storage/fantasticon/css.hbs"
+	},
+	"pathOptions": {
+		"css": "./resources/scss/template/icons.scss"
+	},
+	"selector": ".icon",
+	"fontHeight": 1000,
+	"normalize": true,
+	"descent": 64
+}

@@ -1,0 +1,103 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+
+.horse__cards {
+	display: flex;
+	flex-direction: column;
+	gap: 24rem;
+}
+
+.horse-card {
+	border: 1px solid $stroke-line;
+	border-radius: 8rem;
+	background-color: $w;
+	padding: 24rem;
+	padding-top: 0;
+
+	@include phone {
+		padding: 0;
+	}
+
+	&__title {
+		margin-top: 24rem;
+
+		@include phone {
+			margin-top: 0;
+			padding: 16rem;
+		}
+	}
+
+	&__slider {
+		width: 762rem;
+		height: 432rem;
+		border-radius: 8rem;
+		overflow: hidden;
+		object-fit: cover;
+		margin-top: 24rem;
+		box-sizing: border-box;
+
+		@include laptop {
+			width: 620rem;
+			height: 352rem;
+		}
+
+		@include tablet {
+			width: 656rem;
+			height: 368rem;
+		}
+
+		@include phone {
+			width: 360rem;
+			height: 202rem;
+			border-radius: 0;
+			padding: 0;
+			margin: 0;
+		}
+	}
+
+	&__info {
+		display: flex;
+		align-items: center;
+		gap: 10rem;
+		margin-top: 16rem;
+
+		@include phone {
+			margin-top: 0;
+			padding: 16rem 16rem 0;
+		}
+	}
+
+	&__name {
+		flex-grow: 1;
+	}
+
+	&__badges {
+		display: flex;
+		gap: 8rem;
+	}
+
+	&__breed {
+		margin-top: 8rem;
+		color: $type-text;
+
+		@include phone {
+			padding: 16rem;
+			margin-top: 0;
+			font-size: 12rem;
+			line-height: 16rem;
+			font-weight: 400;
+		}
+	}
+
+	&__button {
+		padding-top: 16rem;
+
+		@include phone {
+			padding: 0 16rem 16rem;
+
+			button {
+				width: 100%;
+			}
+		}
+	}
+}

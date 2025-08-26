@@ -1,0 +1,44 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+
+.image-preview {
+	position: relative;
+	max-width: 256rem;
+
+	&_disabled {
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(167, 167, 167, 0.63);
+		}
+	}
+
+	&__image {
+		width: 100%;
+		height: 128rem;
+		border-radius: 8rem;
+		object-fit: cover;
+
+		@include phone {
+			height: 96rem;
+		}
+	}
+
+	&__buttons {
+		position: absolute;
+		display: flex;
+		justify-content: space-between;
+		padding: {
+			top: 8rem;
+			left: 8rem;
+			right: 8rem;
+		}
+		top: 0;
+		left: 0;
+		width: 100%;
+	}
+}

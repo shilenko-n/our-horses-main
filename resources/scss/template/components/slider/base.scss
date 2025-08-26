@@ -1,0 +1,90 @@
+//@use "swiper/swiper" as *;
+//@use "swiper/modules/navigation" as *;
+//@use "swiper/modules/pagination" as *;
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+@use "../../../template/icons" as *;
+
+.swiper-slider {
+	position: relative;
+
+	.swiper {
+		position: relative;
+
+		.swiper-slide {
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center center;
+				vertical-align: middle;
+			}
+		}
+
+		&:not(.swiper-initialized),
+		.swiper-navigation-disabled {
+			.swiper-arrows,
+			.swiper-pagination {
+				display: none;
+			}
+		}
+
+		// ARROWS
+		.swiper-arrows {
+			position: absolute;
+			width: fit-content;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			bottom: 10rem !important;
+			top: auto;
+			left: 50%;
+			transform: translateX(-50%);
+			background-color: white;
+			z-index: 1;
+			border-radius: 4rem;
+			gap: 12rem;
+
+			.swiper-button-prev,
+			.swiper-button-next {
+				@extend .icon;
+				--swiper-navigation-size: 0;
+				position: initial;
+				box-sizing: border-box;
+				overflow: hidden;
+				transition: 0.2s;
+
+				&::before {
+					transition: 0.2s;
+				}
+
+				@include phone {
+					display: none;
+				}
+			}
+		}
+
+		// PAGINATION
+		.swiper-pagination {
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 4rem;
+			bottom: 0 !important;
+
+			&-fraction {
+				width: max-content;
+				margin: 0;
+
+				&.swiper-pagination-lock {
+					display: none;
+				}
+			}
+
+			@include phone {
+				padding: 0 8rem;
+			}
+		}
+	}
+}
