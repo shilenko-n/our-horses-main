@@ -10,4 +10,6 @@ php artisan key:generate
 
 php artisan migrate --seed --force
 
+npm run build-icons
+
 exec php-fpm
