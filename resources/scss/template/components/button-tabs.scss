@@ -1,0 +1,32 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+
+.button-tabs {
+	$parent: &;
+
+	&_only-tabs {
+		width: max-content;
+	}
+
+	&__tabs {
+		display: flex;
+		gap: 4rem;
+
+		#{$parent}:not(#{$parent}_only-tabs) & {
+			@include mobile {
+				display: none;
+			}
+		}
+	}
+
+	&__select {
+		display: none;
+
+		#{$parent}:not(#{$parent}_only-tabs) & {
+			@include mobile {
+				display: flex;
+				gap: 16rem;
+			}
+		}
+	}
+}

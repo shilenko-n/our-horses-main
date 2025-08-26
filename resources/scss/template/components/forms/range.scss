@@ -1,0 +1,221 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+@use "../../../base/typography" as *;
+
+.range {
+	$thumb-height: 16rem;
+	$track-height: 2rem;
+
+	&__label {
+		display: block;
+		line-height: 24rem;
+		width: 100%;
+		margin-bottom: 8rem;
+		color: $gray5;
+	}
+
+	&_multiple {
+		// Показываем полоску между значениями диапазона
+		.range__field_first::before {
+			content: "";
+			// background-color: $primary;
+		}
+
+		.range__field_first:disabled::before {
+			background-color: $gray4;
+		}
+	}
+
+	&__counts {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	&__count {
+		@extend .font-bold;
+
+		&_current {
+			padding: 0 4rem;
+			// background-color: $primary;
+			color: $w;
+			border-radius: 4rem;
+		}
+	}
+
+	// Если объединять через запятую стили для псевдоэлементов для разных браузеров,
+	// то почему-то они перестают работь, поэтому миксины и огород стилей снизу
+	@mixin track-styles {
+		appearance: none;
+		width: 100%;
+		height: $track-height;
+		cursor: pointer;
+		background-color: $gray3;
+		border-radius: 4rem;
+		transition: $transition;
+	}
+
+	@mixin track-hover-styles {
+		background-color: $gray4;
+	}
+
+	@mixin thumb-styles {
+		position: relative;
+		pointer-events: all;
+		appearance: none;
+		// border: 2px solid $primary;
+		height: $thumb-height;
+		width: $thumb-height;
+		border-radius: 4rem;
+		background-color: $w;
+		cursor: pointer;
+		bottom: calc(($thumb-height / 2));
+		transition: $transition;
+	}
+
+	@mixin thumb-hover-styles {
+		// border-color: $primary-light;
+	}
+
+	@mixin thumb-focus-styles {
+		// box-shadow: 0 0 10rem 0 $primary-light;
+	}
+
+	@mixin thumb-disabled-styles {
+		border-color: $gray3;
+		cursor: default;
+	}
+
+	&__field {
+		display: block;
+		height: $thumb-height;
+		margin: 0;
+		appearance: none;
+		pointer-events: none;
+		width: 100%;
+
+		&:disabled ~ .range__counts .range__count_current {
+			background-color: $gray3;
+		}
+
+		&_first {
+			position: relative;
+			display: flex;
+			align-items: center;
+
+			// Полоска между значениями диапазона
+			&::before {
+				--diff: calc(var(--max) - var(--min));
+
+				position: absolute;
+				height: $track-height;
+				min-width: calc((var(--from) - var(--to)) / var(--diff) * 100%);
+				width: calc((var(--to) - var(--from)) / var(--diff) * 100%);
+				margin-left: calc((var(--from) - var(--min)) / var(--diff) * 100%);
+			}
+
+			// track
+			&::-webkit-slider-runnable-track {
+				@include track-styles;
+			}
+
+			&::-moz-range-track {
+				@include track-styles;
+			}
+
+			&::-ms-track {
+				@include track-styles;
+			}
+		}
+
+		&_second {
+			margin-top: -$thumb-height;
+
+			// track
+			&::-webkit-slider-runnable-track {
+				height: $track-height;
+			}
+
+			&::-moz-range-track {
+				height: $track-height;
+			}
+
+			&::-ms-track {
+				height: $track-height;
+			}
+		}
+
+		// thumb
+		&::-webkit-slider-thumb {
+			@include thumb-styles;
+		}
+
+		&::-moz-range-thumb {
+			@include thumb-styles;
+		}
+
+		&::-ms-thumb {
+			@include thumb-styles;
+		}
+
+		// thumb focus
+		&:focus {
+			&::-webkit-slider-thumb {
+				@include thumb-focus-styles;
+			}
+
+			&::-moz-range-thumb {
+				@include thumb-focus-styles;
+			}
+
+			&::-ms-thumb {
+				@include thumb-focus-styles;
+			}
+		}
+
+		// thumb hover
+		&::-webkit-slider-thumb:hover {
+			@include thumb-hover-styles;
+		}
+
+		&::-moz-range-thumb:hover {
+			@include thumb-hover-styles;
+		}
+
+		&::-ms-thumb:hover {
+			@include thumb-hover-styles;
+		}
+
+		&:disabled {
+			// thumb disabled
+			&::-webkit-slider-thumb {
+				@include thumb-disabled-styles;
+			}
+
+			&::-moz-range-thumb {
+				@include thumb-disabled-styles;
+			}
+
+			&::-ms-thumb {
+				@include thumb-disabled-styles;
+			}
+		}
+	}
+
+	&:hover {
+		// track on range hover
+		.range__field_first:not(:disabled) {
+			&::-webkit-slider-runnable-track {
+				@include track-hover-styles;
+			}
+
+			&::-moz-range-track {
+				@include track-hover-styles;
+			}
+
+			&::-ms-track {
+				@include track-hover-styles;
+			}
+		}
+	}
+}

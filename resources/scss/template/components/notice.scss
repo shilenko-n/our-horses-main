@@ -1,0 +1,33 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+@use "../../base/typography" as *;
+@use "../../base/atom" as *;
+
+.notice {
+	display: flex;
+	gap: 8rem;
+	padding: 8rem 16rem;
+	border: 1px solid $stroke-line;
+	border-radius: 8rem;
+	background-color: $content-beige;
+
+	&_read {
+		background-color: transparent;
+		padding: 9rem 17rem;
+		border: none;
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: 4rem;
+	}
+
+	&__message {
+		@extend .p;
+	}
+
+	&__timestamp {
+		@extend .hint, .c-hint;
+	}
+}

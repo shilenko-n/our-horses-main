@@ -1,0 +1,55 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+
+.up-button {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	right: 48rem;
+	bottom: 48rem;
+	border-radius: 37rem;
+	width: 40rem;
+	height: 40rem;
+	padding: 8rem;
+	background-color: $accent-button-default;
+	box-shadow: 0px 4px 16px 0px #57790f3b;
+	cursor: pointer;
+	z-index: 99;
+
+	&:hover {
+		background-color: $accent-button-hover;
+	}
+
+	&:active {
+		background-color: $accent-button-active;
+	}
+
+	&:disabled {
+		background-color: $accent-button-disabled;
+	}
+
+	&_big {
+		width: 64rem;
+		height: 64rem;
+		padding: 12rem;
+		font-size: 29rem;
+	}
+
+	@include laptop {
+		right: 8rem;
+	}
+
+	@include tablet {
+		right: 5rem;
+		bottom: 84rem;
+	}
+
+	@include phone {
+		display: none !important;
+	}
+}
+
+.scroll-top_visible {
+	display: flex;
+}

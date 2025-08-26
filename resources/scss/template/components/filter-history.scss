@@ -1,0 +1,31 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+@use "../../base/typography" as *;
+
+.filter-history {
+	display: flex;
+	flex-direction: column;
+	gap: 16rem;
+	margin-top: 32rem;
+
+	&__title {
+		@extend .p;
+	}
+
+	&__item {
+		display: flex;
+		gap: 8rem;
+	}
+
+	&__name {
+		flex-grow: 1;
+		font-size: 16rem;
+		line-height: 24rem;
+		font-weight: 700;
+		color: $type-heading;
+	}
+
+	&__reset {
+		color: $links-default;
+	}
+}

@@ -1,0 +1,25 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+
+.sidebar-banner {
+	img {
+		border-radius: 8rem;
+		overflow: hidden;
+
+		@include tablet {
+			width: 322rem;
+		}
+	}
+
+	@include phone {
+		display: none;
+	}
+
+	&_phone {
+		display: none;
+
+		@include phone {
+			display: inline;
+		}
+	}
+}

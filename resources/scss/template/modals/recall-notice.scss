@@ -1,0 +1,39 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+
+.modal_recall-notice {
+	// .modal-container {}
+
+	.recall-notice {
+		// &__text {}
+
+		&__title {
+			margin-bottom: 16rem;
+
+			@include not-phone {
+				font-size: 32rem;
+				line-height: 40rem;
+			}
+
+			span {
+				// color: $primary;
+			}
+		}
+
+		&__message {
+			// color: $ink;
+
+			span {
+				// color: $primary;
+			}
+		}
+
+		&__controls {
+			margin-top: 32rem;
+
+			.button {
+				width: 100%;
+			}
+		}
+	}
+}

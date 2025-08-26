@@ -1,0 +1,26 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+
+.post-banner {
+	img,
+	source {
+		width: 810rem;
+		height: 320rem;
+		border-radius: 8rem;
+
+		@include laptop {
+			width: 668rem;
+			height: 264rem;
+		}
+
+		@include tablet {
+			width: 704rem;
+			height: 280rem;
+		}
+
+		@include phone {
+			width: 360rem;
+			height: 216rem;
+		}
+	}
+}

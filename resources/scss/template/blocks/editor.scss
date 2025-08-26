@@ -1,0 +1,69 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+@use "../../template/components/button/variants.scss" as *;
+
+.editor {
+	border: 1px solid $stroke-line;
+	border-radius: 4rem;
+
+	&__container {
+		padding: 16rem;
+		min-height: 264rem;
+		height: fit-content;
+	}
+
+	&__toolbar {
+		display: flex;
+
+		border-bottom-left-radius: 4rem;
+		border-bottom-right-radius: 4rem;
+		background-color: $pale-button-default;
+		padding-left: 8rem;
+
+		@include phone {
+			flex-wrap: wrap;
+			width: 326rem;
+		}
+
+		[aria-pressed="true"] {
+			@extend .btn_pale_active;
+		}
+	}
+
+	&__textarea {
+		display: none;
+	}
+}
+
+.ql-formats {
+	display: flex;
+	gap: 4rem;
+}
+
+// .ql-bold {
+// 	//
+// }
+
+// .ql-italic {
+// 	//
+// }
+
+// .ql-underline {
+// 	//
+// }
+
+// .ql-strike {
+// 	//
+// }
+
+// .ql-link {
+// 	//
+// }
+
+// .ql-list {
+// 	//
+// }
+
+// .ql-header {
+// 	//
+// }

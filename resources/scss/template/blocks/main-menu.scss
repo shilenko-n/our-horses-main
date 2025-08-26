@@ -1,0 +1,51 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+
+.main-menu {
+	&__item {
+		display: flex;
+		gap: 8rem;
+		border-radius: 4rem;
+		padding: 8rem 16rem;
+		font-size: 16rem;
+		line-height: 24rem;
+		font-weight: 600;
+		color: $type-text;
+		border: 1px solid transparent;
+
+		&:hover {
+			background-color: $pale-button-default;
+			border: 1px solid transparent;
+		}
+
+		&:active {
+			background-color: $pale-button-dark;
+			border: 1px solid transparent;
+		}
+
+		&_active {
+			background-color: $accent-button-default;
+			border: 1px solid $accent-button-default;
+			box-sizing: border-box;
+		}
+	}
+
+	&__general {
+		display: flex;
+		flex-direction: column;
+		gap: 4rem;
+	}
+
+	&__my {
+		&-title {
+			margin-left: 16rem;
+		}
+
+		&-items {
+			display: flex;
+			flex-direction: column;
+			gap: 4rem;
+			margin-top: 16rem;
+		}
+	}
+}

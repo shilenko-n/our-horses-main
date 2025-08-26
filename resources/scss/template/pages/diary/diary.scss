@@ -1,0 +1,118 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+@use "../../../base/typography" as *;
+
+.diary {
+	display: grid;
+	grid-template-columns: 810rem auto;
+	gap: 24rem;
+
+	@include laptop {
+		grid-template-columns: 668rem auto;
+	}
+
+	@include mobile {
+		grid-template-columns: 100%;
+	}
+
+	&_single {
+		grid-template-columns: auto;
+
+		@include laptop {
+			grid-template-columns: auto;
+		}
+	}
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: 16rem;
+
+		&_post {
+			gap: 48rem;
+
+			@include phone {
+				gap: 32rem;
+			}
+		}
+	}
+
+	&__header {
+		background-color: $w;
+		border: 1px solid $stroke-line;
+		border-radius: 8rem;
+		padding: 24rem;
+	}
+
+	&__title {
+		@extend .h2;
+
+		margin-top: 8rem;
+
+		&_counter {
+			color: $type-hint;
+		}
+	}
+
+	&__header-actions {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 16rem;
+
+		@include phone {
+			flex-direction: column;
+			gap: 16rem;
+			margin-top: 8rem;
+		}
+	}
+
+	&__actions-filter {
+		display: flex;
+		gap: 8rem;
+	}
+
+	&__sidebar {
+		display: flex;
+		flex-direction: column;
+		gap: 24rem;
+	}
+
+	&__buy-horses {
+		display: flex;
+		flex-direction: column;
+		gap: 24rem;
+		width: 1144rem;
+		padding: 32rem;
+		border: 1px solid $stroke-line;
+		border-radius: 8rem;
+		background-color: $w;
+
+		@include laptop {
+			width: 100%;
+		}
+
+		@include mobile {
+			width: 100%;
+		}
+
+		@include phone {
+			gap: 16rem;
+			padding: 24rem 32rem;
+		}
+
+		&-items {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 24rem;
+
+			@include tablet {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+
+			@include phone {
+				grid-template-columns: minmax(0, 1fr);
+				gap: 16rem;
+			}
+		}
+	}
+}

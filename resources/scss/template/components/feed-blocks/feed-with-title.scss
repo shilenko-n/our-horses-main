@@ -1,0 +1,15 @@
+.feed-with-title {
+	display: flex;
+	flex-direction: column;
+	gap: 16rem;
+
+	&__heading {
+		//
+	}
+
+	&__feed {
+		display: flex;
+		flex-direction: column;
+		gap: 16rem;
+	}
+}

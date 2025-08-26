@@ -1,0 +1,143 @@
+@use "../../../../config" as *;
+@use "../../../../@mixins/media-queries" as *;
+@use "../../../../base/typography" as *;
+
+
+.input {
+	$parent: &;
+
+	// PRIMARY
+	&_primary {
+		#{$parent}__label {
+			color: $gray5;
+
+			&-required-char {
+				color: $attention-danger;
+			}
+		}
+
+		#{$parent}__icon {
+			color: $type-heading;
+		}
+
+		#{$parent}__field {
+			color: $gray6;
+			background-color: $w;
+			border-color: $gray2;
+
+			&[type="file"] {
+				&::file-selector-button,
+				&::-webkit-file-upload-button {
+					background-color: $accent-button-default;
+					color: $type-heading;
+				}
+			}
+
+			&:not(:disabled) {
+				&:hover {
+					border-color: $gray3;
+
+					&::file-selector-button,
+					&::-webkit-file-upload-button {
+						background-color: $accent-button-active;
+					}
+				}
+			}
+
+			&:disabled {
+				&,
+				& + #{$parent}__icon {
+					background-color: $content-grey;
+					color: $type-disabled-text;
+				}
+			}
+
+			&:focus {
+				border-color: $accent-button-default !important;
+			}
+
+			&::placeholder {
+				color: $gray3;
+			}
+		}
+	}
+
+	&_pale {
+		#{$parent}__label {
+			color: $gray5;
+
+			&-required-char {
+				color: $attention-danger;
+			}
+		}
+
+		#{$parent}__icon {
+			color: $type-heading;
+		}
+
+		#{$parent}__field {
+			color: $gray6;
+			background-color: $w;
+			border-color: $gray2;
+
+			&[type="file"] {
+				&::file-selector-button,
+				&::-webkit-file-upload-button {
+					background-color: $pale-button-default;
+					color: $type-heading;
+				}
+			}
+
+			&:not(:disabled) {
+				&:hover {
+					border-color: $gray3;
+
+					&::file-selector-button,
+					&::-webkit-file-upload-button {
+						background-color: $accent-button-active;
+					}
+				}
+			}
+
+			&:disabled {
+				&,
+				& + #{$parent}__icon {
+					background-color: $content-grey;
+					color: $type-disabled-text;
+				}
+			}
+
+			&:focus {
+				border-color: $accent-button-default !important;
+			}
+
+			&::placeholder {
+				color: $gray3;
+			}
+		}
+	}
+
+	// ERROR
+	&_error {
+		#{$parent}__field {
+			border-color: $attention-danger !important;
+		}
+
+		#{$parent}__error {
+			@extend .font-bold;
+			color: $attention-danger;
+		}
+	}
+
+	// ANTI BOT
+	&_ab {
+		position: absolute !important;
+		width: 0 !important;
+		height: 1px !important;
+		padding: 0 !important;
+		// background-color: none !important;
+		border: none !important;
+		top: 0;
+		overflow: hidden;
+	}
+}

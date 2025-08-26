@@ -1,0 +1,21 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+
+.from-to-input {
+	&__label {
+		font-size: 16rem;
+		line-height: 24rem;
+		font-weight: 400;
+		color: $type-text;
+	}
+
+	&__fields {
+		display: flex;
+		gap: 8rem;
+		margin-top: 4rem;
+	}
+
+	&__field {
+		flex-grow: 1;
+	}
+}

@@ -1,0 +1,49 @@
+@use "baguettebox.js";
+@use "../../@mixins/media-queries" as *;
+
+
+.gallery {
+	display: grid;
+	grid-template-columns: repeat(6, minmax(0, 1fr));
+	gap: 16rem 8rem;
+
+	@include tablet {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	@include phone {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	&__link {
+		text-decoration: none;
+
+		&:hover {
+			img {
+				transform: scale(1.05);
+			}
+		}
+	}
+
+	&__image {
+		width: 100%;
+		object-fit: cover;
+		vertical-align: middle;
+		transition: 0.3s;
+	}
+
+	&_post {
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		gap: 24rem 16rem;
+
+		@include tablet {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 24rem;
+		}
+
+		@include phone {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 16rem;
+		}
+	}
+}

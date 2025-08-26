@@ -1,0 +1,120 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+
+.horses-buy {
+	display: flex;
+	gap: 24rem;
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: 32rem;
+		padding: 40rem 32rem;
+		width: 810rem;
+		border: 1px solid $stroke-line;
+		border-radius: 8rem;
+		background-color: $w;
+
+		@include laptop {
+			width: 668rem;
+		}
+
+		@include mobile {
+			width: 100%;
+		}
+
+		@include phone {
+			padding: 24rem 16rem;
+			gap: 16rem;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 16rem;
+
+		@include mobile {
+			justify-content: start;
+			gap: 16rem;
+			overflow-y: auto;
+		}
+
+		@include phone {
+			margin-top: 8rem;
+			gap: 8rem;
+		}
+	}
+
+	&__filter-button {
+		display: none !important;
+
+		@include mobile {
+			display: initial !important;
+		}
+	}
+
+	&__horses {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 24rem;
+
+		@include phone {
+			grid-template-columns: minmax(0, 1fr);
+			gap: 16rem;
+		}
+	}
+
+	&__sidebar {
+		display: flex;
+		flex-direction: column;
+		gap: 24rem;
+		width: 310rem;
+
+		@include laptop {
+			width: 322rem;
+		}
+
+		@include mobile {
+			display: none;
+		}
+	}
+
+	&__filter {
+		display: flex;
+		flex-direction: column;
+		gap: 32rem;
+		padding: 24rem;
+		background-color: $w;
+		border: 1px solid $stroke-line;
+		border-radius: 8rem;
+
+		@include mobile {
+			width: 360rem;
+		}
+	}
+
+	&__filter-form {
+		display: flex;
+		flex-direction: column;
+		gap: 24rem;
+
+		&-fields {
+			display: flex;
+			flex-direction: column;
+			gap: 16rem;
+		}
+
+		&-buttons {
+			display: flex;
+			gap: 16rem;
+			width: 100%;
+		}
+	}
+
+	&__sex-field {
+		display: flex;
+		flex-direction: column;
+		gap: 8rem;
+	}
+}

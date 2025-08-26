@@ -1,0 +1,110 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+
+.modal_contacts {
+	// .modal-container {}
+	h2 {
+		margin-bottom: 32rem;
+
+		@include not-phone {
+			font-size: 32rem;
+			line-height: 40rem;
+		}
+
+		@include phone {
+			margin-bottom: 24rem;
+		}
+	}
+
+	&__contacts {
+		.contacts-group,
+		.contact {
+			display: flex;
+			margin-bottom: 8rem;
+		}
+
+		.contacts-group {
+			gap: 24rem;
+
+			@include phone {
+				flex-direction: column;
+				gap: 0;
+			}
+		}
+
+		.contact {
+			p {
+				// color: $ink;
+			}
+
+			i {
+				color: $gray3;
+			}
+
+			i + p,
+			p + i {
+				margin-left: 8rem;
+			}
+		}
+	}
+
+	.separator {
+		border-top: 1rem solid #ccc;
+		margin: 40rem 0;
+	}
+
+	&__recall {
+		h2 {
+			margin-bottom: 24rem !important;
+		}
+
+		p {
+			margin-bottom: 24rem;
+		}
+
+		.btn {
+			width: 100%;
+			margin-top: 16rem;
+		}
+	}
+
+	.yandex-services {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 24rem 16rem;
+		margin-top: 32rem;
+
+		@include phone {
+			margin-top: 24rem;
+			gap: 16rem;
+		}
+
+		@include desktop {
+			#navigation {
+				display: none;
+			}
+		}
+
+		a {
+			font-size: 16rem;
+			font-weight: 900;
+			line-height: 24rem;
+			display: flex;
+			flex-wrap: nowrap;
+			white-space: nowrap;
+			align-items: center;
+			// color: $primary;
+			text-decoration: none;
+
+			&:hover {
+				// color: $primary-light;
+			}
+		}
+
+		img {
+			width: 24rem;
+			height: 24rem;
+			margin-right: 12rem;
+		}
+	}
+}

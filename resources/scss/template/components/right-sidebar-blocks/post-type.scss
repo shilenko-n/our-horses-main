@@ -1,0 +1,38 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+
+.post-type {
+	display: flex;
+	flex-direction: column;
+	gap: 4rem;
+	padding: 24rem 16rem;
+	border: 1px solid $stroke-line;
+	border-radius: 8rem;
+	background-color: $w;
+	$parent: &;
+
+	@include mobile {
+		&:not(#{$parent}_modal) {
+			display: none !important;
+		}
+	}
+
+	&_modal {
+		max-width: 360rem;
+	}
+
+	&__item {
+		box-sizing: border-box;
+		padding: 8rem 16rem;
+		font-size: 16rem;
+		line-height: 24rem;
+		font-weight: 600;
+		color: $type-heading;
+
+		&_active {
+			border: 1px solid $stroke-line;
+			border-radius: 4rem;
+			box-shadow: 0px 7px 15px 0px #cec4ae6b;
+		}
+	}
+}

@@ -1,0 +1,37 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+
+.breed-subscribe-card {
+	display: flex;
+	flex-direction: column;
+	gap: 16rem;
+	$parent: &;
+
+	@include phone {
+		flex-direction: row;
+	}
+
+	&_unsubscribed {
+		#{$parent}__name {
+			color: $links-pale;
+		}
+	}
+
+	&__link,
+	&__name {
+		color: $type-heading;
+		flex-grow: 1;
+
+		@include phone {
+			flex-grow: 1;
+		}
+
+		#{$parent}:hover & h4 {
+			color: $links-light;
+		}
+
+		#{$parent}_unsubscribed & h4 {
+			color: $links-pale;
+		}
+	}
+}

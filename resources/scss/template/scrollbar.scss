@@ -1,0 +1,27 @@
+@use "../config" as *;
+@use "../@mixins/media-queries" as *;
+@use "sass:color";
+
+// Для всех элементов со скроллом можно применить *.
+// Или указать для нужных блоков @extend .style-scroll
+html,
+.style-scroll {
+	@include desktop {
+
+		// Этот кусок нужен. Иначе стили не применятся
+		&::-webkit-scrollbar {
+			width: initial;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			//background-color: transparentize($gray4, 0.6);
+			background-color: color.adjust($gray4, $alpha: -0.6);
+			transition: 0.2s;
+
+			&:hover {
+				//background-color: transparentize($gray4, 0.4);
+				background-color: color.adjust($gray4, $alpha: -0.4);
+			}
+		}
+	}
+}

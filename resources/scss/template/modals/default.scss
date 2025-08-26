@@ -1,0 +1,183 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+@use "../../template/scrollbar" as *;
+@use "../../template/icons" as *;
+
+.modal {
+	position: absolute;
+
+	&_sidebar-menu {
+		.modal-mask {
+			justify-content: end;
+		}
+
+		.modal-wrapper {
+			padding: 64rem 0 0;
+			justify-content: end;
+			align-items: start;
+		}
+
+		.modal-container {
+			background-color: transparent;
+			border-radius: 0;
+			padding: 0;
+			margin: 0 0 54rem;
+		}
+	}
+
+	&_support {
+		.modal-header {
+			margin-bottom: 16rem;
+		}
+		.modal-body {
+			margin-bottom: 24rem;
+		}
+		.modal-footer {
+			.btn {
+				width: 100%;
+			}
+		}
+
+		.modal-wrapper {
+			@include phone {
+				padding: 80rem 16rem;
+			}
+		}
+
+		.modal-container {
+			max-width: 544rem;
+			padding: 40rem;
+
+			@include phone {
+				max-width: 360rem;
+				padding: 32rem 16rem;
+			}
+		}
+	}
+
+	&_delete-chat {
+		.modal-header {
+			margin-bottom: 16rem;
+		}
+		.modal-body {
+			margin-bottom: 32rem;
+		}
+		.modal-footer {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 24rem;
+		}
+	}
+
+	&_horse-diary-modal, &_feed-sidebar-filter-modal, &_interesting-filter-modal {
+		.modal-wrapper {
+			padding-right: 16rem;
+			padding-left: 16rem;
+		}
+		.modal-container {
+			padding: 24rem;
+		}
+	}
+}
+
+.modal-mask {
+	position: fixed;
+	z-index: 9998;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	transition: opacity 0.3s ease;
+}
+
+.modal-wrapper {
+	@extend .style-scroll;
+	display: flex;
+	align-items: center;
+	padding: 64rem 32rem;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+
+	@include phone {
+		padding: 80rem 0;
+	}
+}
+
+.modal-container {
+	position: relative;
+	padding: 56rem 72rem;
+	background-color: $w;
+	border-radius: 12rem;
+	margin: auto;
+	max-width: 704rem;
+	transition: all 0.3s ease;
+
+	@include phone {
+		padding: 48rem 16rem;
+		width: 100%;
+	}
+
+	&_video {
+		padding: 0;
+		min-width: 50vw;
+
+		iframe {
+			width: 100%;
+			height: auto;
+			aspect-ratio: 16 / 9;
+			border-radius: 12rem;
+
+			// не понятно откуда взявшиеся белые полосы
+			margin-top: -1rem;
+			margin-bottom: -5rem;
+		}
+	}
+
+	h2,
+	h3 {
+		& + p {
+			margin-top: 16rem;
+		}
+	}
+
+	form .btn {
+		margin-top: 24rem;
+	}
+}
+
+.modal-close {
+	@extend .icon, .icon-times-regular;
+	position: absolute;
+	top: -52rem;
+	right: 0;
+	color: $w;
+	font-size: 40rem;
+	background-color: transparent;
+	cursor: pointer;
+	transition: 0.2s;
+
+	&:hover {
+		color: $gray3;
+	}
+}
+
+// Стили переходов от transition
+.modal-enter-active,
+.modal-leave-active {
+	transition: opacity 0.3s;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+	opacity: 0;
+
+	// .modal-mask {
+	// 	opacity: 0;
+	// }
+}

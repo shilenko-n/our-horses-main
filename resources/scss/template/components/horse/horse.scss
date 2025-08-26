@@ -1,0 +1,41 @@
+@use "../../../config" as *;
+@use "../../../@mixins/media-queries" as *;
+@use "../../../base/typography" as *;
+
+.horse {
+	&__badge {
+		@extend .hint;
+		display: flex;
+		gap: 4rem;
+		border: 1px solid $stroke-line;
+		border-radius: 4rem;
+		color: $type-heading;
+		padding: 4rem 8rem;
+		$parent: &;
+
+		&_big {
+			font-size: 16rem;
+			line-height: 24rem;
+			font-weight: 400;
+			padding: 4rem 16rem;
+			border-radius: 8rem;
+
+			@include phone {
+				font-size: 12rem;
+				line-height: 16rem;
+				font-weight: 400;
+				padding: 4rem 8rem;
+				border-radius: 4rem;
+			}
+		}
+
+		&:hover:not(#{$parent}_static) {
+			color: $links-light;
+		}
+
+		&:active,
+		&_active {
+			color: $links-dark;
+		}
+	}
+}

@@ -1,0 +1,60 @@
+@use "../config" as *;
+@use "../@mixins/media-queries" as *;
+
+html {
+	scroll-behavior: smooth;
+	scroll-padding-top: 120em; // только em (не rem) иначе на сафари скролл якорей отвалится
+
+	@media screen and (prefers-reduced-motion: reduce) {
+		scroll-behavior: auto;
+	}
+
+	// Для того, чтобы страница не прыгала при открытии модалки
+	& {
+		margin-right: calc(-1 * (100vw - 100%));
+		overflow-x: hidden;
+	}
+	//
+
+	&.no-scroll {
+		overflow-y: hidden !important;
+	}
+}
+
+img {
+	width: 100%;
+	vertical-align: middle;
+}
+
+.layout {
+	background-color: $content-beige;
+	font: {
+		size: 16rem;
+		family: $common-font !important;
+		weight: 400;
+		style: normal;
+	}
+
+	#app {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: stretch;
+		min-height: 100vh;
+	}
+
+	&__main {
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+	}
+}
+
+[v-cloak] {
+	display: none !important;
+	visibility: hidden;
+}
+.spacing-default {
+	padding: 40rem 200rem;
+}

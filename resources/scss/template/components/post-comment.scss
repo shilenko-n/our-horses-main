@@ -1,0 +1,26 @@
+@use "../../config" as *;
+@use "../../@mixins/media-queries" as *;
+@use "../../@mixins/line-clamp" as *;
+
+.post-comment {
+	display: flex;
+	gap: 12rem;
+	align-items: center;
+	margin-top: 16rem;
+
+	&:first-child {
+		margin-top: 0;
+	}
+
+	&__photo {
+		width: 24rem;
+		height: 24rem;
+		border-radius: 50%;
+	}
+
+	&__text {
+		@include line-clamp(1);
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
