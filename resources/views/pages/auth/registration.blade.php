@@ -5,7 +5,12 @@
 @section('page.content')
 
     <div class="auth">
-        <div class="auth__form">
+        <form
+            class="auth__form"
+            method="post"
+            action="{{route('user.register.process')}}"
+        >
+            @csrf
             <h2>Регистрация</h2>
 
             <div class="auth__fields">
@@ -23,7 +28,7 @@
                     size="big"
                     label="Фамилия"
                     type="text"
-                    name="last_name"
+                    name="surname"
                     required
                 />
 
@@ -56,11 +61,7 @@
                 />
             </div>
 
-            <form
-                class="auth__buttons"
-                action="{{route('pages.auth.register.complete')}}"
-            >
-                @csrf
+            <div class="auth__buttons">
                 <small class="hint">
                     Регистрируясь, вы принимаете условия <a href="#">пользовательского соглашения</a>, а также <a href="#">политику обработки персональных данных</a> и даёте согласие на их обработку
                 </small>
@@ -68,8 +69,18 @@
                 <x-button is-block size="big" icon="check-solid">Зарегистрироваться</x-button>
 
                 <x-link is-block :href="route('pages.auth.login')">Страница входа</x-link>
-            </form>
-        </div>
+            </div>
+
+            @if($errors->any())
+                <div class="error">
+
+                    @foreach($errors->all() as $error)
+                        <p>{{$error}}</p>
+                    @endforeach
+
+                </div>
+            @endif
+        </form>
     </div>
 
 @endsection

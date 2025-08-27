@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->enum('role', UserRole::cases())->default(UserRole::User);
             $table->integer('balance')->default(0);
-            $table->integer('age');
+            $table->integer('age')->nullable()->default(null);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

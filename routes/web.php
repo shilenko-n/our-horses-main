@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 use App\Models\User;
@@ -19,7 +20,10 @@ Route::name('pages.')->group(function () {
     Route::name('user.')->prefix('user')->group(function () {
 
         Route::get('/profile', [PageController::class, 'userProfile'])
-            ->name('profile');
+            ->name('profile')->middleware('auth');
+
+        Route::get('/profile/{user}', [PageController::class, 'userProfileShow'])
+            ->name('profile.show');
 
     });
 
@@ -55,23 +59,45 @@ Route::name('pages.')->group(function () {
 
 Route::name('user.')->prefix('user')->group(function () {
 
-    Route::get('/register/action', function () {
-        return redirect()->route('pages.auth.register.complete');
+    Route::middleware('guest')->group(function () {
+
+        Route::get('/register/action', function () {
+            return redirect()->route('pages.auth.register.complete');
+        });
+
+        Route::get('/login/{user}', function (User $user) {
+            Auth::login($user);
+
+            return redirect()->route('pages.user.profile');
+        })->name('login');
+
     });
 
-    Route::get('/login/{user}', function (User $user) {
-        Auth::login($user);
+    Route::middleware('auth')->group(function () {
 
-        return redirect()->route('pages.user.profile');
-    })->name('login');
+        Route::get('/logout', function () {
+            Auth::logout();
 
+            return redirect()->route('pages.home');
+        })->name('logout');
 
-    Route::get('/logout', function () {
-        Auth::logout();
+    });
 
-        return redirect()->route('pages.home');
-    })->name('logout');
 
 });
 
+
+Route::name('user.')->prefix('user')->group(function () {
+
+    Route::middleware('guest')->group(function () {
+
+        Route::post('/login', [AuthController::class, 'login'])
+            ->name('login.process');
+
+        Route::post('/register', [AuthController::class, 'register'])
+            ->name('register.process');
+
+    });
+
+});
 

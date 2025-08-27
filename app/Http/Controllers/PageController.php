@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Horse;
 use App\Models\Offer;
+use App\Models\User;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\Factory;
 use Illuminate\View\View;
 
 class PageController extends Controller
@@ -32,6 +35,17 @@ class PageController extends Controller
         return view('user.profile');
     }
 
+    /**
+     * Страница другого пользователя
+     *
+     * @param User $user
+     * @return View
+     */
+    public function userProfileShow(User $user): View
+    {
+        return view('user.profile', compact('user'));
+    }
+
 
     // Авторизация
 
@@ -58,10 +72,13 @@ class PageController extends Controller
     /**
      * Страница подтверждения почты (после регистрации)
      *
-     * @return View
+     * @return RedirectResponse|View|Factory
      */
-    public function authRegistrationComplete(): View
+    public function authRegistrationComplete(): RedirectResponse|View|Factory
     {
+        if(!session('email'))
+            return redirect()->route('pages.home');
+
         return view('pages.auth.registration-complete');
     }
 }

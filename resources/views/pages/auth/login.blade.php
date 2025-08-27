@@ -5,7 +5,12 @@
 @section('page.content')
 
     <div class="auth">
-        <div class="auth__form">
+        <form
+            class="auth__form"
+            action="{{ route('user.login.process') }}"
+            method="post"
+        >
+            @csrf
             <h2>Вход</h2>
 
             <div class="auth__fields">
@@ -36,9 +41,7 @@
                 <x-forms.flag label="Запомнить меня" checked />
             </div>
 
-            <form class="auth__buttons" action="{{route('user.login', ['user' => \App\Models\User::query()->first()->id])}}">
-                @csrf
-
+            <div class="auth__buttons">
                 <x-button
                     is-block
                     size="big"
@@ -49,8 +52,18 @@
                     is-block
                     :href="route('pages.auth.register')"
                 >Страница регистрации</x-link>
-            </form>
-        </div>
+            </div>
+
+            @if($errors->any())
+                <div class="error">
+
+                    @foreach($errors->all() as $error)
+                        <p>{{$error}}</p>
+                    @endforeach
+
+                </div>
+            @endif
+        </form>
     </div>
 
 @endsection
