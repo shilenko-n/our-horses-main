@@ -17,12 +17,16 @@
 
     <div id="app">
 
+        {{-- Шапка --}}
         <x-header />
 
         {{-- Контент --}}
         <main class="layout__main" id="main">
             @yield('page.content')
         </main>
+
+        {{-- Подвал --}}
+        <x-footer />
 
     </div>
 

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\UserRole;
 use App\Models\Traits\HasBlogs;
 use App\Models\Traits\HasCards;
 use App\Models\Traits\HasSubscriptions;
@@ -18,6 +19,7 @@ use App\Models\Traits\HasLocation;
  * @property string $name
  * @property string $email
  * @property int $balance
+ * @property UserRole $role
  */
 class User extends Authenticatable
 {
