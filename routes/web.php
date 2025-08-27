@@ -13,14 +13,27 @@ Route::name('pages.')->group(function () {
 
 });
 
-Route::get('/login/{user}', function (User $user) {
-    Auth::login($user);
+Route::name('user.')->prefix('user')->group(function () {
+
+    Route::get('/profile', [PageController::class, 'userProfile'])
+        ->name('profile');
+
+    Route::get('/login/{user}', function (User $user) {
+        Auth::login($user);
+
+        return redirect()->route('pages.home');
+    })->name('login');
+
+
+    Route::get('/logout', function () {
+        Auth::logout();
+
+        return redirect()->route('pages.home');
+    })->name('logout');
+
 });
 
 
-Route::get('/logout', function () {
-    Auth::logout();
-});
 
 
 

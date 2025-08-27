@@ -2,7 +2,6 @@
 
 export default function initDropdownJs() {
 	const dropdown = document.querySelectorAll('.dropdown')
-	console.log(dropdown)
 	dropdown.forEach((dropdown) => {
 		const dropdownMenu = dropdown.querySelector('.dropdown__menu')
 

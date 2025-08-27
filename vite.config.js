@@ -36,7 +36,7 @@ export default defineConfig(({ command, mode }) => {
             alias: {
                 '@app': path.resolve(__dirname, 'resources/js'),
                 '@scss': path.resolve(__dirname, 'resources/scss'),
-                'vue': 'vue/dist/vue.esm-bundler.js',
+                'vue': 'vue/dist/vue.esm-bundler.js'
             },
             dedupe: ['vue'], // Добавьте это, чтобы избежать дублирования Vue
         },

@@ -15,4 +15,15 @@ class PageController extends Controller
     {
         return view('pages.home');
     }
+
+
+    /**
+     * Страница пользователя
+     *
+     * @return View
+     */
+    public function userProfile(): View
+    {
+        return view('user.profile');
+    }
 }
