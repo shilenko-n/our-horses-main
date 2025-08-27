@@ -2,10 +2,26 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Models\User;
+
 use App\Http\Controllers\PageController;
 
+Route::name('pages.')->group(function () {
 
-Route::get('/', [PageController::class, 'index']);
+    Route::get('/', [PageController::class, 'home'])
+        ->name('home');
+
+});
+
+Route::get('/login/{user}', function (User $user) {
+    Auth::login($user);
+});
+
+
+Route::get('/logout', function () {
+    Auth::logout();
+});
+
 
 
 

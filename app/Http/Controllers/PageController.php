@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class PageController extends Controller
 {
-    public function index(): View
+    /**
+     * Главная страница
+     *
+     * @return View
+     */
+    public function home(): View
     {
-        return view('index');
+        return view('pages.home');
     }
 }
