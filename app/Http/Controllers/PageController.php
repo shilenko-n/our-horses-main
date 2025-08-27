@@ -31,4 +31,37 @@ class PageController extends Controller
     {
         return view('user.profile');
     }
+
+
+    // Авторизация
+
+    /**
+     * Страница авторизации
+     *
+     * @return View
+     */
+    public function authLogin(): View
+    {
+        return view('pages.auth.login');
+    }
+
+    /**
+     * Страница регистрации
+     *
+     * @return View
+     */
+    public function authRegistration(): View
+    {
+        return view('pages.auth.registration');
+    }
+
+    /**
+     * Страница подтверждения почты (после регистрации)
+     *
+     * @return View
+     */
+    public function authRegistrationComplete(): View
+    {
+        return view('pages.auth.registration-complete');
+    }
 }

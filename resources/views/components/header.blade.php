@@ -43,7 +43,7 @@
     @auth
         <div class="header__account">
             <x-user.mini-card
-                :href="route('user.profile')"
+                :href="route('pages.user.profile')"
                 :username="Auth::user()->name"
                 :photo="Auth::user()->getAvatar()"
             />
@@ -138,7 +138,7 @@
                 class="header__button header__button_transforming"
                 button
                 color="white"
-                href="/front/pages/auth/login"
+                :href="route('pages.auth.login')"
                 icon="sign-out-alt-solid"
                 :disabled="request()->path() == 'front/pages/auth/login'"
             >
@@ -147,7 +147,7 @@
 
             <x-link
                 class="header__button header__button_transforming_accent"
-                href="/front/pages/auth/registration"
+                :href="route('pages.auth.register')"
                 icon="user-plus-solid"
                 button
                 :disabled="request()->path() == 'front/pages/auth/registration'"
