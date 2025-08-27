@@ -52,7 +52,7 @@
 
   const zIndex = ref(10000)
   watch(() => openned.value, (isOpenned) => {
-    zIndex.value = isOpenned ? modalsStore.opennedModals + 10000 : 10000
+    zIndex.value = isOpenned ? modalsStore.openedModals + 10000 : 10000
   })
 
   const enabled = ref(true)

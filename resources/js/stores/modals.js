@@ -5,12 +5,12 @@ export const useModalsStore = defineStore('modals', () => {
 	const modals = ref({})
 	const modalsData = ref({})
 
-	const opennedModals = computed(() => {
+	const openedModals = computed(() => {
 		return Object.values(modals.value).reduce((a, b) => a + b, 0)
 	})
 
 	const htmlTag = document.documentElement
-	watch(opennedModals, (count) => {
+	watch(openedModals, (count) => {
 		htmlTag.classList.toggle('no-scroll', count > 0)
 	})
 
@@ -23,5 +23,5 @@ export const useModalsStore = defineStore('modals', () => {
 		modals.value = {}
 	}
 
-	return { modals, modalsData, opennedModals, openModal, closeModals }
+	return { modals, modalsData, openedModals, openModal, closeModals }
 })

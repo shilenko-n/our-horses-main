@@ -21,7 +21,7 @@ Route::name('user.')->prefix('user')->group(function () {
     Route::get('/login/{user}', function (User $user) {
         Auth::login($user);
 
-        return redirect()->route('pages.home');
+        return redirect()->route('user.profile');
     })->name('login');
 
 

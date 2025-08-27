@@ -28,6 +28,10 @@
         {{-- Подвал --}}
         <x-footer />
 
+        {{-- Модалки --}}
+        @include('partials.modals.contacts')
+        @include('partials.modals.recall-notice')
+
     </div>
 
     @vite(['resources/js/app.js'])

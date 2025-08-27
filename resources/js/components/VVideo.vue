@@ -34,7 +34,7 @@
     const zIndex = ref(10000)
     watch(() => openned.value, (isOpenned) => {
         document.documentElement.classList.toggle('no-scroll', isOpenned)
-        zIndex.value = isOpenned ? $root.opennedModals + 10000 : 10000
+        zIndex.value = isOpenned ? $root.openedModals + 10000 : 10000
     })
 
     function open() {
