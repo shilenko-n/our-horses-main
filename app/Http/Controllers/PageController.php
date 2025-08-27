@@ -32,7 +32,11 @@ class PageController extends Controller
      */
     public function userProfile(): View
     {
-        return view('user.profile');
+        $user = auth()->user();
+        return view('user.profile', [
+            'user'      => $user,
+            'isSelf'    => true,
+        ]);
     }
 
     /**
@@ -43,7 +47,10 @@ class PageController extends Controller
      */
     public function userProfileShow(User $user): View
     {
-        return view('user.profile', compact('user'));
+        return view('user.profile', [
+            'user'      => $user,
+            'isSelf'    => auth()->check() && auth()->id() == $user->id,
+        ]);
     }
 
 
