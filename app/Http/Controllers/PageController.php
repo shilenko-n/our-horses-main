@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Horse;
+use App\Models\Offer;
 use Illuminate\View\View;
 
 class PageController extends Controller
@@ -13,7 +15,10 @@ class PageController extends Controller
      */
     public function home(): View
     {
-        return view('pages.home');
+        $popularHorses = Horse::all()->take(4);
+        $offers = Offer::all()->take(4);
+
+        return view('pages.home', compact('popularHorses', 'offers'));
     }
 
 

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\OfferStatusType;
 use App\Models\Traits\HasCurrency;
 use App\Models\Traits\HasHorse;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -25,6 +26,7 @@ use Illuminate\Database\Eloquent\Model;
 class Offer extends Model
 {
     use
+        HasFactory,
         HasHorse,
         HasCurrency;
 

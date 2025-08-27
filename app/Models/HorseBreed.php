@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Traits\HasHorses;
 use App\Models\Traits\HasSubscriptions;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -17,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
 class HorseBreed extends Model
 {
     use
+        HasFactory,
         HasHorses,
         HasSubscriptions;
 

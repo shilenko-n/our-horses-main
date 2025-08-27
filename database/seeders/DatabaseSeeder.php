@@ -13,8 +13,14 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             SettingsSeeder::class,
+            CurrencySeeder::class,
             LocationSeeder::class,
+            HorseBreedSeeder::class,
+            HorseColorSeeder::class,
+            HorseSpecializationSeeder::class,
             UserSeeder::class,
+            HorseSeeder::class,
+            OfferSeeder::class,
         ]);
     }
 }

@@ -22,8 +22,8 @@ return new class extends Migration
             $table->date('birthday');
             $table->date('deathday')->nullable()->default(null);
             $table->string('birth_place');
-            $table->foreignId('father_id')->constrained('horses');
-            $table->foreignId('mother_id')->constrained('horses');
+            $table->foreignId('father_id')->nullable()->constrained('horses');
+            $table->foreignId('mother_id')->nullable()->constrained('horses');
             $table->date('purchase_date');
             $table->integer('height_withers');
             $table->string('gender');

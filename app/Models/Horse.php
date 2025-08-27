@@ -4,10 +4,12 @@ namespace App\Models;
 
 use App\Models\Traits\HasBookmarks;
 use App\Models\Traits\HasLocation;
+use App\Models\Traits\HasOffers;
 use App\Models\Traits\HasReactions;
 use App\Models\Traits\HasSubscriptions;
 use App\Models\Traits\HasUser;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -25,15 +27,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $birthday
  * @property string $deathday
  * @property string $birthPlace
+ * @property bool $moderating
  */
 class Horse extends Model
 {
     use
+        HasFactory,
         HasLocation,
         HasReactions,
         HasUser,
         HasSubscriptions,
-        HasBookmarks;
+        HasBookmarks,
+        HasOffers;
 
     protected $fillable = [
         'name',
@@ -52,6 +57,7 @@ class Horse extends Model
         'horse_breed_id',
         'horse_color_id',
         'horse_specialization_id',
+        'moderating'
     ];
 
     // Horse Properties
