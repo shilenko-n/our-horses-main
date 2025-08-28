@@ -23,7 +23,7 @@ Route::name('pages.')->group(function () {
             Route::get('/profile', [PageController::class, 'userProfile'])->name('profile');
         });
 
-        Route::get('/profile/{user}', [PageController::class, 'userProfileShow'])->name('profile.show');
+        Route::get('/profile/{nickname}', [PageController::class, 'userProfileShow'])->name('profile.show');
     });
 
     Route::name('auth.')->prefix('auth')->group(function () {

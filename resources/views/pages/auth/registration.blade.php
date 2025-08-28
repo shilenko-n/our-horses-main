@@ -33,6 +33,15 @@
                 />
 
                 <x-forms.input
+                    id="nickname"
+                    size="big"
+                    label="Никнейм"
+                    type="text"
+                    name="nickname"
+                    required
+                />
+
+                <x-forms.input
                     id="email"
                     size="big"
                     label="Электронный адрес"

@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\Factory;
 use Illuminate\View\View;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PageController extends Controller
 {
@@ -42,11 +43,16 @@ class PageController extends Controller
     /**
      * Страница другого пользователя
      *
-     * @param User $user
-     * @return View
+     * @param string $nickname
+     * @return View|RedirectResponse
      */
-    public function userProfileShow(User $user): View
+    public function userProfileShow(string $nickname): View|RedirectResponse
     {
+        $user = User::query()->where('nickname', $nickname)->first();
+
+        if(!$user)
+            throw new NotFoundHttpException();
+
         return view('user.profile', [
             'user'      => $user,
             'isSelf'    => auth()->check() && auth()->id() == $user->id,
