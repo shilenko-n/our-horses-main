@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
 use App\Models\User;
@@ -14,36 +15,27 @@ use App\Http\Controllers\PageController;
 
 Route::name('pages.')->group(function () {
 
-    Route::get('/', [PageController::class, 'home'])
-        ->name('home');
+    Route::get('/', [PageController::class, 'home'])->name('home');
 
     Route::name('user.')->prefix('user')->group(function () {
 
-        Route::get('/profile', [PageController::class, 'userProfile'])
-            ->name('profile')->middleware('auth');
+        Route::middleware(['auth', 'email'])->group(function () {
+            Route::get('/profile', [PageController::class, 'userProfile'])->name('profile');
+        });
 
-        Route::get('/profile/{user}', [PageController::class, 'userProfileShow'])
-            ->name('profile.show');
-
+        Route::get('/profile/{user}', [PageController::class, 'userProfileShow'])->name('profile.show');
     });
 
     Route::name('auth.')->prefix('auth')->group(function () {
 
         Route::middleware('guest')->group(function () {
 
-            Route::get('/login', [PageController::class, 'authLogin'])
-                ->name('login');
-
-            Route::get('/register', [PageController::class, 'authRegistration'])
-                ->name('register');
-
-            Route::get('/register/complete', [PageController::class, 'authRegistrationComplete'])
-                ->name('register.complete');
+            Route::get('/login', [PageController::class, 'authLogin'])->name('login');
+            Route::get('/register', [PageController::class, 'authRegistration'])->name('register');
 
         });
 
         Route::middleware('auth')->group(function () {
-
 
 
         });
@@ -59,28 +51,10 @@ Route::name('pages.')->group(function () {
 
 Route::name('user.')->prefix('user')->group(function () {
 
-    Route::middleware('guest')->group(function () {
-
-        Route::get('/register/action', function () {
-            return redirect()->route('pages.auth.register.complete');
-        });
-
-        Route::get('/login/{user}', function (User $user) {
-            Auth::login($user);
-
-            return redirect()->route('pages.user.profile');
-        })->name('login');
-
-    });
+    Route::get('/register/complete', [PageController::class, 'authRegistrationComplete'])->name('register.complete');
 
     Route::middleware('auth')->group(function () {
-
-        Route::get('/logout', function () {
-            Auth::logout();
-
-            return redirect()->route('pages.home');
-        })->name('logout');
-
+        Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     });
 
 
@@ -91,13 +65,18 @@ Route::name('user.')->prefix('user')->group(function () {
 
     Route::middleware('guest')->group(function () {
 
-        Route::post('/login', [AuthController::class, 'login'])
-            ->name('login.process');
-
-        Route::post('/register', [AuthController::class, 'register'])
-            ->name('register.process');
+        Route::post('/login', [AuthController::class, 'login'])->name('login.process');
+        Route::post('/register', [AuthController::class, 'register'])->name('register.process');
 
     });
 
 });
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+
+    $request->fulfill();
+    return redirect()->route('pages.user.profile');
+
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,9 +36,19 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * Попытка выхода из аккаунта
+     *
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function logout(Request $request)
     {
-
+        if(Auth::check()) {
+            Auth::logout();
+            $request->session()->regenerate();
+        }
+        return redirect()->route('pages.home');
     }
 
     /**
@@ -66,8 +77,10 @@ class AuthController extends Controller
 
         $user = User::query()->create($data);
 
+        $user->sendEmailVerificationNotification();
+
         return redirect()
-            ->route('pages.auth.register.complete')
+            ->route('user.register.complete')
             ->with('email', $user->email);
     }
 

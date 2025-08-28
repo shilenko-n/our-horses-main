@@ -11,11 +11,13 @@
                 <p>Мы отправили на электронный адрес <a href="#">{{session('email')}}</a> письмо с инструкцией. Пожалуйста, проверьте вашу почту.</p>
             </div>
 
-            <x-link
-                icon="long-arrow-right"
-                icon-right
-                :href="route('pages.auth.login')"
-            >Перейти на страницу входа</x-link>
+            @guest
+                <x-link
+                    icon="long-arrow-right"
+                    icon-right
+                    :href="route('pages.auth.login')"
+                >Перейти на страницу входа</x-link>
+            @endguest
         </div>
     </div>
 

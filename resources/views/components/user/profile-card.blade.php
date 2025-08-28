@@ -46,10 +46,12 @@
             <div class="profile-card__personal">
                 <div class="profile-card__age">{{ $user->age ?? 'Возраст не указан' }}</div>
 
-                <div class="profile-card__location">
-                    <x-icon class="profile-card__location-icon" icon="map-marker-alt-solid" />
-                    <div>{{ $user->city->name }}</div>
-                </div>
+                @if($user->city)
+                    <div class="profile-card__location">
+                        <x-icon class="profile-card__location-icon" icon="map-marker-alt-solid" />
+                        <div>{{ $user->city->name }}</div>
+                    </div>
+                @endif
             </div>
 
             <div class="profile-card__buttons">

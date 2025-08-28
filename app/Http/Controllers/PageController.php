@@ -83,6 +83,9 @@ class PageController extends Controller
      */
     public function authRegistrationComplete(): RedirectResponse|View|Factory
     {
+        if(auth()->check() && auth()->user()->hasVerifiedEmail())
+            return redirect()->route('pages.user.profile');
+
         if(!session('email'))
             return redirect()->route('pages.home');
 

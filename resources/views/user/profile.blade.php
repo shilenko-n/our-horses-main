@@ -13,6 +13,13 @@
 
             <div class="horse__cards">
 
+                @foreach($user->horses as $horse)
+                    <x-feed.horse-card
+                        :horse="$horse"
+                        show-add-button
+                    />
+                @endforeach
+
 
                 <x-button
                     class="prev-horses__button"
