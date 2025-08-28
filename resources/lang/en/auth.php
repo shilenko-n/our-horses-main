@@ -18,5 +18,9 @@ return [
 	'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
     'password_confirmation' => 'Password and confirmation do not match.',
+    'token_expired' => 'Token expired.',
+
+    'password_reset_success' => 'Password reset successfully.',
+    'password_reset_failed' => 'Password reset failed.',
 
 ];

@@ -91,4 +91,30 @@ class PageController extends Controller
 
         return view('pages.auth.registration-complete');
     }
+
+
+    /**
+     * Страница сброса пароля
+     *
+     * @return View
+     */
+    public function resetPassword(): View
+    {
+        return view('pages.auth.reset-password');
+    }
+
+    /**
+     * @return View
+     */
+    public function resetPasswordSend(): View
+    {
+        return view('pages.auth.reset-password-send');
+    }
+
+    public function resetPasswordShow(string $token): View
+    {
+        return view('pages.auth.reset-password-new', [
+            'token' => $token,
+        ]);
+    }
 }

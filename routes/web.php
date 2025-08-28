@@ -72,6 +72,33 @@ Route::name('user.')->prefix('user')->group(function () {
 
 });
 
+Route::middleware('guest')->group(function () {
+
+    Route::get('/password/reset', [PageController::class, 'resetPassword'])
+        ->name('password.reset.request');
+
+    Route::get('/password/reset/send', [PageController::class, 'resetPasswordSend'])
+        ->name('password.reset.send');
+
+    Route::post('/password/reset/send', [AuthController::class, 'resetSendPassword'])
+        ->name('password.reset.send.process');
+
+    Route::get('/password/reset/{token}', [PageController::class, 'resetPasswordShow'])
+        ->name('password.reset');
+
+    Route::post('/password/reset', [AuthController::class, 'resetPassword'])
+        ->name('password.reset.process');
+
+});
+
+
+
+
+/**
+ * Верификация почты после создания пользователя
+ *
+ */
+
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
 
     $request->fulfill();

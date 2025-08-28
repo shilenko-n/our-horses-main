@@ -1,7 +1,7 @@
 @props([
     'color' => 'accent',
     'icon'  => null,
-    'size'  => null,
+    'size'  => null
 ])
 
 @php

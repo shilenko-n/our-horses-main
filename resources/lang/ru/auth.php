@@ -17,6 +17,10 @@ return [
     'password' => 'Неверный пароль.',
     'throttle' => 'Слишком много попыток авторизации. Попробуйте позже.',
 
-    'password_confirmation' => 'Пароли не совпадают.'
+    'password_confirmation' => 'Пароли не совпадают.',
+    'token_expired' => 'Истёк срок действия токена.',
+
+    'password_reset_success' => 'Пароль был успешно сброшен.',
+    'password_reset_failed' => 'Произошла ошибка. Пароль не был сброшен.',
 
 ];
