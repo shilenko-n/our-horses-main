@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SettingsSeeder::class,
             CurrencySeeder::class,
+            MenuSeeder::class,
             LocationSeeder::class,
             HorseBreedSeeder::class,
             HorseColorSeeder::class,
