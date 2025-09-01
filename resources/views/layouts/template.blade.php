@@ -44,8 +44,7 @@
     <main class="layout__main" id="main">
         <div class="container">
             <div class="container__sidebar">
-                <x-menus.main />
-{{--                <x-main-menu :is-admin="$is_admin" current-item="{{ $current_url }}" />--}}
+                <x-main-menu />
             </div>
             <div class="container__content">
                 @yield('page.content')

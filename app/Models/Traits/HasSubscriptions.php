@@ -2,6 +2,7 @@
 
 use App\Models\Subscription;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait HasSubscriptions
@@ -22,9 +23,9 @@ trait HasSubscriptions
      * Подписаться пользователем
      *
      * @param User $user
-     * @return Subscription
+     * @return Model|Subscription
      */
-    public function subscribe(User $user): Subscription
+    public function subscribe(User $user): Model|Subscription
     {
         return $this->subscriptions()->updateOrCreate(
             ['user_id' => $user->id],

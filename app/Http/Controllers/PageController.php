@@ -59,6 +59,16 @@ class PageController extends Controller
         ]);
     }
 
+    /**
+     * Страница настроек пользователя
+     *
+     * @return View
+     */
+    public function userSettings(): View
+    {
+        return view('user.settings');
+    }
+
 
     // Авторизация
 

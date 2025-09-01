@@ -35,9 +35,9 @@
         </div>
 
         <div class="feed__filter feed__filter_flex-row">
-{{--            <x-right-sidebar-blocks.about-user--}}
-{{--                :about="$user->description"--}}
-{{--            />--}}
+            <x-user.sidebar.about-user
+                :user="$user"
+            />
 {{--            <x-right-sidebar-blocks.sidebar-banner />--}}
         </div>
     </div>

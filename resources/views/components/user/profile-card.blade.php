@@ -56,7 +56,7 @@
 
             <div class="profile-card__buttons">
                 @if ($isSelf)
-                    <x-button class="profile-card__button" icon="pencil-alt-solid">Редактировать профиль</x-button>
+                    <x-link class="profile-card__button" icon="pencil-alt-solid" href="{{route('pages.user.settings')}}">Редактировать профиль</x-link>
                 @else
                     <x-button class="profile-card__button" icon="user-plus-solid">Подписаться</x-button>
                     <x-button class="profile-card__button" color="pale" icon="comments-solid">Написать</x-button>

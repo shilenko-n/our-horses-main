@@ -9,7 +9,10 @@ use App\Models\Traits\HasHorses;
 use App\Models\Traits\HasSubscriptions;
 use Database\Factories\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -62,5 +65,17 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getAvatar(): string
     {
         return "https://cdn-icons-png.flaticon.com/512/6596/6596121.png";
+    }
+
+    public function subscribedHorse(): Collection
+    {
+        return Subscription
+            ::where(['user_id' => $this->id, 'subscriptionable_type' => 'App\Models\Horse'])
+            ->get();
+    }
+
+    public function subscribedBreed(): Collection
+    {
+        return Subscription::where(['user_id' => $this->id, 'subscriptionable_type' => 'App\Models\Horse'])->get();
     }
 }

@@ -21,7 +21,10 @@ Route::name('pages.')->group(function () {
 
         Route::middleware(['auth', 'email'])->group(function () {
             Route::get('/profile', [PageController::class, 'userProfile'])->name('profile');
+
+            Route::get('/profile/settings', [PageController::class, 'userSettings'])->name('settings');
         });
+
 
         Route::get('/profile/{nickname}', [PageController::class, 'userProfileShow'])->name('profile.show');
     });
