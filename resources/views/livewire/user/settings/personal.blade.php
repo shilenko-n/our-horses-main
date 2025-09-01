@@ -27,6 +27,19 @@
                 />
             </div>
             <x-button class="w-100-p" size="big" icon="check-solid" wire:click="changeEmail">Сохранить</x-button>
+
+            @if($emailChanged)
+                <div class="alert-success">
+                    Почта была успешно сохранена
+                </div>
+            @endif
+
+            @if($error !== '')
+                <div class="alert-danger">
+                    {{$error}}
+                </div>
+            @endif
+
         </div>
     </div>
     <div class="personal-settings__block">
@@ -144,6 +157,12 @@
                 icon="check-solid"
                 size="big"
             >Сохранить</x-button>
+
+            @if($userChanged)
+                <div class="alert-success">
+                    Пользователь был сохранён
+                </div>
+            @endif
         </form>
     </div>
 </div>
