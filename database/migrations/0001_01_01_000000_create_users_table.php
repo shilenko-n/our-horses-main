@@ -25,7 +25,9 @@ return new class extends Migration
 
             $table->enum('role', UserRole::cases())->default(UserRole::User);
             $table->integer('balance')->default(0);
-            $table->integer('age')->nullable()->default(null);
+            $table->date('birthday')->nullable();
+            $table->enum('gender', ['male', 'female'])->default('male');
+            $table->string('phone')->nullable();
 
             $table->string('password');
 

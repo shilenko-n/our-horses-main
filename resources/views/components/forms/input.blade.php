@@ -5,7 +5,8 @@
     'error' => '',
     'size'  => null,
     'label' => '',
-    'hint'  => ''
+    'hint'  => '',
+    'value' => null,
 ])
 
 @php
@@ -40,6 +41,8 @@
 			'input__field_icon-left' => $icon && !$iconRight,
 			'input__field_icon-right' => $icon && $iconRight,
 		])
+
+        value="{{$value}}"
     />
 
     {{-- icon --}}

@@ -21,7 +21,10 @@ use App\Models\Traits\HasLocation;
 /**
  * @property int $id
  * @property string $name
+ * @property string $surname
  * @property string $email
+ * @property string $birthday
+ * @property string $phone
  * @property int $balance
  * @property UserRole $role
  */
@@ -47,6 +50,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'age',
         'city_id',
         'nickname',
+        'phone',
+        'birthday',
     ];
 
     protected $hidden = [

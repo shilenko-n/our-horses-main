@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use App\Models\Horse;
 use App\Models\Offer;
 use App\Models\User;
