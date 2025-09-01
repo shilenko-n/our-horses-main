@@ -2,7 +2,8 @@
     'color' => 'primary',
     'label' => '',
     'hint'  => '',
-    'error' => ''
+    'error' => '',
+    'model' => null,
 ])
 
 <label
@@ -18,6 +19,9 @@
     <textarea
         {{ $attributes->filter(fn ($value, $key) => !in_array($key, ['id', 'class', ':error'])) }}
         class="input__field"
+        @if($model)
+            wire:model="{{$model}}"
+        @endif
     >{{ $slot }}</textarea>
 
     {{-- label --}}

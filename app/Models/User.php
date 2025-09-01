@@ -7,6 +7,7 @@ use App\Models\Traits\HasBlogs;
 use App\Models\Traits\HasCards;
 use App\Models\Traits\HasHorses;
 use App\Models\Traits\HasSubscriptions;
+use App\Models\Traits\User\HasAvatar;
 use Database\Factories\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Collection;
@@ -17,6 +18,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use App\Models\Traits\HasLocation;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
  * @property int $id
@@ -25,10 +29,12 @@ use App\Models\Traits\HasLocation;
  * @property string $email
  * @property string $birthday
  * @property string $phone
+ * @property string $gender
+ * @property string $description
  * @property int $balance
  * @property UserRole $role
  */
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
     /** @use HasFactory<UserFactory> */
     use
@@ -39,7 +45,9 @@ class User extends Authenticatable implements MustVerifyEmail
         HasBlogs,
         HasCards,
         HasSubscriptions,
-        HasHorses;
+        HasHorses,
+        HasAvatar,
+        InteractsWithMedia;
 
     protected $fillable = [
         'name',
@@ -52,6 +60,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'nickname',
         'phone',
         'birthday',
+        'description',
+        'gender',
     ];
 
     protected $hidden = [
@@ -59,17 +69,19 @@ class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
     ];
 
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this
+            ->addMediaCollection('avatar')
+            ->singleFile();
+    }
+
     protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password'          => 'hashed',
         ];
-    }
-
-    public function getAvatar(): string
-    {
-        return "https://cdn-icons-png.flaticon.com/512/6596/6596121.png";
     }
 
     public function subscribedHorse(): Collection

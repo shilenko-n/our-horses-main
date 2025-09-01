@@ -3,8 +3,10 @@
 namespace App\Livewire\User\Settings;
 
 use App\Models\Country;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -13,8 +15,17 @@ class Personal extends Component
 
     public Collection $locations;
 
+    public array $user;
+    public string $password;
+    public string $password_confirmation;
+
     public int $selectedCountryId;
     public int $selectedCityId;
+
+    public function initUserData(): void
+    {
+        $this->user = Auth::user()->toArray();
+    }
 
     public function mount(): void
     {
@@ -22,6 +33,28 @@ class Personal extends Component
         $this->selectedCityId       = Auth::user()->city->id;
 
         $this->locations = Country::with('cities')->get();
+
+        $this->initUserData();
+    }
+
+    public function changeEmail(): void
+    {
+        if($this->password != $this->password_confirmation) {
+            return;
+        }
+
+        if(!Hash::check($this->password, Auth::user()->getAuthPassword())) {
+            return;
+        }
+
+        Auth::user()->update([
+            'email' => $this->user['email'],
+        ]);
+    }
+
+    public function submit(): void
+    {
+        Auth::user()->update($this->user);
     }
 
     public function render(): View

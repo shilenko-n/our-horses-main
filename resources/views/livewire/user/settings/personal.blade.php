@@ -8,21 +8,48 @@
                 label="Электронный адрес"
                 hint="Используется для входа, восстановления пароля и получения уведомлений от сервиса. Никакого спама!"
                 placeholder="example@mail.ru"
-                :value="Auth::user()->email"
+                wire:model.live="user.email"
                 required
             />
             <div class="personal-settings__form-columns">
-                <x-forms.password size="big" label="Пароль" hint="Не менее 6 символов: буквы, цифры и специальные символы" required />
-                <x-forms.password size="big" label="Повторите пароль" required />
+                <x-forms.password
+                    size="big"
+                    label="Пароль"
+                    hint="Не менее 6 символов: буквы, цифры и специальные символы"
+                    wire:model.live="password"
+                    required
+                />
+                <x-forms.password
+                    size="big"
+                    label="Повторите пароль"
+                    wire:model.live="password_confirmation"
+                    required
+                />
             </div>
-            <x-button class="w-100-p" size="big" icon="check-solid">Сохранить</x-button>
+            <x-button class="w-100-p" size="big" icon="check-solid" wire:click="changeEmail">Сохранить</x-button>
         </div>
     </div>
     <div class="personal-settings__block">
         <h3 class="personal-settings__sub-title">Персональные данные</h3>
-        <div class="personal-settings__form">
+        <form
+            class="personal-settings__form"
+            wire:submit.prevent="submit"
+        >
             <div class="personal-settings__photo">
-                <img class="personal-settings__image" src="https://placehold.co/240x240">
+                @if(Auth::user()->getAvatar() == null)
+                    <img
+                        class="personal-settings__image"
+                        src="https://placehold.co/240x240"
+                        alt="user avatar"
+                    />
+                @else
+                    <img
+                        class="personal-settings__image"
+                        src="{{Auth::user()->getAvatar()}}"
+                        alt="user avatar"
+                    />
+                @endif
+
                 {{--                        <x-forms.file hint="В формате JPEG или PNG. Максимальный размер — 8 MB." />--}}
             </div>
             <div class="personal-settings__form-columns">
@@ -31,7 +58,7 @@
                     size="big"
                     label="Имя"
                     placeholder="Иван"
-                    :value="Auth::user()->name"
+                    wire:model.live="user.name"
                     required
                 />
                 <x-forms.input
@@ -39,7 +66,7 @@
                     size="big"
                     label="Фамилия"
                     placeholder="Иванов"
-                    :value="Auth::user()->surname"
+                    wire:model.live="user.surname"
                     required
                 />
             </div>
@@ -48,7 +75,7 @@
                     size="big"
                     type="date"
                     label="Дата рождения"
-                    :value="Auth::user()->birthday"
+                    wire:model.live="user.birthday"
                     required
                 />
                 <div class="personal-settings__form-radio">
@@ -57,13 +84,17 @@
                         <x-forms.flag
                             type="radio"
                             name="sex"
-                            :checked="Auth::user()->gender == 'male'"
+                            value="male"
+                            wire:model.live="user.gender"
+                            :checked="$user['gender'] == 'male'"
                             label="Мужской"
                         />
                         <x-forms.flag
                             type="radio"
                             name="sex"
-                            :checked="Auth::user()->gender == 'female'"
+                            value="female"
+                            wire:model.live="user.gender"
+                            :checked="$user['gender'] == 'female'"
                             label="Женский"
                         />
                     </div>
@@ -97,13 +128,22 @@
                     type="text"
                     label="Телефон"
                     placeholder="+7 (999) 999-99-99"
-                    value="{{Auth::user()->phone}}"
+                    wire:model.live="user.phone"
                     required
                 />
 
             </div>
-            <x-forms.textarea rows="10" label="Обо мне">{{Auth::user()->description}}</x-forms.textarea>
-            <x-button class="w-100-p" icon="check-solid" size="big">Сохранить</x-button>
-        </div>
+            <x-forms.textarea
+                rows="10"
+                label="Обо мне"
+                model="user.description"
+            >{{$user['description']}}</x-forms.textarea>
+            <x-button
+                type="submit"
+                class="w-100-p"
+                icon="check-solid"
+                size="big"
+            >Сохранить</x-button>
+        </form>
     </div>
 </div>
