@@ -3,10 +3,7 @@
 
 @section('page.content')
 
-    <x-user.profile-card
-        :is-self="$isSelf"
-        :user="$user"
-    />
+    <livewire:components.user.profile-card :user="$user" />
 
     <div class="feed__content">
         <div class="feed__newsline">

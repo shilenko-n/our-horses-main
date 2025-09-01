@@ -1,20 +1,11 @@
-@props([
-    'user' => null,
-    'is-self' => false,
-])
-
-@php
-    $showCover  = $attributes->has('show-cover');
-@endphp
-
 <div class="profile-card">
-    @if ($showCover)
-        <img
-            class="profile-card__cover"
-            src="https://placehold.co/1752x456"
-            alt="profile card cover"
-        />
-    @endif
+{{--    @if ($showCover)--}}
+{{--        <img--}}
+{{--            class="profile-card__cover"--}}
+{{--            src="https://placehold.co/1752x456"--}}
+{{--            alt="profile card cover"--}}
+{{--        />--}}
+{{--    @endif--}}
 
     <div class="profile-card__content">
         <div class="profile-card__account profile-card__item-phone-show">
@@ -62,7 +53,24 @@
                         href="{{route('pages.user.settings')}}"
                     >Редактировать профиль</x-link>
                 @else
-                    <x-button class="profile-card__button" icon="user-plus-solid">Подписаться</x-button>
+
+                @if($user->isSubscribed(Auth::user()))
+                    <x-button
+                        class="profile-card__button"
+                        icon="user-minus-solid"
+                        wire:click="unsubscribe"
+                        color="pale"
+                    >Отписаться</x-button>
+                @else
+                    <x-button
+                        class="profile-card__button"
+                        icon="user-plus-solid"
+                        wire:click="subscribe"
+                    >Подписаться</x-button>
+                @endif
+
+
+
                     <x-button class="profile-card__button" color="pale" icon="comments-solid">Написать</x-button>
                     <div class="dropdown">
                         <x-button class="profile-card__button dropdown__button" color="pale" icon="ellipsis-h-solid" />

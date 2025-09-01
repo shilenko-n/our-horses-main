@@ -32,6 +32,20 @@ trait HasSubscriptions
         );
     }
 
+    /**
+     * Проверить подписан пользователь на модель
+     *
+     * @param User $user
+     * @return bool
+     */
+    public function isSubscribed(User $user): bool
+    {
+        return $this
+            ->subscriptions()
+            ->get()
+            ->contains('user_id', $user->id);
+    }
+
 
     /**
      * Отписаться пользователем
