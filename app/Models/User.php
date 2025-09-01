@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -84,11 +85,43 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         ];
     }
 
-    public function subscribedHorse(): Collection
+//    public function subscribedHorse(): Collection
+//    {
+//        return Subscription
+//            ::where(['user_id' => $this->id, 'subscriptionable_type' => 'App\Models\Horse'])
+//            ->get();
+//    }
+
+    /**
+     * Получение всех подписок пользователя на лошадей
+     *
+     * @return MorphToMany
+     */
+    public function horseSubscriptions(): MorphToMany
     {
-        return Subscription
-            ::where(['user_id' => $this->id, 'subscriptionable_type' => 'App\Models\Horse'])
-            ->get();
+        return $this->morphedByMany(
+            Horse::class,
+            'subscriptionable',
+            'subscriptions',
+            'user_id',
+            'subscriptionable_id',
+        );
+    }
+
+    /**
+     * Получение всех подписок на других пользователей
+     *
+     * @return MorphToMany
+     */
+    public function userSubscriptions(): MorphToMany
+    {
+        return $this->morphedByMany(
+            User::class,
+            'subscriptionable',
+            'subscriptions',
+            'user_id',
+            'subscriptionable_id',
+        );
     }
 
     public function subscribedBreed(): Collection

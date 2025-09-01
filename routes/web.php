@@ -25,6 +25,16 @@ Route::name('pages.')->group(function () {
             Route::get('/profile/settings', [PageController::class, 'userSettings'])->name('settings');
 
             Route::get('/profile/settings/personal', [PageController::class, 'userSettingsPersonal'])->name('settings.personal');
+
+
+
+            Route::prefix('subscribers')->name('subscribers.')->group(function () {
+
+
+                Route::get('/users', [PageController::class, 'userSubscribers'])->name('users');
+
+            });
+
         });
 
 

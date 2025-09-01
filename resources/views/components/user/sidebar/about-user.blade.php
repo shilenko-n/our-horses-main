@@ -16,11 +16,11 @@
         </a>
         <a class="about-user__link" href="/front/pages/profile/subscribers/horses">
             <div class="about-user__link-text">Подписки на лошадей</div>
-            <div class="about-user__link-number">{{ count($user->subscribedHorse()) }}</div>
+            <div class="about-user__link-number">{{ $user->horseSubscriptions()->count() }}</div>
         </a>
-        <a class="about-user__link" href="/front/pages/profile/subscribers/users">
+        <a class="about-user__link" href="{{route('pages.user.subscribers.users')}}">
             <div class="about-user__link-text">Подписки на людей</div>
-            <div class="about-user__link-number">{{ $user->subscriptions()->count() }}</div>
+            <div class="about-user__link-number">{{ $user->userSubscriptions()->count() }}</div>
         </a>
         <a class="about-user__link" href="/front/pages/profile/subscribers/breeds">
             <div class="about-user__link-text">Подписки на породы</div>

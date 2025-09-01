@@ -80,6 +80,18 @@ class PageController extends Controller
         return view('user.settings.personal');
     }
 
+    // Подписки
+
+    /**
+     * Страница подписок на других пользователей
+     *
+     * @return View
+     */
+    public function userSubscribers(): View
+    {
+        return view('user.subscribers.users');
+    }
+
     // Авторизация
 
     /**
