@@ -6,7 +6,11 @@
         <div class="settings__block">
             <h2 class="settbings__title">Настройки</h2>
             <div class="settings__items">
-                <x-link class="settings__item" icon="user-shield-solid" href="/front/pages/profile/settings/personal">Личные данные и безопасность</x-link>
+                <x-link
+                    class="settings__item"
+                    icon="user-shield-solid"
+                    href="{{route('pages.user.settings.personal')}}"
+                >Личные данные и безопасность</x-link>
                 <x-link class="settings__item" icon="coin-solid" href="/front/pages/profile/settings/payments">Оплата и баланс</x-link>
             </div>
         </div>

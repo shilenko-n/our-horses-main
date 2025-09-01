@@ -69,6 +69,15 @@ class PageController extends Controller
         return view('user.settings');
     }
 
+    /**
+     * Страница личные данные и безопасность
+     *
+     * @return View
+     */
+    public function userSettingsPersonal(): View
+    {
+        return view('user.settings.personal');
+    }
 
     // Авторизация
 

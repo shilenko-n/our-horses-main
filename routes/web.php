@@ -23,6 +23,8 @@ Route::name('pages.')->group(function () {
             Route::get('/profile', [PageController::class, 'userProfile'])->name('profile');
 
             Route::get('/profile/settings', [PageController::class, 'userSettings'])->name('settings');
+
+            Route::get('/profile/settings/personal', [PageController::class, 'userSettingsPersonal'])->name('settings.personal');
         });
 
 
