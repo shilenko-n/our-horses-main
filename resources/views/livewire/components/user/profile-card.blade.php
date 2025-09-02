@@ -11,7 +11,7 @@
         <div class="profile-card__account profile-card__item-phone-show">
             <img
                 class="profile-card__photo"
-                src="{{ $user->getAvatar() }}"
+                src="{{ $user->getAvatarUrl() }}"
                 alt="{{ $user->name }}"
             />
             <div class="profile-card__name">{{ $user->name }}</div>
@@ -19,7 +19,7 @@
 
         <img
             class="profile-card__photo profile-card__item-phone-hide"
-            src="{{ $user->getAvatar() }}"
+            src="{{ $user->getAvatarUrl() }}"
             alt="{{ $user->name }}"
         />
 

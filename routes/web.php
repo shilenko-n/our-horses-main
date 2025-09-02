@@ -32,6 +32,7 @@ Route::name('pages.')->group(function () {
 
 
                 Route::get('/users', [PageController::class, 'userSubscribers'])->name('users');
+                Route::get('/users/{nickname}', [PageController::class, 'userSubscribers'])->name('users.nickname');
 
             });
 

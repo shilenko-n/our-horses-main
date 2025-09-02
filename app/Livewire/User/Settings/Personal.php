@@ -9,9 +9,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
 class Personal extends Component
 {
+    use WithFileUploads;
 
     public Collection $locations;
 
@@ -24,6 +28,8 @@ class Personal extends Component
 
     public int $selectedCountryId;
     public int $selectedCityId;
+
+    public $avatar;
 
     public function initUserData(): void
     {
@@ -38,6 +44,26 @@ class Personal extends Component
         $this->locations = Country::with('cities')->get();
 
         $this->initUserData();
+    }
+
+    /**
+     * @throws FileDoesNotExist
+     * @throws FileIsTooBig
+     */
+    public function updatedAvatar(): void
+    {
+//        dd($this->avatar);
+//        dd([
+//            'original_name' => $this->avatar->getClientOriginalName(),
+//            'mime' => $this->avatar->getMimeType(),
+//            'extension' => $this->avatar->getClientOriginalExtension(),
+//        ]);
+
+        $this->validate([
+            'avatar' => 'image|max:4096',
+        ]);
+
+        Auth::user()->setAvatar($this->avatar);
     }
 
     public function changeEmail(): void

@@ -7,6 +7,7 @@ use App\Models\Horse;
 use App\Models\Offer;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Factory;
 use Illuminate\View\View;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -85,11 +86,22 @@ class PageController extends Controller
     /**
      * Страница подписок на других пользователей
      *
+     * @param string|null $nickname
      * @return View
      */
-    public function userSubscribers(): View
+    public function userSubscribers(?string $nickname = null): View
     {
-        return view('user.subscribers.users');
+        $user = Auth::user();
+
+        if($nickname) {
+            $user = User::query()
+                ->where('nickname', $nickname)
+                ->first();
+        }
+
+        return view('user.subscribers.users', [
+            'user' => $user,
+        ]);
     }
 
     // Авторизация

@@ -55,15 +55,25 @@
                         src="https://placehold.co/240x240"
                         alt="user avatar"
                     />
+                @elseif($avatar)
+
+{{--                    @php--}}
+{{--                        dd($avatar->temporaryUrl());--}}
+{{--                    @endphp--}}
+{{--                    <img--}}
+{{--                        class="personal-settings__image"--}}
+{{--                        src="{{$avatar->temporaryUrl()}}"--}}
+{{--                        alt="user avatar"--}}
+{{--                    />--}}
                 @else
                     <img
                         class="personal-settings__image"
-                        src="{{Auth::user()->getAvatar()}}"
+                        src="{{Auth::user()->getAvatarUrl()}}"
                         alt="user avatar"
                     />
                 @endif
 
-                {{--                        <x-forms.file hint="В формате JPEG или PNG. Максимальный размер — 8 MB." />--}}
+                <x-forms.file hint="В формате JPEG или PNG. Максимальный размер — 8 MB." />
             </div>
             <div class="personal-settings__form-columns">
                 <x-forms.input

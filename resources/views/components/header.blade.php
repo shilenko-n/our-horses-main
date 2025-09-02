@@ -45,7 +45,7 @@
             <x-user.mini-card
                 :href="route('pages.user.profile')"
                 :username="Auth::user()->name"
-                :photo="Auth::user()->getAvatar()"
+                :photo="Auth::user()->getAvatarUrl()"
             />
         </div>
     @endauth

@@ -128,4 +128,9 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     {
         return Subscription::where(['user_id' => $this->id, 'subscriptionable_type' => 'App\Models\Horse'])->get();
     }
+
+    public function getFullName(): string
+    {
+        return $this->name . ' ' . $this->surname;
+    }
 }

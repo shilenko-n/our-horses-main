@@ -2,6 +2,10 @@
     'user' => null,
 ])
 
+@php
+    $isSelf = Auth::check() && Auth::id() == $user->id;
+@endphp
+
 <div class="about-user">
     <div class="about-user__about">
         <div class="about-user__heading">Обо мне</div>
@@ -18,7 +22,12 @@
             <div class="about-user__link-text">Подписки на лошадей</div>
             <div class="about-user__link-number">{{ $user->horseSubscriptions()->count() }}</div>
         </a>
-        <a class="about-user__link" href="{{route('pages.user.subscribers.users')}}">
+        <a class="about-user__link"
+           href="{{$isSelf
+                ? route('pages.user.subscribers.users')
+                : route('pages.user.subscribers.users.nickname', $user->nickname)
+            }}"
+        >
             <div class="about-user__link-text">Подписки на людей</div>
             <div class="about-user__link-number">{{ $user->userSubscriptions()->count() }}</div>
         </a>
