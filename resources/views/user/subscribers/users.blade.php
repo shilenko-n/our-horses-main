@@ -2,6 +2,7 @@
 @extends('layouts.template')
 
 @section('page.content')
+
     <div class="subscribers">
         <div class="subscribers__header">
             <x-breadcrumbs :items="[
@@ -14,10 +15,12 @@
                 Подписки на людей <span class="subscribers__counter">{{$user->userSubscriptions()->count()}}</span>
             </h2>
         </div>
-        <livewire:user.subscribers.items :user="$user" />
+        <livewire:user.subscribers.items
+            :users="$userSubscriptions->toBase()"
+        />
 
         <div class="subscribers__paginator">
-{{--            @include('site.blocks.paginator')--}}
+            <x-paginator :model="$userSubscriptions" />
         </div>
     </div>
 @endsection

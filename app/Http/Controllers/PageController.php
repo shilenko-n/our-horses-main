@@ -114,8 +114,11 @@ class PageController extends Controller
                 ->first();
         }
 
+        $userSubscriptions = $user->userSubscriptions()->paginate(1);
+
         return view('user.subscribers.users', [
             'user' => $user,
+            'userSubscriptions' => $userSubscriptions,
         ]);
     }
 
