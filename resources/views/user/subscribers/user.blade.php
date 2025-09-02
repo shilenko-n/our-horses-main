@@ -1,7 +1,6 @@
 
 @extends('layouts.template')
 
-
 @section('page.content')
 
     <div class="subscribers">
@@ -16,9 +15,12 @@
                 Подписчики <span class="subscribers__counter">{{$user->subscriptions()->count()}}</span>
             </h2>
         </div>
-        <livewire:user.subscribers.subscribers :user="$user" />
+        <livewire:user.subscribers.subscribers
+            :users="$users->toBase()"
+        />
 
         <div class="subscribers__paginator">
+            <x-paginator :model="$users" />
             {{--            @include('site.blocks.paginator')--}}
         </div>
     </div>

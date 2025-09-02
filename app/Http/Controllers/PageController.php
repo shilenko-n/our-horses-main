@@ -93,8 +93,11 @@ class PageController extends Controller
                 ->first();
         }
 
+        $users = $user->subscriptions()->paginate(1);
+
         return view('user.subscribers.user', [
-            'user' => $user,
+            'user'  => $user,
+            'users' => $users,
         ]);
     }
 

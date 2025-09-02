@@ -29,6 +29,7 @@ class SubscribeCard extends Component
             $this->user->subscribe(Auth::user());
         }else{
             $this->user->unsubscribe(Auth::user());
+            dd(1);
         }
     }
 
