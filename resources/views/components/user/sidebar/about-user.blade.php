@@ -14,7 +14,10 @@
         <div class="about-user__comments">Написал 174 комментария</div>
     </div>
     <div class="about-user__links">
-        <a class="about-user__link" href="/front/pages/profile/subscribers/subscribers">
+        <a
+            class="about-user__link"
+            href="{{$isSelf ? route('pages.user.subscribers.own') : route('pages.user.subscribers.own.nickname', $user->nickname)}}"
+        >
             <div class="about-user__link-text">Подписчики</div>
             <div class="about-user__link-number">{{ $user->subscriptions()->count() }}</div>
         </a>
@@ -22,8 +25,9 @@
             <div class="about-user__link-text">Подписки на лошадей</div>
             <div class="about-user__link-number">{{ $user->horseSubscriptions()->count() }}</div>
         </a>
-        <a class="about-user__link"
-           href="{{$isSelf
+        <a
+            class="about-user__link"
+            href="{{$isSelf
                 ? route('pages.user.subscribers.users')
                 : route('pages.user.subscribers.users.nickname', $user->nickname)
             }}"

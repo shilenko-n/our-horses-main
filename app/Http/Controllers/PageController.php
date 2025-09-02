@@ -83,6 +83,21 @@ class PageController extends Controller
 
     // Подписки
 
+    public function subscribers(?string $nickname = null): View
+    {
+        $user = Auth::user();
+
+        if($nickname) {
+            $user = User::query()
+                ->where('nickname', $nickname)
+                ->first();
+        }
+
+        return view('user.subscribers.user', [
+            'user' => $user,
+        ]);
+    }
+
     /**
      * Страница подписок на других пользователей
      *
