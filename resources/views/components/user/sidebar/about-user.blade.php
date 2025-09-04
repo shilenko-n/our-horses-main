@@ -16,12 +16,20 @@
     <div class="about-user__links">
         <a
             class="about-user__link"
-            href="{{$isSelf ? route('pages.user.subscribers.own') : route('pages.user.subscribers.own.nickname', $user->nickname)}}"
+            href="{{$isSelf
+                ? route('pages.user.subscribers.own')
+                : route('pages.user.subscribers.own.nickname', $user->nickname)
+            }}"
         >
             <div class="about-user__link-text">Подписчики</div>
             <div class="about-user__link-number">{{ $user->subscriptions()->count() }}</div>
         </a>
-        <a class="about-user__link" href="/front/pages/profile/subscribers/horses">
+        <a
+            class="about-user__link"
+            href="{{$isSelf
+                ? route('pages.user.subscribers.horses')
+                : route('pages.user.subscribers.horses.nickname', $user->nickname)
+                }}">
             <div class="about-user__link-text">Подписки на лошадей</div>
             <div class="about-user__link-number">{{ $user->horseSubscriptions()->count() }}</div>
         </a>

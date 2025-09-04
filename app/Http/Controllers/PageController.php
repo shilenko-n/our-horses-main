@@ -93,6 +93,8 @@ class PageController extends Controller
                 ->first();
         }
 
+        if(!$user) abort(404);
+
         $users = $user->subscriptions()->paginate(1);
 
         return view('user.subscribers.user', [
@@ -117,11 +119,34 @@ class PageController extends Controller
                 ->first();
         }
 
+        if(!$user) abort(404);
+
         $userSubscriptions = $user->userSubscriptions()->paginate(1);
 
         return view('user.subscribers.users', [
             'user' => $user,
             'userSubscriptions' => $userSubscriptions,
+        ]);
+    }
+
+    public function horsesSubscribers(?string $nickname = null): View
+    {
+        $user = Auth::user();
+
+        if($nickname) {
+            $user = User::query()
+                ->where('nickname', $nickname)
+                ->first();
+        }
+
+        if(!$user) abort(404);
+
+        $horsesSubscriptions = $user->horseSubscriptions()->paginate(1);
+
+
+        return view('user.subscribers.horses', [
+            'user' => $user,
+            'horsesSubscriptions' => $horsesSubscriptions,
         ]);
     }
 

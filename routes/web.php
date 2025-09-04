@@ -34,8 +34,12 @@ Route::name('pages.')->group(function () {
                 Route::get('/users', [PageController::class, 'userSubscribers'])->name('users');
                 Route::get('/users/{nickname}', [PageController::class, 'userSubscribers'])->name('users.nickname');
 
+                Route::get('/horses', [PageController::class, 'horsesSubscribers'])->name('horses');
+                Route::get('/horses/{nickname}', [PageController::class, 'horsesSubscribers'])->name('horses.nickname');
+
                 Route::get('/', [PageController::class, 'subscribers'])->name('own');
                 Route::get('/{nickname}', [PageController::class, 'subscribers'])->name('own.nickname');
+
 
             });
 

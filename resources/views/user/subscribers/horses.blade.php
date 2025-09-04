@@ -12,15 +12,16 @@
                 ]
             ]" />
             <h2 class="subscribers__title">
-                Подписчики <span class="subscribers__counter">{{$user->subscriptions()->count()}}</span>
+                Подписки на лошадей <span class="subscribers__counter">{{$user->horseSubscriptions()->count()}}</span>
             </h2>
         </div>
-        <livewire:user.subscribers.subscribers
-            :users="$users->toBase()"
+        <livewire:user.subscribers.horses
+            :horses="$horsesSubscriptions->toBase()"
+            :user="$user"
         />
 
         <div class="subscribers__paginator">
-            <x-paginator :model="$users" />
+            <x-paginator :model="$horsesSubscriptions" />
         </div>
     </div>
 

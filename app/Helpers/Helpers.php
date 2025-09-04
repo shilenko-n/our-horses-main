@@ -76,7 +76,7 @@ if (!function_exists('bytes_convert')) {
      *
      * @return string
      */
-    function bytes_convert(string $bytes, string $format = NULL): string
+    function bytes_convert(string $bytes, ?string $format): string
     {
         $base = 1024;
         $units = ['B', 'KB', 'MB', 'GB', 'TB'];
