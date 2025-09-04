@@ -85,13 +85,6 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         ];
     }
 
-//    public function subscribedHorse(): Collection
-//    {
-//        return Subscription
-//            ::where(['user_id' => $this->id, 'subscriptionable_type' => 'App\Models\Horse'])
-//            ->get();
-//    }
-
     /**
      * Получение всех подписок пользователя на лошадей
      *
@@ -124,9 +117,15 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         );
     }
 
-    public function subscribedBreed(): Collection
+    public function horseBreedSubscriptions(): MorphToMany
     {
-        return Subscription::where(['user_id' => $this->id, 'subscriptionable_type' => 'App\Models\Horse'])->get();
+        return $this->morphedByMany(
+            HorseBreed::class,
+            'subscriptionable',
+            'subscriptions',
+            'user_id',
+            'subscriptionable_id',
+        );
     }
 
     public function getFullName(): string

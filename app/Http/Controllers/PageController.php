@@ -143,10 +143,30 @@ class PageController extends Controller
 
         $horsesSubscriptions = $user->horseSubscriptions()->paginate(1);
 
-
         return view('user.subscribers.horses', [
             'user' => $user,
             'horsesSubscriptions' => $horsesSubscriptions,
+        ]);
+    }
+
+    public function breedsSubscribers(?string $nickname = null): View
+    {
+        $user = Auth::user();
+
+        if($nickname) {
+            $user = User::query()
+                ->where('nickname', $nickname)
+                ->first();
+        }
+
+        if(!$user) abort(404);
+
+
+        $horseBreedsSubscriptions = $user->horseBreedSubscriptions()->paginate(1);
+
+        return view('user.subscribers.breeds', [
+            'user' => $user,
+            'horseBreedsSubscriptions' => $horseBreedsSubscriptions,
         ]);
     }
 

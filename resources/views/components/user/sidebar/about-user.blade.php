@@ -43,9 +43,15 @@
             <div class="about-user__link-text">Подписки на людей</div>
             <div class="about-user__link-number">{{ $user->userSubscriptions()->count() }}</div>
         </a>
-        <a class="about-user__link" href="/front/pages/profile/subscribers/breeds">
+        <a
+            class="about-user__link"
+            href="{{$isSelf
+                ? route('pages.user.subscribers.breeds')
+                : route('pages.user.subscribers.breeds.nickname', $user->nickname)
+            }}"
+        >
             <div class="about-user__link-text">Подписки на породы</div>
-            <div class="about-user__link-number">{{ count($user->subscribedBreed()) }}</div>
+            <div class="about-user__link-number">{{ $user->horseBreedSubscriptions()->count() }}</div>
         </a>
         <a class="about-user__link" href="/front/pages/profile/mentions">
             <div class="about-user__link-text">Упоминания</div>
