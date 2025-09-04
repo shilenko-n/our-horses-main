@@ -24,7 +24,7 @@ class SmallCard extends Component
 
     public function mount(
         Horse $horse,
-        ?User $user,
+        ?User $user = null,
 
         bool $isPositioning = false,
         bool $isRevision = false,
@@ -35,7 +35,12 @@ class SmallCard extends Component
     ): void
     {
         $this->horse = $horse;
-        $this->user = $user ?? Auth::user();
+        $this->user = $user;
+
+        if(!$this->user->id) {
+            $this->user = Auth::user();
+        }
+
         $this->isSubscribed = $horse->isSubscribed($this->user);
         $this->isPositioning = $isPositioning;
         $this->isRevision = $isRevision;

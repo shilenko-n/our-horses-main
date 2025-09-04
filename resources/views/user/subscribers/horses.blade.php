@@ -17,7 +17,6 @@
         </div>
         <livewire:user.subscribers.horses
             :horses="$horsesSubscriptions->toBase()"
-            :user="$user"
         />
 
         <div class="subscribers__paginator">
