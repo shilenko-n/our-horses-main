@@ -104,6 +104,16 @@ class PageController extends Controller
         return view('user.horses.list', compact('user', 'horses'));
     }
 
+    /**
+     * Страница добавления лошади
+     *
+     * @return View
+     */
+    public function userAddHorse(): View
+    {
+        return view('user.horses.add');
+    }
+
     // Подписки
 
     public function subscribers(?string $nickname = null): View

@@ -29,7 +29,11 @@ Route::name('pages.')->group(function () {
             Route::prefix('horses')->name('horses.')->group(function () {
 
                 Route::get('/my', [PageController::class, 'userMyHorses'])->name('my');
+                Route::get('/add', [PageController::class, 'userAddHorse'])->name('add');
+
+
                 Route::get('/{nickname}', [PageController::class, 'userMyHorses'])->name('list');
+
 
             });
 
