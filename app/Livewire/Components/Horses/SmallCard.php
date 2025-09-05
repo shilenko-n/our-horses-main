@@ -12,7 +12,7 @@ class SmallCard extends Component
 {
     public Horse $horse;
     public ?User $user;
-    public bool $isSubscribed;
+    public ?bool $isSubscribed = null;
 
     public bool $isPositioning;
     public bool $isRevision;
@@ -20,6 +20,7 @@ class SmallCard extends Component
     public bool $showButton;
     public bool $hideOwner;
     public bool $hasEdit;
+    public ?int $price;
 
 
     public function mount(
@@ -32,6 +33,7 @@ class SmallCard extends Component
         bool $showButton = false,
         bool $hideOwner = false,
         bool $hasEdit = false,
+        int $price = null,
     ): void
     {
         $this->horse = $horse;
@@ -41,13 +43,16 @@ class SmallCard extends Component
             $this->user = Auth::user();
         }
 
-        $this->isSubscribed = $horse->isSubscribed($this->user);
+        if($this->user)
+            $this->isSubscribed = $horse->isSubscribed($this->user);
+
         $this->isPositioning = $isPositioning;
         $this->isRevision = $isRevision;
         $this->hideBadges = $hideBadges;
         $this->showButton = $showButton;
         $this->hideOwner = $hideOwner;
         $this->hasEdit = $hasEdit;
+        $this->price = $price;
     }
 
     public function subscribe(): void

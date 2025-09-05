@@ -26,6 +26,12 @@ Route::name('pages.')->group(function () {
 
             Route::get('/profile/settings/personal', [PageController::class, 'userSettingsPersonal'])->name('settings.personal');
 
+            Route::prefix('horses')->name('horses.')->group(function () {
+
+                Route::get('/my', [PageController::class, 'userMyHorses'])->name('my');
+                Route::get('/{nickname}', [PageController::class, 'userMyHorses'])->name('list');
+
+            });
 
 
             Route::prefix('subscribers')->name('subscribers.')->group(function () {

@@ -15,9 +15,12 @@ class Main extends Component
      */
 
     public array|Collection $mainItems;
+    public array|Collection $myItems;
+
     public function __construct()
     {
         $this->mainItems = Menu::query()->where('name', 'main')->first()->menuItems;
+        $this->myItems = Menu::query()->where('name', 'my')->first()->menuItems;
     }
 
     /**
@@ -27,6 +30,7 @@ class Main extends Component
     {
         return view('components.menus.main', [
             'mainItems' => $this->mainItems,
+            'myItems' => $this->myItems,
         ]);
     }
 }

@@ -1,7 +1,3 @@
-@php
-    $price          = 123;
-@endphp
-
 <a
     @class([
         'horse-small-card',

@@ -30,11 +30,15 @@
 
                 @foreach($popularHorses as $horse)
 
-                    <x-horse.small-card
-                        href="/front/pages/horses/guest"
+                    <livewire:components.horses.small-card
                         :horse="$horse"
-                        is-subscribed
                     />
+
+{{--                    <x-horse.small-card--}}
+{{--                        href="/front/pages/horses/guest"--}}
+{{--                        :horse="$horse"--}}
+{{--                        is-subscribed--}}
+{{--                    />--}}
 
                 @endforeach
 
@@ -47,11 +51,9 @@
             <div class="main__hub-items">
 
                 @foreach($offers as $offer)
-                    <x-horse.small-card
-                        href="/front/pages/horses/guest"
+                    <livewire:components.horses.small-card
                         :horse="$offer->horse"
                         :price="$offer->price"
-                        is-subscribed
                     />
                 @endforeach
             </div>

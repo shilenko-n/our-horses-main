@@ -81,6 +81,29 @@ class PageController extends Controller
         return view('user.settings.personal');
     }
 
+    /**
+     * Страница лошадей
+     *
+     * @param string|null $nickname
+     * @return View
+     */
+    public function userMyHorses(?string $nickname = null): View
+    {
+        $user = auth()->user();
+
+        if($nickname) {
+            $user = User::query()->where('nickname', $nickname)->first();
+        }
+
+        if(!$user) abort(404);
+
+        $horses = $user
+            ->horses()
+            ->get();
+
+        return view('user.horses.list', compact('user', 'horses'));
+    }
+
     // Подписки
 
     public function subscribers(?string $nickname = null): View

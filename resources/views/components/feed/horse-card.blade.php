@@ -14,6 +14,7 @@
         <h2 class="horse-card__title">Лошадь дня</h2>
     @endif
     <div class="horse-card__slider">
+        <img src="https://nashi-koni.studio2i.ru/img/assets/horses/d/03.jpeg" alt="">
 {{--        <x-slider>--}}
 {{--            @foreach ($horse['slider'] as $slide)--}}
 {{--                <x-slider.slide>--}}

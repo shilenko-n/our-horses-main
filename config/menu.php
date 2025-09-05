@@ -72,6 +72,19 @@ return [
 
     ],
 
-
+    'my' => [
+        UserRole::User->value => [
+            [
+                'icon' => 'horse-head-solid',
+                'name' => 'Мои лошади',
+                'route' => 'pages.user.horses.my' , //pages.feed
+            ],
+            [
+                'icon' => 'writing-solid',
+                'name' => 'Мой блог',
+                'route' => 'pages.home',
+            ]
+        ],
+    ]
 
 ];
