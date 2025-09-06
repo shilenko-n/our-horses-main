@@ -28,6 +28,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $deathday
  * @property string $birthPlace
  * @property bool $moderating
+ * @property bool $draft
  */
 class Horse extends Model
 {
@@ -57,7 +58,8 @@ class Horse extends Model
         'horse_breed_id',
         'horse_color_id',
         'horse_specialization_id',
-        'moderating'
+        'moderating',
+        'draft'
     ];
 
     // Horse Properties

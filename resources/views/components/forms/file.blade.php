@@ -5,6 +5,7 @@
     'error'         => '',
     'horizontal'    => false,
     'mini'          => false,
+    'model'         => '',
 ])
 
 <label
@@ -36,7 +37,7 @@
 			<label for="chatFileInput" class="input-file__button"><x-icon icon="file-image-solid"></x-icon></label>
 		</span>
     @else
-        <input wire:model.live="avatar" type="file" {{ $attributes->filter(fn($value, $key) => !in_array($key, ['id', 'class', ':error'])) }} @class(['input__field']) />
+        <input wire:model.live="{{$model}}" type="file" {{ $attributes->filter(fn($value, $key) => !in_array($key, ['id', 'class', ':error'])) }} @class(['input__field']) />
     @endif
 
     {{-- hint --}}

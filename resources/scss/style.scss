@@ -104,6 +104,7 @@
 @use "template/components/forms/input" as *;
 @use "template/components/forms/textarea" as *;
 // @import "template/components/forms/label";
+@use "template/components/forms/file-uploaded" as *;
 @use "template/components/forms/select" as *;
 @use "template/components/forms/range" as *;
 @use "template/components/forms/errors" as *;

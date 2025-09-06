@@ -31,6 +31,7 @@ return new class extends Migration
             $table->foreignId('horse_color_id')->constrained('horse_colors');
             $table->foreignId('horse_specialization_id')->constrained('horse_specializations');
             $table->boolean('moderating')->default(true);
+            $table->boolean('draft')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

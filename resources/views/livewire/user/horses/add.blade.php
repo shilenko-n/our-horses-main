@@ -12,14 +12,40 @@
             </div>
             <div class="horse-form__inputs">
                 <div class="w-100">
-                    <x-forms.input size="big" type="number" label="Номер чипа" required placeholder="XXXXXXXXXXXXXXX" />
+                    <x-forms.input
+                        size="big"
+                        type="number"
+                        label="Номер чипа"
+                        required
+                        placeholder="XXXXXXXXXXXXXXX"
+                        wire:model.live.debounce.250ms="chipNumber"
+                    />
                 </div>
                 <div class="w-100">
-                    <x-forms.input size="big" label="Дата покупки" required type="date" />
+                    <x-forms.input
+                        size="big"
+                        label="Дата покупки"
+                        required
+                        type="date"
+                        wire:model.live.debounce.250ms="purchaseDate"
+                    />
                 </div>
             </div>
-            {{--        <x-alert type="warning" url="/front/pages/horses/guest">Лошадь с таким чипом уже есть в базе «Наши кони». Если это ваша лошадь, используйте кнопку «Это моя лошадь» <b>на странице лошади Изольда</b>, чтобы стать ее владельцем.</x-alert>--}}
-            <x-link class="w-100-p" wire:click="nextStep" button size="big" icon="chevron-right-solid">Следующий шаг</x-link>
+            @if($error)
+                <x-forms.alert
+                    type="warning"
+                    url="/front/pages/horses/guest"
+                >
+                    {{$error}}
+                </x-forms.alert>
+            @endif
+            <x-link
+                class="w-100-p"
+                wire:click="nextStep"
+                button
+                size="big"
+                icon="chevron-right-solid"
+            >Следующий шаг</x-link>
         </div>
     @elseif($step == 2)
 
@@ -38,58 +64,146 @@
             </div>
             <div class="horse-form__sections">
                 <div class="horse-form__documents-section">
-                    <x-forms.input size="big" disabled type="number" label="Номер чипа" required placeholder="XXXXXXXXXXXXXXX" />
-                    <x-forms.input size="big" label="Дата покупки" required type="date" />
+                    <x-forms.input
+                        size="big"
+                        disabled
+                        type="number"
+                        label="Номер чипа"
+                        required
+                        placeholder="XXXXXXXXXXXXXXX"
+                        wire:model="chipNumber"
+                    />
+                    <x-forms.input
+                        size="big"
+                        label="Дата покупки"
+                        required
+                        type="date"
+                        wire:model="purchaseDate"
+                    />
                     <div class="horse-form__input_1">
-                        <x-forms.file label="Документы, подтверждающие номер чипа и владение лошадью" required hint="В формате PDF, JPEG или PNG. До 10 файлов. Максимальный размер каждого файла — 8 MB." />
+                        <x-forms.file
+                            label="Документы, подтверждающие номер чипа и владение лошадью"
+                            required
+                            hint="В формате PDF, JPEG или PNG. До 10 файлов. Максимальный размер каждого файла — 8 MB."
+                            model="file"
+                        />
+
+                        <div class="horse-form__input_1-files">
+
+                            @foreach($files as $file)
+                                <x-forms.file-uploaded
+                                    :name="$file->getClientOriginalName()"
+                                    :type="strtoupper($file->extension())"
+                                    :size="$file->getSize()"
+                                />
+                            @endforeach
+
+                        </div>
                     </div>
+
+                    @error('file')
+                        <x-forms.alert>
+                            {{$message}}
+                        </x-forms.alert>
+                    @enderror
                 </div>
                 <div class="horse-form__horse-information">
                     <div class="horse-form__input_2">
 {{--                        @include('site.blocks.horses.prev-horse-fields')--}}
                     </div>
-                    <x-forms.input size="big" required label="Кличка" />
-                    <x-forms.input size="big" type="number" label="Рост в холке, см" />
+                    <x-forms.input
+                        size="big"
+                        required
+                        label="Кличка"
+                        wire:model.live.debounce.250ms="horse.name"
+                    />
+                    <x-forms.input
+                        size="big"
+                        type="number"
+                        label="Рост в холке, см"
+                        wire:model.live.debounce.250ms="horse.size"
+                    />
                     <div class="horse-form__input_3">
                         <label>Пол</label>
                         <div class="horse-form__input_3-checkboxes">
-                            <x-forms.flag type="radio" label="Жеребец" name="sex" checked />
-                            <x-forms.flag type="radio" label="Кобыла" name="sex" />
-                            <x-forms.flag type="radio" label="Мерин" name="sex" />
+                            <x-forms.flag type="radio" label="Жеребец" name="sex" checked wire:model.live="horse.gender" />
+                            <x-forms.flag type="radio" label="Кобыла" name="sex" wire:model.live="horse.gender" />
+                            <x-forms.flag type="radio" label="Мерин" name="sex" wire:model.live="horse.gender" />
                         </div>
                     </div>
-                    <x-forms.select size="big" label="Порода" required>
+                    <x-forms.select size="big" label="Порода" required wire:model.live="horse.breed">
                         <option value="">Не выбрана</option>
                         @foreach(\App\Models\HorseBreed::all() as $breed)
                             <option value="{{$breed->id}}">{{$breed->name}}</option>
                         @endforeach
                     </x-forms.select>
-                    <x-forms.select size="big" label="Масть" required>
+                    <x-forms.select size="big" label="Масть" required wire:model.live="horse.color">
                         <option value="">Не выбрана</option>
                         @foreach(\App\Models\HorseColor::all() as $color)
                             <option value="{{$color->id}}">{{$color->name}}</option>
                         @endforeach
                     </x-forms.select>
-                    <x-forms.select size="big" label="Специализация">
+                    <x-forms.select size="big" label="Специализация" wire:model.live="horse.specialization">
                         <option value="">Не выбрана</option>
                         @foreach(\App\Models\HorseSpecialization::all() as $specialization)
                             <option value="{{$specialization->id}}">{{$specialization->name}}</option>
                         @endforeach
                     </x-forms.select>
-                    <x-forms.input size="big" type="date" label="Дата рождения" required />
-                    <x-forms.input size="big" label="Отец" required icon="search-solid" icon-right />
-                    <x-forms.input size="big" label="Мать" required icon="search-solid" icon-right />
+                    <x-forms.input
+                        size="big"
+                        type="date"
+                        label="Дата рождения"
+                        required
+                        wire:model.live="horse.birthday"
+                    />
+                    <x-forms.input
+                        size="big"
+                        label="Отец"
+                        required
+                        icon="search-solid"
+                        icon-right
+                        wire:model.live="horse.father"
+                    />
+                    <x-forms.input
+                        size="big"
+                        label="Мать"
+                        required
+                        icon="search-solid"
+                        icon-right
+                        wire:model.live="horse.mother"
+                    />
 {{--                    @include('site.blocks.horses.horse-placement-field')--}}
-                    <x-forms.input size="big" label="Место рождения" />
-                    <x-forms.textarea class="horse-form__input_5" label="Расскажите о лошади" rows="5" required hint="Не менее 140 символов" />
+                    <x-forms.input
+                        size="big"
+                        label="Место рождения"
+                        wire:model.live="horse.birthPlace"
+                    />
+                    <x-forms.textarea
+                        class="horse-form__input_5"
+                        label="Расскажите о лошади"
+                        rows="5"
+                        required
+                        hint="Не менее 140 символов"
+                        wire:model.live.debounce.500ms="horse.about"
+                    />
                 </div>
                 <div class="horse-form__photos-section">
-                    <x-forms.file label="Фотографии" required hint="В формате JPEG или PNG. До 20 файлов. Максимальный размер каждого файла — 8 MB. После загрузки изображение будет обрезано в пропорции 16:9." />
+                    <x-forms.file
+                        label="Фотографии"
+                        required
+                        hint="В формате JPEG или PNG. До 20 файлов. Максимальный размер каждого файла — 8 MB. После загрузки изображение будет обрезано в пропорции 16:9."
+                    />
                 </div>
                 <div class="horse-form__buttons-section">
                     <p class="horse-form__hint">Перед добавлением лошади в список ваших лошадей, данные должны пройти модерацию. Модерация может занять несколько дней.</p>
-                    <form class="horse-form__step-two-buttons" action="/front/pages/horses/list">
-                        <x-button class="w-100-p" size="big" icon="check-solid">Отправить на модерацию</x-button>
+                    <x-button
+                        class="w-100-p"
+                        size="big"
+                        icon="check-solid"
+                        wire:click="test"
+                    >Отправить на модерацию</x-button>
+                    <form class="horse-form__step-two-buttons" >
+
                         <x-button class="w-100-p" color="pale" size="big">Сохранить черновик</x-button>
                         <x-button class="w-100-p" link>Удалить лошадь</x-button>
                     </form>

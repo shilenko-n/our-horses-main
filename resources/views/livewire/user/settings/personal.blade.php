@@ -73,7 +73,10 @@
                     />
                 @endif
 
-                <x-forms.file hint="В формате JPEG или PNG. Максимальный размер — 8 MB." />
+                <x-forms.file
+                    hint="В формате JPEG или PNG. Максимальный размер — 8 MB."
+                    model="avatar"
+                />
             </div>
             <div class="personal-settings__form-columns">
                 <x-forms.input
