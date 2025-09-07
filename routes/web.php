@@ -80,11 +80,11 @@ Route::name('pages.')->group(function () {
 
     Route::name('horse.')->prefix('horse')->group(function () {
 
-        Route::get('/view/{horse}', [PageController::class, 'horseView'])->name('horse.view');
+        Route::get('/view/{horse}', [PageController::class, 'horseView'])->name('view');
 
         Route::middleware(['auth', 'email'])->group(function () {
 
-            Route::get('/edit/{horse}', [PageController::class, 'horseEdit'])->name('horse.edit');
+            Route::get('/edit/{horse}', [PageController::class, 'horseEdit'])->name('edit');
 
         });
 

@@ -129,6 +129,13 @@ class Add extends Component
                 return;
             }
 
+            $horse = Horse::query()->where('chip_number', $this->chipNumber)->first();
+
+            if($horse) {
+                $this->error = "Лошадь с таким чипом уже есть в базе «Наши кони». Если это ваша лошадь, используйте кнопку «Это моя лошадь» <b>на странице лошади {$horse->name}</b>, чтобы стать ее владельцем.";
+                return;
+            }
+
             $this->error = null;
         }
 

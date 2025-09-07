@@ -3,7 +3,7 @@
         'horse-small-card',
         'horse-small-card_unsubscribed' => !$isSubscribed && !$hasEdit && $showButton
     ])
-    href="{{route('pages.horse.horse.view', $horse->id)}}"
+    href="{{route('pages.horse.view', $horse->id)}}"
 >
     <div class="horse-small-card__photo">
 

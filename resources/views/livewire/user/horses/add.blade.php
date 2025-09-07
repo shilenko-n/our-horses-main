@@ -34,9 +34,9 @@
             @if($error)
                 <x-forms.alert
                     type="warning"
-                    url="/front/pages/horses/guest"
+                    url="{{route('pages.horse.view', \App\Models\Horse::where('chip_number', $this->chipNumber)->first()->id)}}"
                 >
-                    {{$error}}
+                    {{!! $error !!}}
                 </x-forms.alert>
             @endif
             <x-link
