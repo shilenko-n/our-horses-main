@@ -18,11 +18,11 @@
         @endif
 
         <picture>
-            <img class="horse-small-card__image" src="https://nashi-koni.studio2i.ru/img/assets/horses/d/03.jpeg" alt="">
-            {{--            <source media="(max-width: 768px)" srcset="{{ $horse['photo']['p'] }}">--}}
-            {{--            <source media="(min-width: 769px) and (max-width: 1280px)" srcset="{{ $horse['photo']['t'] }}">--}}
-            {{--            <source media="(min-width: 1281px) and (max-width: 1600px)" srcset="{{ $horse['photo']['l'] }}">--}}
-            {{--            <img class="horse-small-card__image" src="{{ $horse['photo']['d'] }}" alt="">--}}
+{{--            <img class="horse-small-card__image" src="https://nashi-koni.studio2i.ru/img/assets/horses/d/03.jpeg" alt="">--}}
+                        <source media="(max-width: 768px)" srcset="{{ $horse->getFirstMedia('images')?->original_url }}">
+                        <source media="(min-width: 769px) and (max-width: 1280px)" srcset="{{ $horse->getFirstMedia('images')?->original_url }}">
+                        <source media="(min-width: 1281px) and (max-width: 1600px)" srcset="{{ $horse->getFirstMedia('images')?->original_url }}">
+                        <img class="horse-small-card__image" src="{{ $horse->getFirstMedia('images')?->original_url }}" alt="">
         </picture>
 
         @if ($price)

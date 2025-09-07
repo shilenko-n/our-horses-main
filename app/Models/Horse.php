@@ -128,7 +128,10 @@ class Horse extends Model implements HasMedia
     public function scopeModerating($query)
     {
         return $query
-            ->where('moderating', true);
+            ->where([
+                'moderating' => true,
+                'draft' => false,
+            ]);
     }
 
     public function scopePublished($query)

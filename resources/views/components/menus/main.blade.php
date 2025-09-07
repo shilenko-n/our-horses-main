@@ -14,21 +14,24 @@
     @endforeach
 </div>
 
-<div class="main-menu__my">
-    <div class="main-menu__my-title">Моё</div>
-    <div class="main-menu__my-items">
+@auth
+    <div class="main-menu__my">
+        <div class="main-menu__my-title">Моё</div>
+        <div class="main-menu__my-items">
 
-        @foreach ($myItems as $item)
-            <a @class([
+            @foreach ($myItems as $item)
+                <a @class([
 				'main-menu__item',
 //				'main-menu__item_active' => $item['url'] === $currentItem,
 			]) href="{{route($item->route)}}">
-                <x-icon icon="{{ $item->icon }}" />
-                <span>{{ $item->name }}</span>
-            </a>
-        @endforeach
+                    <x-icon icon="{{ $item->icon }}" />
+                    <span>{{ $item->name }}</span>
+                </a>
+            @endforeach
+        </div>
     </div>
-</div>
+@endauth
+
 
 <footer class="footer footer_sidebar">
     <p class="footer__company">

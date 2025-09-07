@@ -18,13 +18,13 @@ class Add extends Component
     use WithFileUploads;
 
     public string $chipNumber = '';
-    public string $purchaseDate = '';
+    public ?string $purchaseDate = '';
     public ?string $error = null;
 
     public array $docs;
     public ?TemporaryUploadedFile $doc = null;
 
-    public array $images;
+    public $images;
     public ?TemporaryUploadedFile $image = null;
 
     public $horse = [
@@ -75,6 +75,8 @@ class Add extends Component
             $this->horse['country'] = $horseModel->country;
             $this->horse['city'] = $horseModel->city;
             $this->horse['draft'] = $horseModel->draft;
+
+            $this->images = $horseModel->getMedia('images');
         }
 
 

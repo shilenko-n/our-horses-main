@@ -97,11 +97,20 @@
                         <div class="horse-form__input_1-files">
 
                             @foreach($docs as $file)
-                                <x-forms.file-uploaded
-                                    :name="$file->getClientOriginalName()"
-                                    :type="strtoupper($file->extension())"
-                                    :size="$file->getSize()"
-                                />
+                                @if($file instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile)
+                                    <x-forms.file-uploaded
+                                        :name="$file->getClientOriginalName()"
+                                        :type="strtoupper($file->extension())"
+                                        :size="$file->getSize()"
+                                    />
+                                @else
+                                    <x-forms.file-uploaded
+                                        :name="$file->file_name"
+                                        :type="strtoupper($file->mime_type)"
+                                        :size="$file->size"
+                                    />
+                                @endif
+
                             @endforeach
 
                         </div>
@@ -280,11 +289,19 @@
 
                     <div class="horse-form__photos-section__files">
                         @foreach($images as $file)
-                            <x-forms.file-uploaded
-                                :name="$file->getClientOriginalName()"
-                                :type="strtoupper($file->extension())"
-                                :size="$file->getSize()"
-                            />
+                            @if($file instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile)
+                                <x-forms.file-uploaded
+                                    :name="$file->getClientOriginalName()"
+                                    :type="strtoupper($file->extension())"
+                                    :size="$file->getSize()"
+                                />
+                            @else
+                                <x-forms.file-uploaded
+                                    :name="$file->file_name"
+                                    :type="strtoupper($file->mime_type)"
+                                    :size="$file->size"
+                                />
+                            @endif
                         @endforeach
                     </div>
 

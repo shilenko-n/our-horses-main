@@ -34,6 +34,15 @@
             <div class="horses-feed__cards">
                 <h3 class="horses-feed__cards__title">Заявки на добавление</h3>
                 <div class="horses-feed__cards__cards">
+                    @foreach($moderatingHorses as $horse)
+                        <livewire:components.horses.small-card
+                            href="/front/pages/horses/view"
+                            hide-badges="true"
+                            hide-owner="true"
+                            :horse="$horse"
+                            price="2345"
+                        />
+                    @endforeach
 {{--                    <x-horse.small-card href="/front/pages/horses/new-moderation" hide-owner :horse="fake()->horse()" show-button has-edit moderation price="{{ fake()->boolean() ? fake()->numberBetween(500000, 5000000) : 0 }}" />--}}
 {{--                    <x-horse.small-card href="/front/pages/horses/new-moderation" hide-owner :horse="fake()->horse()" show-button has-edit moderation price="{{ fake()->boolean() ? fake()->numberBetween(500000, 5000000) : 0 }}" />--}}
 {{--                    <x-horse.small-card href="/front/pages/horses/new-moderation" hide-owner :horse="fake()->horse()" show-button has-edit is-revision price="{{ fake()->boolean() ? fake()->numberBetween(500000, 5000000) : 0 }}" />--}}

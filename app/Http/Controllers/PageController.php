@@ -101,12 +101,17 @@ class PageController extends Controller
             ->published()
             ->get();
 
+        $moderatingHorses = $user
+            ->horses()
+            ->moderating()
+            ->get();
+
         $draftHorses = $user
             ->horses()
             ->draft()
             ->get();
 
-        return view('user.horses.list', compact('user', 'horses', 'draftHorses'));
+        return view('user.horses.list', compact('user', 'horses', 'draftHorses', 'moderatingHorses'));
     }
 
     /**

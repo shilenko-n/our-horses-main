@@ -30,7 +30,7 @@
 {{--            @endif--}}
         </div>
 
-        @if (!$isSelf)
+        @if (!$isSelf && auth()->check())
             <div class="user-subscribe-card__buttons">
                 @if ($isSubscribed)
                     <x-button
