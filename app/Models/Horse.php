@@ -160,4 +160,11 @@ class Horse extends Model implements HasMedia
         return $this->isOwnedBy(auth()->user());
     }
 
+    protected static function booted(): void
+    {
+        static::deleting(function (Horse $horse) {
+            $horse->offers()->delete();
+        });
+    }
+
 }
