@@ -130,7 +130,6 @@ class Add extends Component
         $horse = Horse::query()->create([
             'name'          => $this->horse['name'],
             'description'   => $this->horse['about'],
-            'user_id'       => auth()->id(),
             'city_id'       => $this->horse['city'],
             'chip_number'   => $this->chipNumber,
             'birthday'      => $this->horse['birthday'],
@@ -147,6 +146,8 @@ class Add extends Component
             'moderating' => true,
             'draft' => true,
         ]);
+
+        $horse->owners()->attach(auth()->user());
 
         foreach ($this->docs as $doc) {
             $horse

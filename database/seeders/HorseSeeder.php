@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Horse;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,7 +15,8 @@ class HorseSeeder extends Seeder
     public function run(): void
     {
         for($i = 0; $i < 50; $i++) {
-            Horse::factory()->create();
+            $horse = Horse::factory()->create();
+            $horse->owners()->attach(User::query()->inRandomOrder()->first());
         }
     }
 }

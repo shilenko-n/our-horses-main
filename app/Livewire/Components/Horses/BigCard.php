@@ -14,11 +14,9 @@ class BigCard extends Component
     public function mount(Horse $horse): void
     {
         $this->horse = $horse;
-        if(auth()->check() && auth()->id() == $horse->user->id)
+        if(auth()->check() && auth()->id() == $horse->currentOwner()->id)
             $this->isGuest = false;
     }
-
-
 
     public function render(): View
     {

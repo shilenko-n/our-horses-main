@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->foreignId('user_id')->constrained('users');
             $table->foreignId('city_id')->constrained('cities');
             $table->integer('views')->default(0);
             $table->string('chip_number');

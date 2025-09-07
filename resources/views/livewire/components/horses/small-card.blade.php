@@ -51,7 +51,7 @@
 
             @if (!$horse->moderating && !$isRevision && !$hideOwner)
                 <div class="horse-small-card__user">
-                    <div class="horse-small-card__user-name">{{ $horse->user->name }}</div>
+                    <div class="horse-small-card__user-name">{{ $horse->currentOwner()->name }}</div>
                     <div class="horse-small-card__user-location">{{ $horse->location }}</div>
                 </div>
             @endif

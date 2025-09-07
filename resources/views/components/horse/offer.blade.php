@@ -10,7 +10,7 @@
             <div class="horse-advertisement__prices-prices">
                 <div class="horse-advertisement__price">1 500 000 ₽</div>
                 <div class="horse-advertisement__price">20 259 $</div>
-                <div class="horse-advertisement__price">18 956 €</div>
+                <div class="horse-advertisement__price">18 956 €</div>
                 <div class="horse-advertisement__price">1 245 600 Br</div>
                 <div class="horse-advertisement__price">1 021 ₴</div>
             </div>

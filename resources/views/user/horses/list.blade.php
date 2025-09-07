@@ -48,7 +48,6 @@
                             hide-badges="true"
                             hide-owner="true"
                             :horse="$horse"
-                            has-edit="true"
                             price="2345"
                         />
                     @endforeach

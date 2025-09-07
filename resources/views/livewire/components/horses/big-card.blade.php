@@ -6,8 +6,8 @@
                 <x-breadcrumbs
                     :items="[
                         [
-                            'url' => route('pages.user.horses.list', $horse->user->nickname),
-                            'title' => $isGuest ? $horse->user->name : 'Мои лошади'
+                            'url' => route('pages.user.horses.list', $horse->currentOwner()->nickname),
+                            'title' => $isGuest ? $horse->currentOwner()->name : 'Мои лошади'
                         ]
                     ]"
                 />

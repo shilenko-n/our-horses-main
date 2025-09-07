@@ -2,6 +2,7 @@
 
 use App\Models\Horse;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait HasHorses
@@ -10,11 +11,11 @@ trait HasHorses
     /**
      * Получение всех лошадей
      *
-     * @return HasMany
+     * @return BelongsToMany
      */
-    public function horses(): HasMany
+    public function horses(): BelongsToMany
     {
-        return $this->hasMany(Horse::class);
+        return $this->belongsToMany(Horse::class);
     }
 
 }

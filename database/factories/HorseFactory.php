@@ -25,7 +25,6 @@ class HorseFactory extends Factory
         return [
             'name' => fake()->name(),
             'description' => fake()->text(),
-            'user_id' => User::query()->inRandomOrder()->first()->id,
             'city_id' => City::query()->inRandomOrder()->first()->id,
             'chip_number' => fake()->randomNumber(),
             'birthday' => fake()->dateTime(),

@@ -8,6 +8,7 @@ use App\Models\Traits\HasOffers;
 use App\Models\Traits\HasReactions;
 use App\Models\Traits\HasSubscriptions;
 use App\Models\Traits\HasUser;
+use App\Models\Traits\Horse\HasOwners;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -23,7 +24,6 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property int $id
  * @property string $name
  * @property string $description
- * @property User $user
  * @property City $city
  * @property Country $country
  * @property string $chipNumber
@@ -37,6 +37,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property HorseSpecialization $horseSpecialization
  * @property string $gender
  * @property int $heightWithers
+ * @property Collection|User[] $owners
  */
 class Horse extends Model implements HasMedia
 {
@@ -44,11 +45,11 @@ class Horse extends Model implements HasMedia
         HasFactory,
         HasLocation,
         HasReactions,
-        HasUser,
         HasSubscriptions,
         HasBookmarks,
         HasOffers,
-        InteractsWithMedia;
+        InteractsWithMedia,
+        HasOwners;
 
     protected $fillable = [
         'name',
@@ -140,7 +141,7 @@ class Horse extends Model implements HasMedia
 
     public function isOwnedBy(User $user): bool
     {
-        return $this->user->id === $user->id;
+        return $this->currentOwner()->id === $user->id;
     }
 
     public function isOwnedByAuth(): bool
