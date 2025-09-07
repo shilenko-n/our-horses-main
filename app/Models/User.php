@@ -27,6 +27,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property int $id
  * @property string $name
  * @property string $surname
+ * @property string $nickname
  * @property string $email
  * @property string $birthday
  * @property string $phone

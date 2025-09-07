@@ -78,6 +78,12 @@ Route::name('pages.')->group(function () {
 
     });
 
+    Route::name('horse.')->prefix('horse')->group(function () {
+
+        Route::get('/view/{horse}', [PageController::class, 'horseView'])->name('horse.view');
+
+    });
+
 });
 
 /**

@@ -25,12 +25,18 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property string $description
  * @property User $user
  * @property City $city
+ * @property Country $country
  * @property string $chipNumber
  * @property string $birthday
  * @property string $deathday
  * @property string $birthPlace
  * @property bool $moderating
  * @property bool $draft
+ * @property HorseBreed $horseBreed
+ * @property HorseColor $horseColor
+ * @property HorseSpecialization $horseSpecialization
+ * @property string $gender
+ * @property int $heightWithers
  */
 class Horse extends Model implements HasMedia
 {
@@ -125,6 +131,11 @@ class Horse extends Model implements HasMedia
                 'moderating' => false,
                 'draft' => false,
             ]);
+    }
+
+    public function isDead(): bool
+    {
+        return $this->deathday !== null;
     }
 
 }

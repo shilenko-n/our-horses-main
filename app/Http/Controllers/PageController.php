@@ -272,4 +272,20 @@ class PageController extends Controller
             'token' => $token,
         ]);
     }
+
+    /**
+     * Лошади
+     */
+
+    /**
+     * Страница лошади
+     *
+     * @param Horse $horse
+     * @return View
+     */
+    public function horseView(Horse $horse): View
+    {
+        $horse->load('user');
+        return view('horses.view', compact('horse'));
+    }
 }
