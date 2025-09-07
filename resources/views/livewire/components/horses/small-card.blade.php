@@ -3,6 +3,7 @@
         'horse-small-card',
         'horse-small-card_unsubscribed' => !$isSubscribed && !$hasEdit && $showButton
     ])
+    href="{{route('pages.horse.horse.view', $horse->id)}}"
 >
     <div class="horse-small-card__photo">
 
@@ -41,7 +42,7 @@
                     </div>
                 @endif
 
-                @if ($horse->moderating)
+                @if ($horse->moderating && !$horse->draft)
                     <span class="horse-small-card__status horse-small-card__status_moderation">На модерации</span>
                 @elseif ($isRevision)
                     <span class="horse-small-card__status horse-small-card__status_is-revision">Требуется доработка</span>

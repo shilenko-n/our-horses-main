@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\OfferStatusType;
 use App\Models\Traits\HasCurrency;
 use App\Models\Traits\HasHorse;
+use App\Models\Traits\HasLocation;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

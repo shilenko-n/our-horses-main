@@ -8,10 +8,13 @@
             <livewire:components.horses.big-card
                 :horse="$horse"
             />
-            <x-horse.offer
-                :horse="$horse"
-                :is-guest="$horse->isOwnedByAuth()"
-            />
+            @if($offer)
+                <x-horse.offer
+                    :horse="$horse"
+                    :is-guest="$horse->isOwnedByAuth()"
+                    :offer="$offer"
+                />
+            @endif
 
             <div class="horse-profile-about">
                 <div class="horse-profile-about__content">

@@ -281,10 +281,19 @@ class PageController extends Controller
      * Страница лошади
      *
      * @param Horse $horse
-     * @return View
+     * @return RedirectResponse|View
      */
-    public function horseView(Horse $horse): View
+    public function horseView(Horse $horse): RedirectResponse|View
     {
-        return view('horses.view', compact('horse'));
+        if(
+            $horse->draft && (!auth::check() ||
+            auth()->check() && auth()->id() !== $horse->currentOwner()->id)
+        ) {
+            return redirect()->route('pages.home');
+        }
+
+        $offer = $horse->offers()->latest()->first();
+
+        return view('horses.view', compact('horse', 'offer'));
     }
 }

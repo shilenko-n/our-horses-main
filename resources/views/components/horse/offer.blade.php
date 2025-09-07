@@ -1,6 +1,7 @@
 @props([
     'horse'     => null,
     'isGuest'   => true,
+    'offer'     => null,
 ])
 
 <div class="horse-advertisement">
@@ -8,7 +9,7 @@
         <h3 class="horse-advertisement__heading">Продаётся в г. Санкт-Петербург</h3>
         <div class="horse-advertisement__prices">
             <div class="horse-advertisement__prices-prices">
-                <div class="horse-advertisement__price">1 500 000 ₽</div>
+                <div class="horse-advertisement__price">{{$offer->price}} ₽</div>
                 <div class="horse-advertisement__price">20 259 $</div>
                 <div class="horse-advertisement__price">18 956 €</div>
                 <div class="horse-advertisement__price">1 245 600 Br</div>
@@ -17,7 +18,7 @@
             <div class="horse-advertisement__prices-hint">Цены указаны по курсу ЦБ</div>
         </div>
         <div class="horse-advertisement__about-horse">Порода арабская, кобыла, 2008 г.р., специализация конкур</div>
-        <p class="horse-advertisement__text">Доброжелательная, спокойная кобыла. Никогда не укусит и не ударит, безопасна, любит детей. Обследована, здоровая, без вредных привычек, психика отличная. Кобыла-учитель, идеально подойдёт для начинающих, в конкуре прыгает из любых положений, прощает ошибки, сама очень любит прыгать.</p>
+        <p class="horse-advertisement__text">{{$offer->description}}</p>
     </div>
     @auth
         <div class="horse-advertisement__actions">
