@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Country;
@@ -117,7 +116,7 @@ class PageController extends Controller
      */
     public function userAddHorse(): View
     {
-        return view('user.horses.add');
+        return view('user.horses.data');
     }
 
     // Подписки
@@ -295,5 +294,19 @@ class PageController extends Controller
         $offer = $horse->offers()->latest()->first();
 
         return view('horses.view', compact('horse', 'offer'));
+    }
+
+    /**
+     * Страница изменения лошади
+     *
+     * @param Horse $horse
+     * @return RedirectResponse|View
+     */
+    public function horseEdit(Horse $horse): RedirectResponse|View
+    {
+        if($horse->currentOwner()->id !== auth()->id())
+            return redirect()->route('pages.home');
+
+        return view('user.horses.data', compact('horse'));
     }
 }

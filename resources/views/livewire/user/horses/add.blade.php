@@ -57,11 +57,17 @@
                         'title' => 'Мои лошади'
                     ]
                 ]" />
-                <h2 class="horse-big-card__title">Новая лошадь</h2>
+                @if($edit)
+                    <h2 class="horse-big-card__title">Редактирование лошади</h2>
+                @else
+                    <h2 class="horse-big-card__title">Новая лошадь</h2>
+                @endif
             </div>
-            <div class="horse-form__back-button">
-                <x-link wire:click="previousStep" icon="long-arrow-left">Вернуться к предыдущему шагу</x-link>
-            </div>
+            @if(!$edit)
+                <div class="horse-form__back-button">
+                    <x-link wire:click="previousStep" icon="long-arrow-left">Вернуться к предыдущему шагу</x-link>
+                </div>
+            @endif
             <div class="horse-form__sections" x-data="horsePlacement">
                 <div class="horse-form__documents-section">
                     <x-forms.input
@@ -304,12 +310,14 @@
                             icon="check-solid"
                             wire:click.prevent="saveAndModerate"
                         >Отправить на модерацию</x-button>
-                        <x-button
-                            class="w-100-p"
-                            color="pale"
-                            size="big"
-                            wire:click.prevent="saveAsDraft"
-                        >Сохранить черновик</x-button>
+                        @if(!$edit || $horse['draft'])
+                            <x-button
+                                class="w-100-p"
+                                color="pale"
+                                size="big"
+                                wire:click.prevent="saveAsDraft"
+                            >Сохранить черновик</x-button>
+                        @endif
                         <x-button
                             class="w-100-p"
                             link

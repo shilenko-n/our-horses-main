@@ -43,16 +43,41 @@ class Add extends Component
         'deathDay'          => '',
         'purchaseDate'      => '',
         'country'           => '',
-        'city'              => ''
+        'city'              => '',
+        'draft'             => false,
     ];
 
     public Collection $countries;
     public $cities = [];
 
     public $step = 1;
+    public $edit = false;
 
-    public function mount(): void
+    public function mount($horseModel = null): void
     {
+
+        if($horseModel) {
+            $this->edit = true;
+            $this->step = 2;
+            $this->chipNumber = $horseModel->chip_number;
+            $this->purchaseDate = $horseModel->purchase_date;
+            $this->horse['name'] = $horseModel->name;
+            $this->horse['size'] = $horseModel->size;
+            $this->horse['gender'] = $horseModel->gender;
+            $this->horse['breed'] = $horseModel->breed;
+            $this->horse['color'] = $horseModel->color;
+            $this->horse['specialization'] = $horseModel->specialization;
+            $this->horse['birthPlace'] = $horseModel->birthPlace;
+            $this->horse['about'] = $horseModel->about;
+            $this->horse['previousHorse'] = $horseModel->previous_horse;
+            $this->horse['deathDay'] = $horseModel->death_day;
+            $this->horse['purchaseDate'] = $horseModel->purchase_date;
+            $this->horse['country'] = $horseModel->country;
+            $this->horse['city'] = $horseModel->city;
+            $this->horse['draft'] = $horseModel->draft;
+        }
+
+
         $this->countries = Country::with('cities')->get();
     }
 

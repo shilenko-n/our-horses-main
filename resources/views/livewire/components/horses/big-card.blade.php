@@ -36,7 +36,7 @@
                             class="w-100-p"
                             :href="$horse->isDead()
                                 ? '/front/pages/horses/gone-edit'
-                                : '/front/pages/horses/edit'"
+                                : route('pages.horse.horse.edit', $horse->id)"
                             button
                             icon="pencil-alt-solid"
                             color="pale"
