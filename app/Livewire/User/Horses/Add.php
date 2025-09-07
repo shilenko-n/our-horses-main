@@ -10,6 +10,8 @@ use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
 class Add extends Component
 {
@@ -116,6 +118,10 @@ class Add extends Component
 
     }
 
+    /**
+     * @throws FileIsTooBig
+     * @throws FileDoesNotExist
+     */
     public function saveAsDraft(): void
     {
         $purchaseDate = $this->horse['previousHorse'] ? $this->horse['purchaseDate'] : null;
@@ -141,6 +147,18 @@ class Add extends Component
             'moderating' => true,
             'draft' => true,
         ]);
+
+        foreach ($this->docs as $doc) {
+            $horse
+                ->addMedia($doc)
+                ->toMediaCollection('docs');
+        }
+
+        foreach ($this->images as $image) {
+            $horse
+                ->addMedia($image)
+                ->toMediaCollection('images');
+        }
 
     }
 

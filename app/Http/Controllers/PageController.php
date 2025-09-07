@@ -99,9 +99,15 @@ class PageController extends Controller
 
         $horses = $user
             ->horses()
+            ->published()
             ->get();
 
-        return view('user.horses.list', compact('user', 'horses'));
+        $draftHorses = $user
+            ->horses()
+            ->draft()
+            ->get();
+
+        return view('user.horses.list', compact('user', 'horses', 'draftHorses'));
     }
 
     /**

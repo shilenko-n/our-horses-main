@@ -143,9 +143,11 @@
                     required
                     wire:model.live="selectedCityId"
                 >
-                    @foreach($locations->find($selectedCountryId)->cities as $city)
-                        <option value="{{$city->id}}">{{$city->name}}</option>
-                    @endforeach
+                    @if($selectedCountryId)
+                        @foreach($locations->find($selectedCountryId)?->cities as $city)
+                            <option value="{{$city->id}}">{{$city->name}}</option>
+                        @endforeach
+                    @endif
                 </x-forms.select>
             </div>
             <div class="personal-settings__form-columns">

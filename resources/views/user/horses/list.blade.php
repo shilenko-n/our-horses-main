@@ -42,7 +42,16 @@
             <div class="horses-feed__cards">
                 <h3 class="horses-feed__cards__title">Черновики</h3>
                 <div class="horses-feed__cards__cards">
-{{--                    <x-horse.small-card href="/front/pages/horses/view" hide-badges hide-owner :horse="fake()->horse()" has-edit price="{{ fake()->boolean() ? fake()->numberBetween(500000, 5000000) : 0 }}" />--}}
+                    @foreach($draftHorses as $horse)
+                        <livewire:components.horses.small-card
+                            href="/front/pages/horses/view"
+                            hide-badges="true"
+                            hide-owner="true"
+                            :horse="$horse"
+                            has-edit="true"
+                            price="2345"
+                        />
+                    @endforeach
                 </div>
             </div>
             <div class="horses-feed__cards">

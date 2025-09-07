@@ -26,8 +26,8 @@ class Personal extends Component
     public bool $emailChanged   = false;
     public bool $userChanged    = false;
 
-    public int $selectedCountryId;
-    public int $selectedCityId;
+    public ?int $selectedCountryId;
+    public ?int $selectedCityId;
 
     public $avatar;
 
@@ -38,8 +38,8 @@ class Personal extends Component
 
     public function mount(): void
     {
-        $this->selectedCountryId    = Auth::user()->country->id;
-        $this->selectedCityId       = Auth::user()->city->id;
+        $this->selectedCountryId    = Auth::user()->country?->id;
+        $this->selectedCityId       = Auth::user()->city?->id;
 
         $this->locations = Country::with('cities')->get();
 
