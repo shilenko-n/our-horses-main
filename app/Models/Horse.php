@@ -138,4 +138,14 @@ class Horse extends Model implements HasMedia
         return $this->deathday !== null;
     }
 
+    public function isOwnedBy(User $user): bool
+    {
+        return $this->user->id === $user->id;
+    }
+
+    public function isOwnedByAuth(): bool
+    {
+        return $this->isOwnedBy(auth()->user());
+    }
+
 }
