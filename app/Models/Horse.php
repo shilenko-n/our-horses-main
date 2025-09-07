@@ -94,4 +94,25 @@ class Horse extends Model
         return $this->belongsTo(HorseSpecialization::class);
     }
 
+    public function scopeDraft($query)
+    {
+        return $query
+            ->where('draft', true);
+    }
+
+    public function scopeModerating($query)
+    {
+        return $query
+            ->where('moderating', true);
+    }
+
+    public function scopePublished($query)
+    {
+        return $query
+            ->where([
+                'moderating' => false,
+                'draft' => false,
+            ]);
+    }
+
 }

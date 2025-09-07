@@ -2,6 +2,9 @@
 
 namespace App\Livewire\User\Horses;
 
+use App\Models\City;
+use App\Models\Country;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
@@ -30,20 +33,40 @@ class Add extends Component
         'mother'            => '',
         'birthPlace'        => '',
         'about'             => '',
+        'previousHorse'     => false,
+        'deathDay'          => '',
+        'purchaseDate'      => '',
+        'country'           => '',
+        'city'              => ''
     ];
+
+    public Collection $countries;
+    public $cities = [];
 
     public $step = 1;
 
     public function mount(): void
     {
-
+        $this->countries = Country::with('cities')->get();
     }
+
+    public function updatedHorseCountry()
+    {
+        $this->cities = $this->countries->find($this->horse['country'])->cities;
+    }
+
 
     public function updatedFile(): void
     {
         $this->validate([
             'file' => 'image|max:4096',
         ]);
+
+        if(sizeof($this->files) >= 1) {
+            $this->addError('fileCount', 'Не больше 10 файлов');
+            $this->file = null;
+            return;
+        }
 
         $this->files[] = $this->file;
         $this->file = null;

@@ -62,7 +62,7 @@
             <div class="horse-form__back-button">
                 <x-link wire:click="previousStep" icon="long-arrow-left">Вернуться к предыдущему шагу</x-link>
             </div>
-            <div class="horse-form__sections">
+            <div class="horse-form__sections" x-data="horsePlacement">
                 <div class="horse-form__documents-section">
                     <x-forms.input
                         size="big"
@@ -106,10 +106,54 @@
                             {{$message}}
                         </x-forms.alert>
                     @enderror
+
+                    @error('fileCount')
+                        <x-forms.alert>
+                            {{$message}}
+                        </x-forms.alert>
+                    @enderror
                 </div>
                 <div class="horse-form__horse-information">
-                    <div class="horse-form__input_2">
-{{--                        @include('site.blocks.horses.prev-horse-fields')--}}
+                    <div
+                        class="horse-form__input_2"
+                        x-data="previousHorse"
+                    >
+                        <x-forms.flag
+                            :disabled="$disabled ?? false"
+                            label="Прежняя лошадь"
+                            x-on:click="changeShow"
+                        />
+                        <x-forms.select
+                            size="big"
+                            :disabled="$disabled ?? false"
+                            x-show="show"
+                            x-model="type"
+                            label="Причина"
+                            hint="Проданная лошадь станет недоступна для редактирования и добавления записей в дневник"
+                            required
+                        >
+                            <option value="sale">Лошадь продана</option>
+                            <option value="dead">Лошадь пала</option>
+                        </x-forms.select>
+                        <x-forms.input
+                            size="big"
+                            :disabled="$disabled ?? false"
+                            x-show="show && type == 'sale'"
+                            type="date"
+                            required
+                            label="Дата продажи"
+                            wire:model.live.debounce.250ms="horse.purchaseDate"
+                        />
+                        <x-forms.input
+                            size="big"
+                            :disabled="$disabled ?? false"
+                            x-show="show && type == 'dead'"
+                            type="date"
+                            required
+                            label="Дата смерти"
+                            wire:model.live.debounce.250ms="horse.deathDay"
+                        />
+
                     </div>
                     <x-forms.input
                         size="big"
@@ -172,7 +216,40 @@
                         icon-right
                         wire:model.live="horse.mother"
                     />
-{{--                    @include('site.blocks.horses.horse-placement-field')--}}
+
+                    <x-forms.select
+                        size="big"
+                        label="Страна"
+                        required
+                        x-bind:disabled="placementChangeDisabled"
+                        wire:model.live="horse.country"
+                    >
+                        <option value="">Не выбрана</option>
+                        @foreach($countries as $country)
+                            <option value="{{$country->id}}">{{$country->name}}</option>
+                        @endforeach
+                    </x-forms.select>
+                    <div class="horse-form__input_4">
+                        <x-forms.select
+                            size="big"
+                            label="Населённый пункт"
+                            required
+                            x-bind:disabled="placementChangeDisabled"
+                            wire:model.live="horse.city"
+                        >
+                            <option value="">Не выбрана</option>
+                            @foreach($cities as $city)
+                                <option value="{{$city->id}}">{{$city->name}}</option>
+                            @endforeach
+                        </x-forms.select>
+                        <x-forms.flag
+                            @click="placementChangeToggle"
+                            :checked="$checked ?? false"
+                            label="Совпадает с населённым пунктом владельца"
+                        />
+                    </div>
+
+
                     <x-forms.input
                         size="big"
                         label="Место рождения"

@@ -34,11 +34,16 @@ import VHorsePlacement from '@app/components/VHorsePlacement.vue'
 import { useModalsStore } from '@app/stores/modals'
 
 // vue init
-import { createApp } from 'vue'
+import {createApp, defineCustomElement} from 'vue'
 import { createPinia } from 'pinia'
 
 const pinia = createPinia()
 const app = createApp(setup())
+
+// const previousHorse = defineCustomElement(VPrevHorse);
+// customElements.define('previous-horse', previousHorse);
+app.component('previous-horse', VPrevHorse);
+
 app.use(pinia).mount('#app')
 
 function setup() {
@@ -81,3 +86,22 @@ function setup() {
 		},
 	}
 }
+
+Alpine.data('horsePlacement', () => ({
+
+    placementChangeDisabled: false,
+
+    placementChangeToggle() {
+        this.placementChangeDisabled = !this.placementChangeDisabled;
+    }
+
+}));
+
+Alpine.data('previousHorse', () => ({
+    show: false,
+    type: 'sale',
+
+    changeShow() {
+        this.show = !this.show;
+    }
+}));

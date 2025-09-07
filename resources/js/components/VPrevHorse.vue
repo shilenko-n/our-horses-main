@@ -1,5 +1,11 @@
 <template>
-  <slot :show="show" :type="type" :dateLabel="dateLabel" :changeShowing="changeShowing" :changeType="changeType"></slot>
+  <slot
+      :show="show"
+      :type="type"
+      :dateLabel="dateLabel"
+      :changeShowing="changeShowing"
+      :changeType="changeType"
+  ></slot>
 </template>
 
 <script setup>
