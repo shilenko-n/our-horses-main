@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * Модель лошади
@@ -30,7 +32,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property bool $moderating
  * @property bool $draft
  */
-class Horse extends Model
+class Horse extends Model implements HasMedia
 {
     use
         HasFactory,
@@ -39,7 +41,8 @@ class Horse extends Model
         HasUser,
         HasSubscriptions,
         HasBookmarks,
-        HasOffers;
+        HasOffers,
+        InteractsWithMedia;
 
     protected $fillable = [
         'name',
@@ -61,6 +64,15 @@ class Horse extends Model
         'moderating',
         'draft'
     ];
+
+    public function registerMediaCollections(): void
+    {
+        $this
+            ->addMediaCollection('docs');
+
+        $this
+            ->addMediaCollection('images');
+    }
 
     // Horse Properties
 

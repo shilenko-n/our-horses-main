@@ -85,12 +85,12 @@
                             label="Документы, подтверждающие номер чипа и владение лошадью"
                             required
                             hint="В формате PDF, JPEG или PNG. До 10 файлов. Максимальный размер каждого файла — 8 MB."
-                            model="file"
+                            model="doc"
                         />
 
                         <div class="horse-form__input_1-files">
 
-                            @foreach($files as $file)
+                            @foreach($docs as $file)
                                 <x-forms.file-uploaded
                                     :name="$file->getClientOriginalName()"
                                     :type="strtoupper($file->extension())"
@@ -101,13 +101,13 @@
                         </div>
                     </div>
 
-                    @error('file')
+                    @error('doc')
                         <x-forms.alert>
                             {{$message}}
                         </x-forms.alert>
                     @enderror
 
-                    @error('fileCount')
+                    @error('docCount')
                         <x-forms.alert>
                             {{$message}}
                         </x-forms.alert>
@@ -269,20 +269,52 @@
                         label="Фотографии"
                         required
                         hint="В формате JPEG или PNG. До 20 файлов. Максимальный размер каждого файла — 8 MB. После загрузки изображение будет обрезано в пропорции 16:9."
+                        model="image"
                     />
+
+                    <div class="horse-form__photos-section__files">
+                        @foreach($images as $file)
+                            <x-forms.file-uploaded
+                                :name="$file->getClientOriginalName()"
+                                :type="strtoupper($file->extension())"
+                                :size="$file->getSize()"
+                            />
+                        @endforeach
+                    </div>
+
+                    @error('image')
+                    <x-forms.alert>
+                        {{$message}}
+                    </x-forms.alert>
+                    @enderror
+
+                    @error('imageCount')
+                    <x-forms.alert>
+                        {{$message}}
+                    </x-forms.alert>
+                    @enderror
                 </div>
                 <div class="horse-form__buttons-section">
                     <p class="horse-form__hint">Перед добавлением лошади в список ваших лошадей, данные должны пройти модерацию. Модерация может занять несколько дней.</p>
-                    <x-button
-                        class="w-100-p"
-                        size="big"
-                        icon="check-solid"
-                        wire:click="test"
-                    >Отправить на модерацию</x-button>
-                    <form class="horse-form__step-two-buttons" >
 
-                        <x-button class="w-100-p" color="pale" size="big">Сохранить черновик</x-button>
-                        <x-button class="w-100-p" link>Удалить лошадь</x-button>
+                    <form class="horse-form__step-two-buttons">
+                        <x-button
+                            class="w-100-p"
+                            size="big"
+                            icon="check-solid"
+                            wire:click.prevent="saveAndModerate"
+                        >Отправить на модерацию</x-button>
+                        <x-button
+                            class="w-100-p"
+                            color="pale"
+                            size="big"
+                            wire:click.prevent="saveAsDraft"
+                        >Сохранить черновик</x-button>
+                        <x-button
+                            class="w-100-p"
+                            link
+                            wire:click.prevent="deleteHorse"
+                        >Удалить лошадь</x-button>
                     </form>
                 </div>
             </div>

@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('birth_place');
             $table->foreignId('father_id')->nullable()->constrained('horses');
             $table->foreignId('mother_id')->nullable()->constrained('horses');
-            $table->date('purchase_date');
-            $table->integer('height_withers');
+            $table->date('purchase_date')->nullable();
+            $table->integer('height_withers')->nullable();
             $table->string('gender');
             $table->foreignId('horse_breed_id')->constrained('horse_breeds');
             $table->foreignId('horse_color_id')->constrained('horse_colors');

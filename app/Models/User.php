@@ -70,7 +70,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'remember_token',
     ];
 
-    public function registerMediaConversions(?Media $media = null): void
+    public function registerMediaCollections(): void
     {
         $this
             ->addMediaCollection('avatar')

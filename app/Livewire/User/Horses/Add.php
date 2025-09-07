@@ -4,6 +4,7 @@ namespace App\Livewire\User\Horses;
 
 use App\Models\City;
 use App\Models\Country;
+use App\Models\Horse;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\View;
 use Livewire\Component;
@@ -18,8 +19,11 @@ class Add extends Component
     public string $purchaseDate = '';
     public ?string $error = null;
 
-    public array $files;
-    public ?TemporaryUploadedFile $file = null;
+    public array $docs;
+    public ?TemporaryUploadedFile $doc = null;
+
+    public array $images;
+    public ?TemporaryUploadedFile $image = null;
 
     public $horse = [
         'name'              => '',
@@ -56,25 +60,36 @@ class Add extends Component
     }
 
 
-    public function updatedFile(): void
+    public function updatedDoc(): void
     {
         $this->validate([
-            'file' => 'image|max:4096',
+            'doc' => 'image|max:4096',
         ]);
 
-        if(sizeof($this->files) >= 1) {
-            $this->addError('fileCount', 'Не больше 10 файлов');
-            $this->file = null;
+        if(sizeof($this->docs) >= 10) {
+            $this->addError('docCount', 'Не больше 10 файлов');
+            $this->doc = null;
             return;
         }
 
-        $this->files[] = $this->file;
-        $this->file = null;
+        $this->docs[] = $this->doc;
+        $this->doc = null;
     }
 
-    public function test()
+    public function updatedImage(): void
     {
-        dd($this->files, $this->horse);
+        $this->validate([
+            'image' => 'image|max:4096',
+        ]);
+
+        if(sizeof($this->images) >= 20) {
+            $this->addError('imageCount', 'Не больше 20 файлов');
+            $this->image = null;
+            return;
+        }
+
+        $this->images[] = $this->image;
+        $this->image = null;
     }
 
     public function nextStep(): void
@@ -95,6 +110,45 @@ class Add extends Component
     {
         $this->step--;
     }
+
+    public function saveAndModerate(): void
+    {
+
+    }
+
+    public function saveAsDraft(): void
+    {
+        $purchaseDate = $this->horse['previousHorse'] ? $this->horse['purchaseDate'] : null;
+        $deathDay = $this->horse['previousHorse'] ? $this->horse['deathDay'] : null;
+
+        $horse = Horse::query()->create([
+            'name'          => $this->horse['name'],
+            'description'   => $this->horse['about'],
+            'user_id'       => auth()->id(),
+            'city_id'       => $this->horse['city'],
+            'chip_number'   => $this->chipNumber,
+            'birthday'      => $this->horse['birthday'],
+            'deathday'      => $deathDay,
+            'birth_place'   => $this->horse['birthPlace'],
+            'father_id'     => $this->horse['father'],
+            'mother_id'     => $this->horse['mother'],
+            'purchase_date' => $purchaseDate,
+            'height_withers' => $this->horse['size'],
+            'gender' => $this->horse['gender'],
+            'horse_breed_id' => $this->horse['breed'],
+            'horse_color_id' => $this->horse['color'],
+            'horse_specialization_id' => $this->horse['specialization'],
+            'moderating' => true,
+            'draft' => true,
+        ]);
+
+    }
+
+    public function deleteHorse(): void
+    {
+
+    }
+
 
     public function render(): View
     {
