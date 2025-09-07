@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('horse_id')->constrained();
+            $table->foreignId('horse_id')->constrained()->onDelete('cascade');
             $table->integer('price');
             $table->foreignId('currency_id')->constrained();
             $table->text('description');
@@ -26,6 +26,7 @@ return new class extends Migration
             $table->enum('status', OfferStatusType::cases())
                 ->default(OfferStatusType::OPEN);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

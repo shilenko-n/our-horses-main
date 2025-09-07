@@ -28,6 +28,7 @@ class Add extends Component
     public ?TemporaryUploadedFile $image = null;
 
     public $horse = [
+        'id'                => null,
         'name'              => '',
         'size'              => '',
         'gender'            => 'жребец',
@@ -44,7 +45,7 @@ class Add extends Component
         'purchaseDate'      => '',
         'country'           => '',
         'city'              => '',
-        'draft'             => false,
+        'draft'             => true,
     ];
 
     public Collection $countries;
@@ -61,6 +62,7 @@ class Add extends Component
             $this->step = 2;
             $this->chipNumber = $horseModel->chip_number;
             $this->purchaseDate = $horseModel->purchase_date;
+            $this->horse['id'] = $horseModel->id;
             $this->horse['name'] = $horseModel->name;
             $this->horse['size'] = $horseModel->size;
             $this->horse['gender'] = $horseModel->gender;
@@ -125,7 +127,7 @@ class Add extends Component
     {
         if($this->step === 1) {
             if($this->chipNumber === '' || $this->purchaseDate === '') {
-                $this->error = "Лошадь с таким чипом уже есть в базе «Наши кони». Если это ваша лошадь, используйте кнопку «Это моя лошадь» <b>на странице лошади Изольда</b>, чтобы стать ее владельцем.";
+                $this->addError('stepOneFields', 'Заполните все поля');
                 return;
             }
 
@@ -207,7 +209,10 @@ class Add extends Component
 
     public function deleteHorse(): void
     {
-
+        if($this->edit) {
+            Horse::query()->find($this->horse['id'])->delete();
+            $this->redirect(route('pages.user.horses.my'));
+        }
     }
 
 

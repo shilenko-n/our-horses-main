@@ -8,6 +8,7 @@ use App\Models\Traits\HasHorse;
 use App\Models\Traits\HasLocation;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Модель предложения/аренды лошади
@@ -29,7 +30,8 @@ class Offer extends Model
     use
         HasFactory,
         HasHorse,
-        HasCurrency;
+        HasCurrency,
+        SoftDeletes;
 
     protected $fillable = [
         'horse_id',

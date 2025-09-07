@@ -31,12 +31,19 @@
                     />
                 </div>
             </div>
+            @error('stepOneFields')
+
+                <x-forms.alert
+                    type="warning"
+                >{{$message}}</x-forms.alert>
+
+            @enderror
             @if($error)
                 <x-forms.alert
                     type="warning"
                     url="{{route('pages.horse.view', \App\Models\Horse::where('chip_number', $this->chipNumber)->first()->id)}}"
                 >
-                    {{!! $error !!}}
+                    {!! $error !!}
                 </x-forms.alert>
             @endif
             <x-link
@@ -96,22 +103,25 @@
 
                         <div class="horse-form__input_1-files">
 
-                            @foreach($docs as $file)
-                                @if($file instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile)
-                                    <x-forms.file-uploaded
-                                        :name="$file->getClientOriginalName()"
-                                        :type="strtoupper($file->extension())"
-                                        :size="$file->getSize()"
-                                    />
-                                @else
-                                    <x-forms.file-uploaded
-                                        :name="$file->file_name"
-                                        :type="strtoupper($file->mime_type)"
-                                        :size="$file->size"
-                                    />
-                                @endif
+                            @if($docs)
+                                @foreach($docs as $file)
+                                    @if($file instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile)
+                                        <x-forms.file-uploaded
+                                            :name="$file->getClientOriginalName()"
+                                            :type="strtoupper($file->extension())"
+                                            :size="$file->getSize()"
+                                        />
+                                    @else
+                                        <x-forms.file-uploaded
+                                            :name="$file->file_name"
+                                            :type="strtoupper($file->mime_type)"
+                                            :size="$file->size"
+                                        />
+                                    @endif
 
-                            @endforeach
+                                @endforeach
+                            @endif
+
 
                         </div>
                     </div>
@@ -288,21 +298,23 @@
                     />
 
                     <div class="horse-form__photos-section__files">
-                        @foreach($images as $file)
-                            @if($file instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile)
-                                <x-forms.file-uploaded
-                                    :name="$file->getClientOriginalName()"
-                                    :type="strtoupper($file->extension())"
-                                    :size="$file->getSize()"
-                                />
-                            @else
-                                <x-forms.file-uploaded
-                                    :name="$file->file_name"
-                                    :type="strtoupper($file->mime_type)"
-                                    :size="$file->size"
-                                />
-                            @endif
-                        @endforeach
+                        @if($images)
+                            @foreach($images as $file)
+                                @if($file instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile)
+                                    <x-forms.file-uploaded
+                                        :name="$file->getClientOriginalName()"
+                                        :type="strtoupper($file->extension())"
+                                        :size="$file->getSize()"
+                                    />
+                                @else
+                                    <x-forms.file-uploaded
+                                        :name="$file->file_name"
+                                        :type="strtoupper($file->mime_type)"
+                                        :size="$file->size"
+                                    />
+                                @endif
+                            @endforeach
+                        @endif
                     </div>
 
                     @error('image')
@@ -335,11 +347,13 @@
                                 wire:click.prevent="saveAsDraft"
                             >Сохранить черновик</x-button>
                         @endif
-                        <x-button
-                            class="w-100-p"
-                            link
-                            wire:click.prevent="deleteHorse"
-                        >Удалить лошадь</x-button>
+                        @if($edit)
+                            <x-button
+                                class="w-100-p"
+                                link
+                                wire:click.prevent="deleteHorse"
+                            >Удалить лошадь</x-button>
+                        @endif
                     </form>
                 </div>
             </div>
