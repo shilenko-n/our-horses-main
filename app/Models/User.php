@@ -133,4 +133,13 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     {
         return $this->name . ' ' . $this->surname;
     }
+
+    protected static function booted(): void
+    {
+        static::created(function (User $user) {
+            $user
+                ->addMediaFromUrl(url('img/layout/avatar.png'))
+                ->toMediaCollection('avatar');
+        });
+    }
 }
