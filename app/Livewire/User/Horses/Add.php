@@ -177,13 +177,21 @@ class Add extends Component
         foreach ($this->docs as $doc) {
             $horse
                 ->addMedia($doc)
+                ->setFileName(\Str::random(8) . '.' . $doc->extension())
                 ->toMediaCollection('docs');
+
+            $this->doc = null;
+            $this->docs = [];
         }
 
         foreach ($this->images as $image) {
             $horse
                 ->addMedia($image)
+                ->setFileName(\Str::random(8) . '.' . $image->extension())
                 ->toMediaCollection('images');
+
+            $this->image = null;
+            $this->images = [];
         }
 
     }

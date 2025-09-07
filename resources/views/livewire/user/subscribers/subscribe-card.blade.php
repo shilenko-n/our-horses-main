@@ -1,14 +1,14 @@
 <a
     @class([
         'user-subscribe-card',
-        'user-subscribe-card_unsubscribed' => !$isSubscribed
+        'user-subscribe-card_unsubscribed' => !$isSubscribed && !$isSelf
     ])
 >
     <div class="user-subscribe-card__photo">
         <img
             alt="user subscriber card"
-            {{--            src="{{ $user->getAvatar() }}"--}}
-            src="https://nashi-koni.studio2i.ru/img/assets/people/01.jpeg"
+            src="{{ $user->getAvatarUrl() }}"
+{{--            src="https://nashi-koni.studio2i.ru/img/assets/people/01.jpeg"--}}
         />
     </div>
     <div class="user-subscribe-card__personal">
@@ -30,7 +30,7 @@
 {{--            @endif--}}
         </div>
 
-        @if (true)
+        @if (!$isSelf)
             <div class="user-subscribe-card__buttons">
                 @if ($isSubscribed)
                     <x-button

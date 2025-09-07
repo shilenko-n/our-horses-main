@@ -11,14 +11,20 @@ class SubscribeCard extends Component
 {
     public User $user;
     public bool $isSubscribed = false;
+    public bool $isSelf = false;
 
     public function mount(
         User $user,
-        bool $isSubscribed
+        bool $isSubscribed = false,
     ): void
     {
         $this->user = $user;
+        $this->isSelf = auth()->check() && auth()->id() === $user->id;
         $this->isSubscribed = $isSubscribed;
+
+        if(auth()->check() && !$this->isSelf) {
+            $this->isSubscribed = $user->isSubscribed(auth()->user());
+        }
     }
 
     public function toggleSubscription(): void
@@ -29,7 +35,6 @@ class SubscribeCard extends Component
             $this->user->subscribe(Auth::user());
         }else{
             $this->user->unsubscribe(Auth::user());
-            dd(1);
         }
     }
 

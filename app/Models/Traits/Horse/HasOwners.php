@@ -28,4 +28,11 @@ trait HasOwners
             ->first();
     }
 
+    public function previousOwners(): BelongsToMany
+    {
+        return $this
+            ->owners()
+            ->wherePivot('ownership_end', '!=', null);
+    }
+
 }

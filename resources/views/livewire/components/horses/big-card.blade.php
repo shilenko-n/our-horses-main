@@ -49,17 +49,17 @@
 
     <div class="horse-big-card__info">
         <div class="horse-big-card__slider">
-{{--            <x-slider>--}}
-{{--                @foreach ($horse['slider'] as $slide)--}}
-{{--                    <x-slider.slide>--}}
-{{--                        <picture>--}}
-{{--                            <source media="(max-width: 768px)" srcset="{{ $slide['p'] }}" />--}}
-{{--                            <source media="(min-width: 769px) and (max-width: 1280px)" srcset="{{ $slide['t'] }}" />--}}
-{{--                            <img src="{{ $slide['d'] }}">--}}
-{{--                        </picture>--}}
-{{--                    </x-slider.slide>--}}
-{{--                @endforeach--}}
-{{--            </x-slider>--}}
+            <x-slider>
+                @foreach ($horse->getMedia('images') as $slide)
+                    <x-slider.slide>
+                        <picture>
+                            <source media="(max-width: 768px)" srcset="{{ $slide->original_url }}" />
+                            <source media="(min-width: 769px) and (max-width: 1280px)" srcset="{{ $slide->original_url }}" />
+                            <img src="{{ $slide->original_url }}" alt="">
+                        </picture>
+                    </x-slider.slide>
+                @endforeach
+            </x-slider>
         </div>
 
         <div class="horse-big-card__footer">
