@@ -90,6 +90,14 @@ Route::name('pages.')->group(function () {
 
         });
 
+        Route::name('diary.')->prefix('diary')->group(function () {
+
+            Route::middleware(['auth', 'email'])->group(function () {
+                Route::get('/create/{horse}', [PageController::class, 'diaryCreate'])->name('create');
+            });
+
+        });
+
 
     });
 

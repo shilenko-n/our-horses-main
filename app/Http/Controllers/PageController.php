@@ -324,4 +324,20 @@ class PageController extends Controller
 
         return view('user.horses.data', compact('horse'));
     }
+
+    // Дневники
+
+    /**
+     * Страница создания дневника
+     *
+     * @param Horse $horse
+     * @return View
+     */
+    public function diaryCreate(Horse $horse): View
+    {
+        if($horse->currentOwner()->id != auth()->id())
+            abort(500);
+
+        return view('horses.diary.create', compact('horse'));
+    }
 }
