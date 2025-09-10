@@ -16,27 +16,27 @@ return [
             [
                 'icon' => 'fire-solid',
                 'name' => 'Самое интересное',
-                'route' => '/front/pages/feed/admin/interesting',
+                'route' => 'pages.home',
             ],
             [
                 'icon' => 'clock-solid',
                 'name' => 'Актуальные записи',
-                'route' => '/front/pages/feed/admin/actual-news',
+                'route' => 'pages.home',
             ],
             [
                 'icon' => 'book-solid',
                 'name' => 'Дневники',
-                'route' => '/front/pages/feed/admin/horse-diary',
+                'route' => 'pages.home',
             ],
             [
                 'icon' => 'handshake-solid',
                 'name' => 'Купить лошадь',
-                'route' => '/front/pages/horses/buy',
+                'route' => 'pages.home',
             ],
             [
                 'icon' => 'horse-head-solid',
                 'name' => 'Лошади',
-                'route' => '/front/pages/horses/breeds',
+                'route' => 'pages.horse.breed.all',
             ]
 
 

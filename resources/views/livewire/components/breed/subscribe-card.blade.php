@@ -3,6 +3,8 @@
         'breed-subscribe-card',
         'breed-subscribe-card_unsubscribed' => !$isSubscribed && $showButton
     ])
+
+    :key="breed-subscribe-card-{{$horseBreed->id}}"
 >
     <h4 class="breed-subscribe-card__name">
         <a class="breed-subscribe-card__link" href="#">{{ $horseBreed->name }}</a>

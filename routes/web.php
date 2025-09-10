@@ -82,6 +82,8 @@ Route::name('pages.')->group(function () {
 
         Route::get('/view/{horse}', [PageController::class, 'horseView'])->name('view');
 
+        Route::get('/breed', [PageController::class, 'horseBreeds'])->name('breed.all');
+
         Route::middleware(['auth', 'email'])->group(function () {
 
             Route::get('/edit/{horse}', [PageController::class, 'horseEdit'])->name('edit');

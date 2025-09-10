@@ -302,6 +302,16 @@ class PageController extends Controller
     }
 
     /**
+     * Страница всех пород лошадей
+     *
+     * @return View
+     */
+    public function horseBreeds(): View
+    {
+        return view('horses.breed.all');
+    }
+
+    /**
      * Страница изменения лошади
      *
      * @param Horse $horse

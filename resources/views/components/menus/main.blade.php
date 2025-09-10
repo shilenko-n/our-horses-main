@@ -6,6 +6,7 @@
                     'main-menu__item',
         //			'main-menu__item_active' => $mainItem['url'] === $currentItem,
 		        ])
+                href="{{route($mainItem->route)}}"
             >
                 <x-icon icon="{{ $mainItem->icon }}" />
                 <span>{{ $mainItem->name }}</span>
