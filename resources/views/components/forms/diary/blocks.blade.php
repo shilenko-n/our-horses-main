@@ -38,7 +38,7 @@
 {{--                        class="diary-block__image"--}}
 {{--                    />--}}
                     <picture class="diary-block__image">
-                        <img x-show="block.preview !== ''" x-bind:src="block.preview" alt="" />
+                        <img x-show="block.content !== ''" x-bind:src="block.content" alt="" />
                     </picture>
                     {{-- blade-formatter-enable --}}
                     <x-forms.input x-model="block.title" value="Конные скачки в Москве, апрель 2020 года" />

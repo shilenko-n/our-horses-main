@@ -9,6 +9,11 @@ use App\Models\Horse;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\View;
 use Livewire\Component;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileCannotBeAdded;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\InvalidBase64Data;
+use function Laravel\Prompts\clear;
 
 class Create extends Component
 {
@@ -19,7 +24,7 @@ class Create extends Component
     public Collection $topics;
     public $selectedTopic;
 
-    public array $blocks;
+    public array $blocks = [];
 
     public $allowComments   = false;
     public $published       = false;
@@ -32,10 +37,41 @@ class Create extends Component
 
     public function transferBlocks($blocks): void
     {
-        $this->blocks = $blocks;
+        $this->blocks = [];
+
+        foreach ($blocks as $index => $block) {
+            $data = [
+                'position'  => $block['position'],
+                'type'      => $block['type'],
+                'title'     => $block['title'],
+            ];
+
+            if($block['type'] == 'text' || $block['type'] == 'image') {
+                $data['content'] = $block['content'];
+            }
+
+            $this->blocks[] = $data;
+        }
     }
 
-    public function submit()
+//    public function uploadImage($data): void
+//    {
+//        foreach ($this->blocks as $block) {
+//            if($block['position'] === $data['position'] && $block['type'] === 'image') {
+//                $block['content'] = $data['image'];
+//            }
+//        }
+//
+//        dd($this->blocks);
+//    }
+
+    /**
+     * @throws FileCannotBeAdded
+     * @throws FileDoesNotExist
+     * @throws FileIsTooBig
+     * @throws InvalidBase64Data
+     */
+    public function submit(): void
     {
 
         $blog = Blog::query()->create([
@@ -47,12 +83,18 @@ class Create extends Component
         ]);
 
         foreach ($this->blocks as $block) {
-            BlogBlock::query()->create([
+            $blockModel = BlogBlock::query()->create([
                 'blog_id'       => $blog->id,
                 'type'          => $block['type'],
-                'content'       => $block['content'],
+                'content'       => $block['type'] === 'text' ? $block['content'] : null,
                 'position'      => $block['position'],
             ]);
+
+            if($block['type'] == 'image') {
+                $blockModel
+                    ->addMediaFromBase64($block['content'])
+                    ->toMediaCollection('images');
+            }
         }
 
     }

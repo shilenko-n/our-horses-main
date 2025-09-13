@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Country;
 use App\Models\DiaryTopic;
 use App\Models\Horse;
@@ -367,5 +368,20 @@ class PageController extends Controller
         $diaries = $horse->blogs()->paginate(1);
 
         return view('horses.diary.all', compact('horse', 'diaries'));
+    }
+
+
+    /**
+     * Страница поста записи
+     *
+     * @param Blog $blog
+     * @return View|RedirectResponse
+     */
+    public function diaryShow(Blog $blog): View|RedirectResponse
+    {
+        if(!$blog->published && !auth()->check() || !$blog->published && auth()->id() !== $blog->user->id)
+            return redirect()->route('pages.home');
+
+        return view('diary.view', compact('blog'));
     }
 }

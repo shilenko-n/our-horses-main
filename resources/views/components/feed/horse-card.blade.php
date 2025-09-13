@@ -21,7 +21,7 @@
                     <picture>
                         <source media="(max-width: 768px)" srcset="{{ $slide->original_url }}" />
                         <source media="(min-width: 769px) and (max-width: 1280px)" srcset="{{ $slide->original_url }}" />
-                        <img src="{{ $slide->original_url }}">
+                        <img src="{{ $slide->original_url }}" />
                     </picture>
                 </x-slider.slide>
             @endforeach

@@ -103,6 +103,12 @@ Route::name('pages.')->group(function () {
 
     });
 
+    Route::name('diary.')->prefix('diary')->group(function () {
+
+        Route::get('/{blog}', [PageController::class, 'diaryShow'])->name('show');
+
+    });
+
 });
 
 /**

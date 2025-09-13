@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('blog_blocks', function (Blueprint $table) {
             $table->id();
             $table->enum('type', ['text', 'video', 'image', 'gallery']);
-            $table->text('content');
+            $table->text('content')->nullable()->default(null);
             $table->foreignId('blog_id')->constrained();
             $table->unsignedInteger('position')->default(0);
             $table->timestamps();
