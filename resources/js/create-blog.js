@@ -38,7 +38,21 @@ Alpine.data('createBlog', () => ({
 
     setTextContent(position, content) {
         this.blocks[position].content = content;
-        console.log(this.blocks);
+    },
+
+    submit() {
+        this.$wire.call('submit', {
+            blocks: this.blocks,
+        }).then(() => {
+            this.$wire.dispatch('sblocks')
+        });
+
+        this.blocks.forEach(el => {
+            // console.log(el);
+        })
+
+        // this.$wire.dispatch('sblocks');
+        // this.$wire.dispatch('test', [... this.blocks]);
     }
 
 }));

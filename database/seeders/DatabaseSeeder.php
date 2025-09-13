@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             CurrencySeeder::class,
             MenuSeeder::class,
             LocationSeeder::class,
+            DiaryTopicSeeder::class,
             HorseBreedSeeder::class,
             HorseColorSeeder::class,
             HorseSpecializationSeeder::class,

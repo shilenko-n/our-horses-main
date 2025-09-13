@@ -20,7 +20,6 @@
     <div
         class="diary-form__content"
         x-data="createBlog"
-        @setTextContent.window="console.log($event.detail)"
     >
         <div class="diary-form__form">
             <div class="diary-form__input-group">
@@ -40,16 +39,15 @@
         </div>
 
         <div class="diary-form__flags">
-            <x-forms.flag type="checkbox" label="Разрешить комментарии" />
-            <x-forms.flag type="checkbox" label="Опубликовать пост" />
+            <x-forms.flag type="checkbox" label="Разрешить комментарии" wire:model.live="allowComments" />
+            <x-forms.flag type="checkbox" label="Опубликовать пост"     wire:model.live="published" />
         </div>
         <div class="diary-form__footer">
             <x-link
-                disabled
                 button
                 size="big"
                 icon="check-solid"
-                href="/front/pages/diary/edit-form"
+                x-on:click="submit"
             >Добавить запись</x-link>
         </div>
     </div>
