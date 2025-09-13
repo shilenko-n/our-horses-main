@@ -41,6 +41,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property string $gender
  * @property int $heightWithers
  * @property Collection|User[] $owners
+ * @property Collection|Blog[] $blogs
  */
 class Horse extends Model implements HasMedia
 {

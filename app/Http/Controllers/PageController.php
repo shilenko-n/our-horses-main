@@ -359,10 +359,13 @@ class PageController extends Controller
     /**
      * Все записи лошади
      *
+     * @param Horse $horse
      * @return View
      */
-    public function horseDiaryAll(): View
+    public function horseDiaryAll(Horse $horse): View
     {
-        return view('horses.diary.all');
+        $diaries = $horse->blogs()->paginate(1);
+
+        return view('horses.diary.all', compact('horse', 'diaries'));
     }
 }

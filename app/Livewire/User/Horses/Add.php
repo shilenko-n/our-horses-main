@@ -24,7 +24,7 @@ class Add extends Component
     public array $docs;
     public ?TemporaryUploadedFile $doc = null;
 
-    public $images;
+    public array $images;
     public ?TemporaryUploadedFile $image = null;
 
     public $horse = [

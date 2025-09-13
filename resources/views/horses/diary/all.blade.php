@@ -6,20 +6,18 @@
     <div class="diary">
         <div class="diary__container">
             <div class="diary__header">
-                {{-- blade-formatter-disable --}}
                 <x-breadcrumbs :items="[
 					[
 						'url' => '/front/pages/horses/list',
-						'title' => 'Мои лошади'
+						'title' => $horse->currentOwner()->id == auth()->id() ? 'Мои лошади' : $horse->currentOwner()->name
 					],
 					[
 						'url' => '/front/pages/horses/view',
-						'title' => 'Изольда'
+						'title' => $horse->name
 					]
 				]" />
-                {{-- blade-formatter-enable --}}
 
-                <h2 class="diary__title">Дневник <span class="diary__title_counter">517</span></h2>
+                <h2 class="diary__title">Дневник <span class="diary__title_counter">{{$diaries->count()}}</span></h2>
 
                 <div class="diary__header-actions">
                     <div class="diary__actions-filter">
@@ -44,6 +42,7 @@
                 </div>
             </div>
 
+            <x-paginator :model="$diaries" />
 {{--            @include('site.blocks.paginator')--}}
 
             <x-right-sidebar-blocks.sidebar-banner class="d-none-d d-block-m" />
