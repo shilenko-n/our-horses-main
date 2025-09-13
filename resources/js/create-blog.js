@@ -1,6 +1,7 @@
 
 class Block {
     constructor(type, position) {
+        this.title = '';
         this.type = type;
         this.position = position;
         this.content = '';
@@ -13,6 +14,11 @@ Alpine.data('createBlog', () => ({
 
     addBlock(type) {
         this.blocks.push(new Block(type, this.blocks.length));
+
+        if(type === 'image') {
+            this.blocks.at(-1).content = [];
+            this.blocks.at(-1).preview = '';
+        }
     },
 
     deleteBlock(position) {
@@ -44,9 +50,24 @@ Alpine.data('createBlog', () => ({
         this.$wire.call('transferBlocks', this.blocks).then(() => {
             this.$wire.call('submit');
         });
+    },
 
-        // this.$wire.dispatch('sblocks');
-        // this.$wire.dispatch('test', [... this.blocks]);
+    uploadImage(position, event) {
+
+        const file = event.target.files[0];
+
+        if(file) {
+            this.blocks[position].content.push(file);
+
+            const reader = new FileReader();
+
+            reader.onload = e => {
+                this.blocks[position].preview = e.target.result;
+            };
+
+            reader.readAsDataURL(file);
+
+        }
     }
 
 }));

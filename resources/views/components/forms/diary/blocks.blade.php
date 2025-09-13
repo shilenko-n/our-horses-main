@@ -22,7 +22,27 @@
         </div>
         <div class="diary-block__content">
             <template x-if="block.type == 'image'">
-                <p>image</p>
+                <div class="image">
+                    <x-forms.file
+                        color="primary"
+                        horizontal
+                        hint="В формате JPEG или PNG. Максимальный размер файла — 8 MB. После загрузки изображение будет обрезано в пропорции 16:9."
+                        change="uploadImage(idx, $event)"
+                    />
+                    {{-- blade-formatter-disable --}}
+{{--                    <x-picture--}}
+{{--                        :phone="asset('img/layout/post/edit-1/p.jpeg')"--}}
+{{--                        :tablet="asset('img/layout/post/edit-1/t.jpeg')"--}}
+{{--                        :laptop="asset('img/layout/post/edit-1/l.jpeg')"--}}
+{{--                        :image="asset('img/layout/post/edit-1/w.jpeg')"--}}
+{{--                        class="diary-block__image"--}}
+{{--                    />--}}
+                    <picture class="diary-block__image">
+                        <img x-show="block.preview !== ''" x-bind:src="block.preview" alt="" />
+                    </picture>
+                    {{-- blade-formatter-enable --}}
+                    <x-forms.input x-model="block.title" value="Конные скачки в Москве, апрель 2020 года" />
+                </div>
             </template>
             <template x-if="block.type == 'video'">
                 <p>video</p>

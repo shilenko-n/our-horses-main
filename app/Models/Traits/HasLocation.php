@@ -33,4 +33,9 @@ trait HasLocation
         );
     }
 
+    public function location(): string
+    {
+        return $this->country->name . ' ' . $this->city->name;
+    }
+
 }

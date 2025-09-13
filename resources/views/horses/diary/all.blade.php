@@ -43,12 +43,16 @@
             </div>
 
             <x-paginator :model="$diaries" />
-{{--            @include('site.blocks.paginator')--}}
 
             <x-right-sidebar-blocks.sidebar-banner class="d-none-d d-block-m" />
 
+
+            @foreach($diaries as $diary)
+                <livewire:components.feed.post-card :blog="$diary" />
+            @endforeach
+
 {{--            @for ($i = 0; $i < 5; $i++)--}}
-{{--                <x-feed-blocks.post-card href="/front/pages/diary/post-view" :user="fake()->human(0)" :post="fake()->post()" alert-message="Пост не опубликован и виден только вам" />--}}
+{{--            <x-feed-blocks.post-card href="/front/pages/diary/post-view" :user="fake()->human(0)" :post="fake()->post()" alert-message="Пост не опубликован и виден только вам" />--}}
 {{--            @endfor--}}
 
 {{--            @include('site.blocks.paginator')--}}
@@ -56,14 +60,14 @@
 {{--            <x-feed-blocks.banner />--}}
         </div>
         <div class="diary__sidebar">
-{{--            <x-right-sidebar-blocks.filter name="diary-filter">--}}
-{{--                <x-forms.select name="type">--}}
-{{--                    <option>Обо всём</option>--}}
-{{--                    <option>Второе значение</option>--}}
-{{--                    <option>Третье значение</option>--}}
-{{--                    <option>Четвёртое значение</option>--}}
-{{--                </x-forms.select>--}}
-{{--            </x-right-sidebar-blocks.filter>--}}
+            <x-right-sidebar-blocks.filter name="diary-filter">
+                <x-forms.select name="type">
+                    <option>Обо всём</option>
+                    <option>Второе значение</option>
+                    <option>Третье значение</option>
+                    <option>Четвёртое значение</option>
+                </x-forms.select>
+            </x-right-sidebar-blocks.filter>
 
             <x-right-sidebar-blocks.sidebar-banner class="d-none-m" />
         </div>
