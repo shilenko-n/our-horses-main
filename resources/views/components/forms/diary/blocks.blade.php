@@ -18,7 +18,7 @@
                 />
             </div>
             <div class="diary-block__title" x-text="block.type"></div>
-            <x-button color="pale" size="small" icon="times-light" />
+            <x-button color="pale" size="small" icon="times-light" x-on:click="deleteBlock(idx)" />
         </div>
         <div class="diary-block__content">
             <template x-if="block.type == 'image'">
