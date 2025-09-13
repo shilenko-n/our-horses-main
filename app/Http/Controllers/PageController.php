@@ -355,4 +355,14 @@ class PageController extends Controller
 
         return view('horses.diary.create', compact('horse'));
     }
+
+    /**
+     * Все записи лошади
+     *
+     * @return View
+     */
+    public function horseDiaryAll(): View
+    {
+        return view('horses.diary.all');
+    }
 }

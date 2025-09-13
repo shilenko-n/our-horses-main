@@ -96,6 +96,8 @@ Route::name('pages.')->group(function () {
                 Route::get('/create/{horse}', [PageController::class, 'diaryCreate'])->name('create');
             });
 
+            Route::get('/all/{horse}', [PageController::class, 'horseDiaryAll'])->name('all');
+
         });
 
 

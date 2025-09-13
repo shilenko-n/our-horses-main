@@ -81,7 +81,12 @@
             @endforeach
 
             <div class="horse-profile-diary__buttons">
-                <x-link is-block href="/front/pages/diary/view" button size="big" color="pale" icon="chevron-right-solid">Показать все записи</x-link>
+                <x-link
+                    is-block href="{{route('pages.horse.diary.all', $horse->id)}}"
+                    button size="big"
+                    color="pale"
+                    icon="chevron-right-solid"
+                >Показать все записи</x-link>
             </div>
         </div>
 
