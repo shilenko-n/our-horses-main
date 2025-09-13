@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasBlogs;
 use App\Models\Traits\HasBookmarks;
 use App\Models\Traits\HasLocation;
 use App\Models\Traits\HasOffers;
@@ -52,6 +53,7 @@ class Horse extends Model implements HasMedia
         HasOffers,
         InteractsWithMedia,
         HasOwners,
+        HasBlogs,
         SoftDeletes;
 
     protected $fillable = [

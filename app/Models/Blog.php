@@ -9,6 +9,8 @@ use App\Models\Traits\HasSubscriptions;
 use App\Models\Traits\HasUser;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use PhpParser\Node\Stmt\Block;
 
 /**
  * Модель блога
@@ -37,4 +39,16 @@ class Blog extends Model
         'published',
         'commentable',
     ];
+
+    /**
+     * Получение всех блоков записи
+     *
+     * @return HasMany
+     */
+    public function blocks(): HasMany
+    {
+        return $this
+            ->hasMany(BlogBlock::class)
+            ->orderBy('position');
+    }
 }

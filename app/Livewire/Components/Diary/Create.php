@@ -8,7 +8,6 @@ use App\Models\DiaryTopic;
 use App\Models\Horse;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\View;
-use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Create extends Component
