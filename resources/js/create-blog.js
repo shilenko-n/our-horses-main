@@ -41,15 +41,9 @@ Alpine.data('createBlog', () => ({
     },
 
     submit() {
-        this.$wire.call('submit', {
-            blocks: this.blocks,
-        }).then(() => {
-            this.$wire.dispatch('sblocks')
+        this.$wire.call('transferBlocks', this.blocks).then(() => {
+            this.$wire.call('submit');
         });
-
-        this.blocks.forEach(el => {
-            // console.log(el);
-        })
 
         // this.$wire.dispatch('sblocks');
         // this.$wire.dispatch('test', [... this.blocks]);

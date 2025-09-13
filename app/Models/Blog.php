@@ -33,6 +33,8 @@ class Blog extends Model
         'title',
         'user_id',
         'horse_id',
-        'content'
+        'content',
+        'published',
+        'commentable',
     ];
 }

@@ -20,7 +20,6 @@ return new class extends Migration
                 ->default(null)
                 ->constrained('horses');
             $table->integer('views')->default(0);
-            $table->text('content');
             $table->boolean('published')->default(false);
             $table->boolean('commentable')->default(false);
             $table->integer('likes')->default(0);

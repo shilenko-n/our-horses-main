@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Components\Diary;
 
+use App\Models\Blog;
+use App\Models\BlogBlock;
 use App\Models\DiaryTopic;
 use App\Models\Horse;
 use Illuminate\Database\Eloquent\Collection;
@@ -13,6 +15,8 @@ class Create extends Component
 {
 
     public Horse $horse;
+
+    public string $title;
     public Collection $topics;
     public $selectedTopic;
 
@@ -27,16 +31,31 @@ class Create extends Component
         $this->topics = DiaryTopic::all();
     }
 
-    #[On('test')]
-    public function submit($blocks): void
+    public function transferBlocks($blocks): void
     {
         $this->blocks = $blocks;
     }
 
-    #[On('sblocks')]
-    public function sblocks()
+    public function submit()
     {
-        dd($this->blocks);
+
+        $blog = Blog::query()->create([
+            'user_id'       => auth()->id(),
+            'title'         => $this->title,
+            'published'     => $this->published,
+            'commentable'   => $this->allowComments,
+            'horse_id'      => $this->horse->id,
+        ]);
+
+        foreach ($this->blocks as $block) {
+            BlogBlock::query()->create([
+                'blog_id'       => $blog->id,
+                'type'          => $block['type'],
+                'content'       => $block['content'],
+                'position'      => $block['position'],
+            ]);
+        }
+
     }
 
     public function render(): View

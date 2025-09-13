@@ -23,8 +23,8 @@
     >
         <div class="diary-form__form">
             <div class="diary-form__input-group">
-                <x-forms.input size="big" label="Заголовок" required />
-                <x-forms.select size="big" label="Тема" required>
+                <x-forms.input size="big" label="Заголовок" required wire:model.live="title" />
+                <x-forms.select size="big" label="Тема" required wire:model="selectedTopic">
                     <option>Не выбрана</option>
                     @foreach($topics as $topic)
                         <option value="{{$topic->id}}">{{$topic->name}}</option>
