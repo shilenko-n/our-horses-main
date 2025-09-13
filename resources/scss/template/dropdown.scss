@@ -7,7 +7,7 @@
 	&__menu {
 		position: absolute;
 		right: 0;
-		display: none !important;
+        display: flex;
 		flex-direction: column;
 		justify-content: stretch;
 		align-items: start;

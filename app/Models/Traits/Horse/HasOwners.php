@@ -28,6 +28,11 @@ trait HasOwners
             ->first();
     }
 
+    public function isCurrentOwner(User $user): bool
+    {
+        return $this->currentOwner()->id === $user->id;
+    }
+
     public function previousOwners(): BelongsToMany
     {
         return $this

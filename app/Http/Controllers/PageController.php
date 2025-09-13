@@ -331,12 +331,12 @@ class PageController extends Controller
      * Страница создания дневника
      *
      * @param Horse $horse
-     * @return View
+     * @return RedirectResponse|View
      */
-    public function diaryCreate(Horse $horse): View
+    public function diaryCreate(Horse $horse): RedirectResponse|View
     {
         if($horse->currentOwner()->id != auth()->id())
-            abort(500);
+            return redirect()->route('pages.home');
 
         return view('horses.diary.create', compact('horse'));
     }

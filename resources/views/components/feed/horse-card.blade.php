@@ -1,10 +1,11 @@
 @props([
     'horse' => null,
+    'showAddButton' => false,
 ])
 
 @php
 
-    $showAddButton = $attributes->has('show-add-button');
+//    $showAddButton = $attributes->has('show-add-button');
     $showHorseDay  = $attributes->has('show-horse-day');
 
 @endphp
@@ -47,7 +48,11 @@
     @endif
     @if ($showAddButton)
         <div class="horse-card__button">
-            <x-link href="/front/pages/diary/create-form" button icon="plus-solid">Написать в дневник</x-link>
+            <x-link
+                href="{{route('pages.horse.diary.create', $horse->id)}}"
+                button
+                icon="plus-solid"
+            >Написать в дневник</x-link>
         </div>
     @endif
 </div>

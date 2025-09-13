@@ -54,12 +54,14 @@
 {{--						    ],--}}
 {{--						]" />--}}
                     </div>
-                    <x-link
-                        class="w-100-p"
-                        href="/front/pages/diary/create-form"
-                        button
-                        icon="plus-solid"
-                    >Написать в дневник</x-link>
+                    @if($horse->isCurrentOwner(Auth::user()))
+                        <x-link
+                            class="w-100-p"
+                            href="{{route('pages.horse.diary.create', $horse->id)}}"
+                            button
+                            icon="plus-solid"
+                        >Написать в дневник</x-link>
+                    @endif
                 </div>
             </div>
             <div class="horse-profile-diary__block">

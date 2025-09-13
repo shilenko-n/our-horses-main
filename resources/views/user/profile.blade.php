@@ -13,7 +13,7 @@
                 @foreach($user->horses as $horse)
                     <x-feed.horse-card
                         :horse="$horse"
-                        show-add-button
+                        :show-add-button="$horse->currentOwner()->id == auth()->id()"
                     />
                 @endforeach
 

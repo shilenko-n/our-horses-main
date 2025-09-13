@@ -25,7 +25,8 @@
 </head>
 
 <body class="layout">
-<div id="app">
+
+<div>
 
     <picture class="header-banner">
         <source media="(max-width: 768px)" srcset="{{ asset('img/assets/banners/header/p.png') }}">
@@ -34,12 +35,12 @@
         <img src="{{ asset('img/assets/banners/header/d.png') }}" alt="banner" />
     </picture>
 
-    {{-- Шапка --}}
+{{--     Шапка --}}
     <x-header />
 
-    {{-- Контент --}}
-    @php($current_url = '/' . request()->path())
-    @php($is_admin = mb_stripos(request()->path(), 'admin') !== false)
+{{--     Контент --}}
+{{--    @php($current_url = '/' . request()->path())--}}
+{{--    @php($is_admin = mb_stripos(request()->path(), 'admin') !== false)--}}
 
     <main class="layout__main" id="main">
         <div class="container">
@@ -58,7 +59,7 @@
         </button>
     </main>
 
-    {{-- Модалки --}}
+{{--     Модалки --}}
     @include('partials.modals.contacts')
     @include('partials.modals.recall-notice')
 
@@ -73,7 +74,7 @@
 {{-- Скрипты --}}
 @vite(['resources/js/app.js'])
 @livewireScripts <!-- Подключение скриптов Livewire -->
-@stack('scripts')
+{{--@stack('scripts')--}}
 </body>
 
 </html>

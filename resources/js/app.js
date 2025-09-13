@@ -35,16 +35,16 @@ import { useModalsStore } from '@app/stores/modals'
 
 // vue init
 import {createApp, defineCustomElement} from 'vue'
-import { createPinia } from 'pinia'
+// import { createPinia } from 'pinia'
 
-const pinia = createPinia()
-const app = createApp(setup())
+// const pinia = createPinia()
+// const app = createApp(setup())
 
 // const previousHorse = defineCustomElement(VPrevHorse);
 // customElements.define('previous-horse', previousHorse);
-app.component('previous-horse', VPrevHorse);
+// app.component('previous-horse', VPrevHorse);
 
-app.use(pinia).mount('#app')
+// app.use(pinia).mount('#app')
 
 function setup() {
 	return {
@@ -105,3 +105,12 @@ Alpine.data('previousHorse', () => ({
         this.show = !this.show;
     }
 }));
+
+import './create-blog';
+import './components/dropdown';
+import './components/editor';
+
+window.addEventListener('alpine:init', () => {
+    // dropdown();
+    // initEditor();
+})
