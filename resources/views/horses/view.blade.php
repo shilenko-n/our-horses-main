@@ -35,7 +35,7 @@
 
         <div class="horse-profile__diary">
             <div class="horse-profile-diary__header">
-                <h2>Дневник <span>57</span></h2>
+                <h2>Дневник <span>{{$count}}</span></h2>
                 <div class="horse-profile-diary__controls">
                     <div class="horse-profile-diary__tabs">
 {{--                        <x-button-tabs :tabs="[--}}
@@ -64,18 +64,22 @@
                     @endif
                 </div>
             </div>
-            <div class="horse-profile-diary__block">
-                <h3>Соревнования</h3>
-{{--                @for ($i = 0; $i < 2; $i++)--}}
-{{--                    <x-post.small-card href="/front/pages/diary/post-view" :post="fake()->post()" category="Соревнования" />--}}
-{{--                @endfor--}}
-            </div>
-            <div class="horse-profile-diary__block">
-                <h3>Здоровье</h3>
-{{--                @for ($i = 0; $i < 2; $i++)--}}
-{{--                    <x-post.small-card href="/front/pages/diary/post-view" :post="fake()->post()" category="Здоровье" />--}}
-{{--                @endfor--}}
-            </div>
+            @foreach($topics as $index => $topic)
+                @if(sizeof($topic) != 0)
+                    <div class="horse-profile-diary__block">
+                        <h3>{{$diaryTopics->find($index)->name}}</h3>
+                        @foreach($topic as $post)
+                            <x-post.small-card
+                                href="/front/pages/diary/post-view"
+                                :post="$post"
+                                category="{{$diaryTopics->find($index)->name}}"
+                            />
+                        @endforeach
+                    </div>
+                @endif
+
+            @endforeach
+
             <div class="horse-profile-diary__buttons">
                 <x-link is-block href="/front/pages/diary/view" button size="big" color="pale" icon="chevron-right-solid">Показать все записи</x-link>
             </div>

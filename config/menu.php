@@ -11,7 +11,7 @@ return [
             [
                 'icon' => 'scroll-solid',
                 'name' => 'Лента',
-                'route' => 'pages.feed' , //pages.feed
+                'route' => 'pages.home' , //pages.feed
             ],
             [
                 'icon' => 'fire-solid',

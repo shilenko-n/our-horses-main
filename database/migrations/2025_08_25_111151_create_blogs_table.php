@@ -19,6 +19,12 @@ return new class extends Migration
                 ->nullable()
                 ->default(null)
                 ->constrained('horses');
+
+            $table->foreignId('topic_id')
+                ->nullable()
+                ->default(null)
+                ->constrained('diary_topics');
+
             $table->integer('views')->default(0);
             $table->boolean('published')->default(false);
             $table->boolean('commentable')->default(false);

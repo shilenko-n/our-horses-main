@@ -1,7 +1,6 @@
 <?php namespace App\Models\Traits;
 
 use App\Models\Blog;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait HasBlogs

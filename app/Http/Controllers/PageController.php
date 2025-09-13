@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
+use App\Models\DiaryTopic;
 use App\Models\Horse;
 use App\Models\Offer;
 use App\Models\User;
@@ -297,8 +298,22 @@ class PageController extends Controller
         }
 
         $offer = $horse->offers()->latest()->first();
+        $diaries = $horse->blogs()->latest()->get();
+        $diaryTopics = DiaryTopic::all();
 
-        return view('horses.view', compact('horse', 'offer'));
+        $topics = [];
+        foreach($diaryTopics as $diaryTopic) {
+            $topics[$diaryTopic->id] = [];
+        }
+
+        foreach ($diaries as $diary) {
+            $topics[$diary->topic_id][] = $diary;
+        }
+
+        $count = count($topics, COUNT_RECURSIVE) - $diaryTopics->count();
+
+        return view('horses.view',
+            compact('horse', 'offer', 'topics', 'diaryTopics', 'count'));
     }
 
     /**
