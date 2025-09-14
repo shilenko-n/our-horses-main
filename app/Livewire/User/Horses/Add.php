@@ -163,47 +163,16 @@ class Add extends Component
 
     public function saveAndModerate(): void
     {
-
+        $this->horse['draft'] = false;
+        $this->updateOrCreate();
     }
 
-    /**
-     * @throws FileIsTooBig
-     * @throws FileDoesNotExist
-     */
-    public function saveAsDraft(): void
+    public function horseDto(): array
     {
         $purchaseDate = $this->horse['previousHorse'] ? $this->horse['purchaseDate'] : null;
         $deathDay = $this->horse['previousHorse'] ? $this->horse['deathDay'] : null;
 
-        if($this->edit)
-        {
-
-            $this->horseModel->update([
-                'name'          => $this->horse['name'],
-                'description'   => $this->horse['about'],
-                'city_id'       => $this->horse['city'],
-                'chip_number'   => $this->chipNumber,
-                'birthday'      => $this->horse['birthday'],
-                'deathday'      => $deathDay,
-                'birth_place'   => $this->horse['birthPlace'],
-                'father_id'     => $this->horse['father'],
-                'mother_id'     => $this->horse['mother'],
-                'purchase_date' => $purchaseDate,
-                'height_withers' => $this->horse['size'],
-                'gender' => $this->horse['gender'],
-                'horse_breed_id' => $this->horse['breed'],
-                'horse_color_id' => $this->horse['color'],
-                'horse_specialization_id' => $this->horse['specialization'],
-                'moderating' => true,
-                'draft' => true,
-            ]);
-
-
-            return;
-        }
-
-
-        $horse = Horse::query()->create([
+        return [
             'name'          => $this->horse['name'],
             'description'   => $this->horse['about'],
             'city_id'       => $this->horse['city'],
@@ -220,9 +189,23 @@ class Add extends Component
             'horse_color_id' => $this->horse['color'],
             'horse_specialization_id' => $this->horse['specialization'],
             'moderating' => true,
-            'draft' => true,
-        ]);
+            'draft' => $this->horse['draft'],
+        ];
+    }
 
+    /**
+     * @throws FileDoesNotExist
+     * @throws FileIsTooBig
+     */
+    public function updateOrCreate(): Horse
+    {
+        if($this->edit)
+        {
+            $this->horseModel->update($this->horseDto());
+            return $this->horseModel;
+        }
+
+        $horse = Horse::query()->create($this->horseDto());
         $horse->owners()->attach(auth()->user());
 
         foreach ($this->docs as $doc) {
@@ -245,6 +228,15 @@ class Add extends Component
             $this->images = [];
         }
 
+        return $horse;
+    }
+
+    /**
+     */
+    public function saveAsDraft(): void
+    {
+        $this->horse['draft'] = true;
+        $this->updateOrCreate();
     }
 
     public function deleteHorse(): void
