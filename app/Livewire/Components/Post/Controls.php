@@ -4,6 +4,7 @@ namespace App\Livewire\Components\Post;
 
 use App\Models\Blog;
 use Illuminate\View\View;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Controls extends Component
@@ -47,6 +48,13 @@ class Controls extends Component
             $this->blog->removeReaction(auth()->user());
         }
 
+        $this->mount($this->blog, $this->class);
+        $this->dispatch('update-post-controls');
+    }
+
+    #[On('update-post-controls')]
+    public function updatePostControls(): void
+    {
         $this->mount($this->blog, $this->class);
     }
 

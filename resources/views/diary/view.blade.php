@@ -10,7 +10,6 @@
                 <div class="post__header">
                     <div class="post__header-meta">
                         <div class="post__header-info">
-                            {{-- blade-formatter-disable --}}
                             <x-breadcrumbs :items="[
 								[
 									'url' => '/front/pages/horses/list',
@@ -25,19 +24,11 @@
 									'title' => 'Дневник'
 								]
 							]" />
-                            {{-- blade-formatter-enable --}}
                             <h2 class="post__title">Всероссийские гонки</h2>
-                            {{-- blade-formatter-disable --}}
-{{--                            <x-post-controls--}}
-{{--                                :liked="fake()->boolean(20)"--}}
-{{--                                :likes="fake()->numberBetween(0, 100)"--}}
-{{--                                :comments="fake()->numberBetween(0, 100)"--}}
-{{--                                :views="fake()->numberBetween(0, 100)"--}}
-{{--                                :bookmarks="fake()->numberBetween(0, 30)"--}}
-{{--                                :timestamp="now()->setTimestamp(fake()->dateTimeThisYear()->getTimestamp())"--}}
-{{--                                show-views--}}
-{{--                            />--}}
-                            {{-- blade-formatter-enable --}}
+                            <livewire:components.post.controls
+                                class="post__footer-info"
+                                :blog="$blog"
+                            />
                         </div>
                         @if(auth()->check() && $blog->user->id == auth()->id())
                             <div class="post__header-actions">
@@ -46,7 +37,6 @@
                             </div>
                         @endif
                     </div>
-{{--                    @php($horse = fake()->horse(0))--}}
 
                     <x-user.mini-card
                         class="post__user"

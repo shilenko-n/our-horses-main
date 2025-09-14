@@ -3,11 +3,16 @@
     'category' => ''
 ])
 
-<a {{ $attributes->class(['post-small-card']) }}>
-    <picture>
-{{--        <source media="(max-width: 768px)" srcset="{{ $post['slider'][0]['p'] }}" />--}}
-{{--        <img class="post-small-card__image" src="{{ $post['slider'][0]['d'] }}">--}}
-    </picture>
+<a
+    {{ $attributes->class(['post-small-card']) }}
+>
+    @if($post->hasPreview())
+        <picture>
+            {{--        <source media="(max-width: 768px)" srcset="{{ $post['slider'][0]['p'] }}" />--}}
+            <img class="post-small-card__image" src="{{$post->getPreview()->getUrl()}}" alt="" />
+        </picture>
+    @endif
+
     <div class="post-small-card__content">
         <div class="post-small-card__text">
             <h4 class="post-small-card__title">{{ $post->title }}</h4>

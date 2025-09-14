@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use PhpParser\Node\Stmt\Block;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
  * Модель блога
@@ -42,6 +43,26 @@ class Blog extends Model
         'published',
         'commentable',
     ];
+
+    public function hasPreview(): bool
+    {
+        foreach ($this->blocks as $block) {
+            if($block->hasPreview())
+                return true;
+        }
+
+        return false;
+    }
+
+    public function getPreview(): Media|null
+    {
+        foreach ($this->blocks as $block) {
+            if($block->hasPreview())
+                return $block->getPreview();
+        }
+
+        return null;
+    }
 
     /**
      * Получение всех блоков записи

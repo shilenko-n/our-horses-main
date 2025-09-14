@@ -38,21 +38,23 @@
                 <h2>Дневник <span>{{$count}}</span></h2>
                 <div class="horse-profile-diary__controls">
                     <div class="horse-profile-diary__tabs">
-{{--                        <x-button-tabs :tabs="[--}}
-{{--						    [--}}
-{{--						        'name' => 'По теме',--}}
-{{--						        'url' => '#',--}}
-{{--						        'active' => true,--}}
-{{--						    ],--}}
-{{--						    [--}}
-{{--						        'name' => 'По дате',--}}
-{{--						        'url' => '#',--}}
-{{--						    ],--}}
-{{--						    [--}}
-{{--						        'name' => 'По лайкам',--}}
-{{--						        'url' => '#',--}}
-{{--						    ],--}}
-{{--						]" />--}}
+                        <x-tabs.button
+                            :tabs="[
+                                [
+                                    'name' => 'По теме',
+                                    'url' => '#',
+                                    'active' => true,
+                                ],
+                                [
+                                    'name' => 'По дате',
+                                    'url' => '#',
+                                ],
+                                [
+                                    'name' => 'По лайкам',
+                                    'url' => '#',
+                                ],
+						    ]"
+                        />
                     </div>
                     @if($horse->isCurrentOwner(Auth::user()))
                         <x-link
@@ -70,7 +72,7 @@
                         <h3>{{$diaryTopics->find($index)->name}}</h3>
                         @foreach($topic as $post)
                             <x-post.small-card
-                                href="/front/pages/diary/post-view"
+                                href="{{route('pages.diary.show', $post->id)}}"
                                 :post="$post"
                                 category="{{$diaryTopics->find($index)->name}}"
                             />
@@ -90,7 +92,7 @@
             </div>
         </div>
 
-{{--        @include('site.blocks.comments')--}}
+        <livewire:components.blocks.comments />
     </div>
 
 @endsection

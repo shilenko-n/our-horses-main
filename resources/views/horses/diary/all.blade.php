@@ -21,24 +21,46 @@
 
                 <div class="diary__header-actions">
                     <div class="diary__actions-filter">
-{{--                        <x-button-tabs size="adaptive" :tabs="[--}}
-{{--						    [--}}
-{{--						        'name' => 'С конца',--}}
-{{--						        'url' => '#',--}}
-{{--						        'active' => true,--}}
-{{--						    ],--}}
-{{--						    [--}}
-{{--						        'name' => 'С начала',--}}
-{{--						        'url' => '#',--}}
-{{--						    ],--}}
-{{--						    [--}}
-{{--						        'name' => 'По лайкам',--}}
-{{--						        'url' => '#',--}}
-{{--						    ],--}}
-{{--						]" />--}}
-                        <x-button class="d-none-w d-none-l" size="adaptive" color="white" has-border icon="filter-solid" @click="openModal('diary-filter')">Открыть фильтры</x-button>
+                        <x-tabs.button
+                            size="adaptive"
+                            :tabs="[
+                                [
+                                    'name' => 'С конца',
+                                    'url' => '#',
+                                    'active' => true,
+                                ],
+                                [
+                                    'name' => 'С начала',
+                                    'url' => '#',
+                                ],
+                                [
+                                    'name' => 'По лайкам',
+                                    'url' => '#',
+                                ],
+						    ]"
+                        />
+
+                        <x-button
+                            class="d-none-w d-none-l"
+                            size="adaptive"
+                            color="white"
+                            has-border
+                            icon="filter-solid"
+                            @click="openModal('diary-filter')"
+                        >Открыть фильтры</x-button>
                     </div>
-                    <x-link class="w-100-p" href="/front/pages/diary/create-form" button icon="plus-solid">Написать в дневник</x-link>
+
+                    @if(auth()->check() && $horse->currentOwner()->id == auth()->id())
+                        <x-link
+                            class="w-100-p"
+                            href="{{route('pages.horse.diary.create', $horse->id)}}"
+                            button
+                            icon="plus-solid"
+                        >
+                            Написать в дневник
+                        </x-link>
+                    @endif
+
                 </div>
             </div>
 
@@ -56,6 +78,8 @@
 {{--            @endfor--}}
 
 {{--            @include('site.blocks.paginator')--}}
+
+            <x-paginator :model="$diaries" />
 
 {{--            <x-feed-blocks.banner />--}}
         </div>

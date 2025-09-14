@@ -6,6 +6,7 @@ use App\Enums\BlogBlockType;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
  * Модель блока записи
@@ -22,6 +23,16 @@ class BlogBlock extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('images');
+    }
+
+    public function hasPreview(): bool
+    {
+        return $this->getMedia('images')->count() > 0;
+    }
+
+    public function getPreview(): Media
+    {
+        return $this->getFirstMedia('images');
     }
 
     protected $fillable = [
