@@ -22,6 +22,7 @@ use PhpParser\Node\Stmt\Block;
  * @property User $user
  * @property Horse|null $horse
  * @property Collection|Reaction[] $reactions
+ * @property Collection|BlogBlock[] $blocks
  */
 class Blog extends Model
 {

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->enum('type', ['text', 'video', 'image', 'gallery']);
             $table->text('content')->nullable()->default(null);
+            $table->string('title')->nullable()->default(null);
             $table->foreignId('blog_id')->constrained();
             $table->unsignedInteger('position')->default(0);
             $table->timestamps();

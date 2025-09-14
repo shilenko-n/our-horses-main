@@ -29,5 +29,6 @@ class BlogBlock extends Model implements HasMedia
         'content',
         'blog_id',
         'position',
+        'title',
     ];
 }

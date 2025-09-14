@@ -382,6 +382,8 @@ class PageController extends Controller
         if(!$blog->published && !auth()->check() || !$blog->published && auth()->id() !== $blog->user->id)
             return redirect()->route('pages.home');
 
-        return view('diary.view', compact('blog'));
+        $blocks = $blog->blocks;
+
+        return view('diary.view', compact('blog', 'blocks'));
     }
 }
