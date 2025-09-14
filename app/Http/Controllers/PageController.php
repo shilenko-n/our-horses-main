@@ -384,6 +384,9 @@ class PageController extends Controller
 
         $blocks = $blog->blocks;
 
+        $blog->views++;
+        $blog->save();
+
         return view('diary.view', compact('blog', 'blocks'));
     }
 }

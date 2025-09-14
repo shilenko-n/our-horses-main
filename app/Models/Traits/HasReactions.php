@@ -3,6 +3,7 @@
 use App\Enums\ReactionType;
 use App\Models\Reaction;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait HasReactions
@@ -23,14 +24,28 @@ trait HasReactions
      *
      * @param User $user
      * @param ReactionType $reactionType
-     * @return Reaction
+     * @return Model
      */
-    public function react(User $user, ReactionType $reactionType): Reaction
+    public function react(User $user, ReactionType $reactionType = ReactionType::Like): Model
     {
         return $this->reactions()->updateOrCreate(
            ['user_id' => $user->id],
            ['type' => $reactionType->value],
         );
+    }
+
+    /**
+     * Получение реакции пользователя на модель
+     *
+     * @param User $user
+     * @return Model
+     */
+    public function getReaction(User $user): Model
+    {
+        return $this
+            ->reactions()
+            ->where('user_id', $user->id)
+            ->first();
     }
 
     /**

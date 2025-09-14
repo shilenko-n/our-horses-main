@@ -107,7 +107,10 @@
 
                 <div class="post__footer">
                     <div class="post__footer-meta">
-                        {{-- blade-formatter-disable --}}
+                        <livewire:components.post.controls
+                            class="post__footer-info"
+                            :blog="$blog"
+                        />
 {{--                        <x-post-controls--}}
 {{--                            class="post__footer-info"--}}
 {{--                            :liked="fake()->boolean(20)"--}}
@@ -118,7 +121,6 @@
 {{--                            :timestamp="now()->setTimestamp(fake()->dateTimeThisYear()->getTimestamp())"--}}
 {{--                            show-views--}}
 {{--                        />--}}
-                        {{-- blade-formatter-enable --}}
 
                         @if(auth()->check() && $blog->user->id == auth()->id())
                             <x-button class="w-100-p" icon="pencil-alt-solid">Редактировать</x-button>

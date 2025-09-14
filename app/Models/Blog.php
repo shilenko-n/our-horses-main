@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\HasBookmarks;
+use App\Models\Traits\HasComments;
 use App\Models\Traits\HasHorse;
 use App\Models\Traits\HasReactions;
 use App\Models\Traits\HasSubscriptions;
@@ -30,7 +31,8 @@ class Blog extends Model
         HasUser,
         HasHorse,
         HasReactions,
-        HasBookmarks;
+        HasBookmarks,
+        HasComments;
 
     protected $fillable = [
         'title',
