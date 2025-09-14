@@ -27,6 +27,11 @@ class Add extends Component
     public array $images;
     public ?TemporaryUploadedFile $image = null;
 
+    public $mediaDocs;
+    public $mediaImages;
+
+    public Horse|null $horseModel;
+
     public $horse = [
         'id'                => null,
         'name'              => '',
@@ -57,35 +62,42 @@ class Add extends Component
     public function mount($horseModel = null): void
     {
 
+        $this->countries = Country::with('cities')->get();
+
         if($horseModel) {
+            $this->horseModel = $horseModel;
             $this->edit = true;
             $this->step = 2;
             $this->chipNumber = $horseModel->chip_number;
             $this->purchaseDate = $horseModel->purchase_date;
             $this->horse['id'] = $horseModel->id;
             $this->horse['name'] = $horseModel->name;
-            $this->horse['size'] = $horseModel->size;
+            $this->horse['size'] = $horseModel->height_withers;
             $this->horse['gender'] = $horseModel->gender;
-            $this->horse['breed'] = $horseModel->breed;
-            $this->horse['color'] = $horseModel->color;
-            $this->horse['specialization'] = $horseModel->specialization;
-            $this->horse['birthPlace'] = $horseModel->birthPlace;
-            $this->horse['about'] = $horseModel->about;
+            $this->horse['breed'] = $horseModel->horseBreed->id;
+            $this->horse['color'] = $horseModel->horseColor->id;
+            $this->horse['specialization'] = $horseModel->horseSpecialization->id;
+            $this->horse['birthday'] = $horseModel->birthday;
+            $this->horse['birthPlace'] = $horseModel->birth_place;
+            $this->horse['about'] = $horseModel->description;
             $this->horse['previousHorse'] = $horseModel->previous_horse;
             $this->horse['deathDay'] = $horseModel->death_day;
             $this->horse['purchaseDate'] = $horseModel->purchase_date;
-            $this->horse['country'] = $horseModel->country;
-            $this->horse['city'] = $horseModel->city;
+            $this->horse['country'] = $horseModel->city->country->id;
+            $this->horse['city'] = $horseModel->city->id;
             $this->horse['draft'] = $horseModel->draft;
+            $this->horse['father'] = $horseModel->father_id;
+            $this->horse['mother'] = $horseModel->mother_id;
 
-            $this->images = $horseModel->getMedia('images');
+            $this->updatedHorseCountry();
+
+            $this->mediaImages = $horseModel->getMedia('images');
+            $this->mediaDocs = $horseModel->getMedia('docs');
         }
 
-
-        $this->countries = Country::with('cities')->get();
     }
 
-    public function updatedHorseCountry()
+    public function updatedHorseCountry(): void
     {
         $this->cities = $this->countries->find($this->horse['country'])->cities;
     }
@@ -162,6 +174,34 @@ class Add extends Component
     {
         $purchaseDate = $this->horse['previousHorse'] ? $this->horse['purchaseDate'] : null;
         $deathDay = $this->horse['previousHorse'] ? $this->horse['deathDay'] : null;
+
+        if($this->edit)
+        {
+
+            $this->horseModel->update([
+                'name'          => $this->horse['name'],
+                'description'   => $this->horse['about'],
+                'city_id'       => $this->horse['city'],
+                'chip_number'   => $this->chipNumber,
+                'birthday'      => $this->horse['birthday'],
+                'deathday'      => $deathDay,
+                'birth_place'   => $this->horse['birthPlace'],
+                'father_id'     => $this->horse['father'],
+                'mother_id'     => $this->horse['mother'],
+                'purchase_date' => $purchaseDate,
+                'height_withers' => $this->horse['size'],
+                'gender' => $this->horse['gender'],
+                'horse_breed_id' => $this->horse['breed'],
+                'horse_color_id' => $this->horse['color'],
+                'horse_specialization_id' => $this->horse['specialization'],
+                'moderating' => true,
+                'draft' => true,
+            ]);
+
+
+            return;
+        }
+
 
         $horse = Horse::query()->create([
             'name'          => $this->horse['name'],

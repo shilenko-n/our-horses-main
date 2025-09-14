@@ -1,3 +1,4 @@
+@php use App\Enums\HorseGenderType; @endphp
 <div>
     @if($step == 1)
         <div class="horse-form">
@@ -7,7 +8,7 @@
                         'url' => route('pages.user.horses.my'),
                         'title' => 'Мои лошади'
                     ]
-                ]" />
+                ]"/>
                 <h2 class="horse-big-card__title">Новая лошадь</h2>
             </div>
             <div class="horse-form__inputs">
@@ -33,9 +34,9 @@
             </div>
             @error('stepOneFields')
 
-                <x-forms.alert
-                    type="warning"
-                >{{$message}}</x-forms.alert>
+            <x-forms.alert
+                type="warning"
+            >{{$message}}</x-forms.alert>
 
             @enderror
             @if($error)
@@ -52,7 +53,8 @@
                 button
                 size="big"
                 icon="chevron-right-solid"
-            >Следующий шаг</x-link>
+            >Следующий шаг
+            </x-link>
         </div>
     @elseif($step == 2)
 
@@ -63,7 +65,7 @@
                         'url' => route('pages.user.horses.my'),
                         'title' => 'Мои лошади'
                     ]
-                ]" />
+                ]"/>
                 @if($edit)
                     <h2 class="horse-big-card__title">Редактирование лошади</h2>
                 @else
@@ -111,13 +113,18 @@
                                             :type="strtoupper($file->extension())"
                                             :size="$file->getSize()"
                                         />
-                                    @else
-                                        <x-forms.file-uploaded
-                                            :name="$file->file_name"
-                                            :type="strtoupper($file->mime_type)"
-                                            :size="$file->size"
-                                        />
                                     @endif
+                                @endforeach
+                            @endif
+
+                            @if($mediaDocs)
+                                @foreach($mediaDocs as $file)
+
+                                    <x-forms.file-uploaded
+                                        :name="$file->file_name"
+                                        :type="strtoupper($file->mime_type)"
+                                        :size="$file->size"
+                                    />
 
                                 @endforeach
                             @endif
@@ -127,15 +134,15 @@
                     </div>
 
                     @error('doc')
-                        <x-forms.alert>
-                            {{$message}}
-                        </x-forms.alert>
+                    <x-forms.alert>
+                        {{$message}}
+                    </x-forms.alert>
                     @enderror
 
                     @error('docCount')
-                        <x-forms.alert>
-                            {{$message}}
-                        </x-forms.alert>
+                    <x-forms.alert>
+                        {{$message}}
+                    </x-forms.alert>
                     @enderror
                 </div>
                 <div class="horse-form__horse-information">
@@ -195,29 +202,78 @@
                     <div class="horse-form__input_3">
                         <label>Пол</label>
                         <div class="horse-form__input_3-checkboxes">
-                            <x-forms.flag type="radio" label="Жеребец" name="sex" checked wire:model.live="horse.gender" />
-                            <x-forms.flag type="radio" label="Кобыла" name="sex" wire:model.live="horse.gender" />
-                            <x-forms.flag type="radio" label="Мерин" name="sex" wire:model.live="horse.gender" />
+                            <x-forms.flag
+                                type="radio"
+                                label="Жеребец"
+                                name="sex"
+                                :value="HorseGenderType::Stallion->value"
+                                :checked="$horse['gender'] == HorseGenderType::Stallion"
+                                wire:model.live="horse.gender"
+                            />
+                            <x-forms.flag
+                                type="radio"
+                                label="Кобыла"
+                                name="sex"
+                                :value="HorseGenderType::Mare->value"
+                                :checked="$horse['gender'] == HorseGenderType::Mare"
+                                wire:model.live="horse.gender"
+                            />
+                            <x-forms.flag
+                                type="radio"
+                                label="Мерин"
+                                name="sex"
+                                :value="HorseGenderType::Gelding->value"
+                                :checked="$horse['gender'] == HorseGenderType::Gelding"
+                                wire:model.live="horse.gender"
+                            />
                         </div>
                     </div>
+
                     <x-forms.select size="big" label="Порода" required wire:model.live="horse.breed">
                         <option value="">Не выбрана</option>
                         @foreach(\App\Models\HorseBreed::all() as $breed)
-                            <option value="{{$breed->id}}">{{$breed->name}}</option>
+                            <option
+                                value="{{$breed->id}}"
+                                @if($breed->id == $horse['breed'])
+                                    selected
+                                @endif
+                            >{{$breed->name}}</option>
                         @endforeach
                     </x-forms.select>
-                    <x-forms.select size="big" label="Масть" required wire:model.live="horse.color">
+
+                    <x-forms.select
+                        size="big"
+                        label="Масть"
+                        required
+                        wire:model.live="horse.color"
+                    >
                         <option value="">Не выбрана</option>
                         @foreach(\App\Models\HorseColor::all() as $color)
-                            <option value="{{$color->id}}">{{$color->name}}</option>
+                            <option
+                                value="{{$color->id}}"
+                                @if($color->id == $horse['color'])
+                                    selected
+                                @endif
+                            >{{$color->name}}</option>
                         @endforeach
                     </x-forms.select>
-                    <x-forms.select size="big" label="Специализация" wire:model.live="horse.specialization">
+
+                    <x-forms.select
+                        size="big"
+                        label="Специализация"
+                        wire:model.live="horse.specialization"
+                    >
                         <option value="">Не выбрана</option>
                         @foreach(\App\Models\HorseSpecialization::all() as $specialization)
-                            <option value="{{$specialization->id}}">{{$specialization->name}}</option>
+                            <option
+                                value="{{$specialization->id}}"
+                                @if($specialization->id == $horse['specialization'])
+                                    selected
+                                @endif
+                            >{{$specialization->name}}</option>
                         @endforeach
                     </x-forms.select>
+
                     <x-forms.input
                         size="big"
                         type="date"
@@ -306,13 +362,17 @@
                                         :type="strtoupper($file->extension())"
                                         :size="$file->getSize()"
                                     />
-                                @else
-                                    <x-forms.file-uploaded
-                                        :name="$file->file_name"
-                                        :type="strtoupper($file->mime_type)"
-                                        :size="$file->size"
-                                    />
                                 @endif
+                            @endforeach
+                        @endif
+
+                        @if($mediaImages)
+                            @foreach($mediaImages as $file)
+                                <x-forms.file-uploaded
+                                    :name="$file->file_name"
+                                    :type="strtoupper($file->mime_type)"
+                                    :size="$file->size"
+                                />
                             @endforeach
                         @endif
                     </div>
@@ -330,7 +390,8 @@
                     @enderror
                 </div>
                 <div class="horse-form__buttons-section">
-                    <p class="horse-form__hint">Перед добавлением лошади в список ваших лошадей, данные должны пройти модерацию. Модерация может занять несколько дней.</p>
+                    <p class="horse-form__hint">Перед добавлением лошади в список ваших лошадей, данные должны пройти
+                        модерацию. Модерация может занять несколько дней.</p>
 
                     <form class="horse-form__step-two-buttons">
                         <x-button
@@ -338,21 +399,24 @@
                             size="big"
                             icon="check-solid"
                             wire:click.prevent="saveAndModerate"
-                        >Отправить на модерацию</x-button>
+                        >Отправить на модерацию
+                        </x-button>
                         @if(!$edit || $horse['draft'])
                             <x-button
                                 class="w-100-p"
                                 color="pale"
                                 size="big"
                                 wire:click.prevent="saveAsDraft"
-                            >Сохранить черновик</x-button>
+                            >Сохранить черновик
+                            </x-button>
                         @endif
                         @if($edit)
                             <x-button
                                 class="w-100-p"
                                 link
                                 wire:click.prevent="deleteHorse"
-                            >Удалить лошадь</x-button>
+                            >Удалить лошадь
+                            </x-button>
                         @endif
                     </form>
                 </div>

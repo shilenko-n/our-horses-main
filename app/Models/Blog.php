@@ -42,6 +42,7 @@ class Blog extends Model
         'content',
         'published',
         'commentable',
+        'topic_id',
     ];
 
     public function hasPreview(): bool

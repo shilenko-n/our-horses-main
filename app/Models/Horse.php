@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\HorseGenderType;
 use App\Models\Traits\HasBlogs;
 use App\Models\Traits\HasBookmarks;
 use App\Models\Traits\HasLocation;
@@ -38,7 +39,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property HorseBreed $horseBreed
  * @property HorseColor $horseColor
  * @property HorseSpecialization $horseSpecialization
- * @property string $gender
+ * @property HorseGenderType $gender
  * @property int $heightWithers
  * @property Collection|User[] $owners
  * @property Collection|Blog[] $blogs

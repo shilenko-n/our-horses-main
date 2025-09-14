@@ -80,6 +80,7 @@ class Create extends Component
             'published'     => $this->published,
             'commentable'   => $this->allowComments,
             'horse_id'      => $this->horse->id,
+            'topic_id'      => $this->selectedTopic,
         ]);
 
         foreach ($this->blocks as $block) {

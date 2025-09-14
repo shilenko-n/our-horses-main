@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\HorseGenderType;
 use App\Models\City;
 use App\Models\Horse;
 use App\Models\HorseBreed;
@@ -31,7 +32,7 @@ class HorseFactory extends Factory
             'birth_place' => fake()->city(),
             'purchase_date' => fake()->dateTime(),
             'height_withers' => fake()->numberBetween(1, 100),
-            'gender' => fake()->randomElement(['male', 'female']),
+            'gender' => fake()->randomElement(HorseGenderType::cases()),
             'horse_breed_id' => HorseBreed::query()->inRandomOrder()->first()->id,
             'horse_color_id' => HorseColor::query()->inRandomOrder()->first()->id,
             'horse_specialization_id' => HorseSpecialization::query()->inRandomOrder()->first()->id,

@@ -113,4 +113,5 @@ import './components/editor';
 window.addEventListener('alpine:init', () => {
     // dropdown();
     // initEditor();
+    initSlidersJs();
 })

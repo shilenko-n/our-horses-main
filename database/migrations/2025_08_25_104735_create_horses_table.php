@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\HorseGenderType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -25,7 +26,7 @@ return new class extends Migration
             $table->foreignId('mother_id')->nullable()->constrained('horses');
             $table->date('purchase_date')->nullable();
             $table->integer('height_withers')->nullable();
-            $table->string('gender');
+            $table->enum('gender', HorseGenderType::cases())->default(HorseGenderType::Stallion);
             $table->foreignId('horse_breed_id')->constrained('horse_breeds');
             $table->foreignId('horse_color_id')->constrained('horse_colors');
             $table->foreignId('horse_specialization_id')->constrained('horse_specializations');

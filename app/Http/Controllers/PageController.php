@@ -338,6 +338,11 @@ class PageController extends Controller
         if($horse->currentOwner()->id !== auth()->id())
             return redirect()->route('pages.home');
 
+        $horse->load('horseBreed');
+        $horse->load('horseColor');
+        $horse->load('horseSpecialization');
+        $horse->load('city');
+
         return view('user.horses.data', compact('horse'));
     }
 

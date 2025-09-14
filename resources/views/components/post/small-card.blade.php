@@ -18,7 +18,9 @@
             <h4 class="post-small-card__title">{{ $post->title }}</h4>
             <div class="post-small-card__category">{{ $category }}</div>
         </div>
-        {{-- blade-formatter-disable --}}
+        <livewire:components.post.controls
+            :blog="$post"
+        />
 {{--        <x-post-controls--}}
 {{--            :liked="fake()->boolean(20)"--}}
 {{--            :likes="fake()->numberBetween(0, 100)"--}}
@@ -28,6 +30,5 @@
 {{--            :timestamp="now()->setTimestamp(fake()->dateTimeThisYear()->getTimestamp())"--}}
 {{--            show-views--}}
 {{--        />--}}
-        {{-- blade-formatter-enable --}}
     </div>
 </a>
