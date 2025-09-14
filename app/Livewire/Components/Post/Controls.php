@@ -33,6 +33,21 @@ class Controls extends Component
         $this->bookmarks    = $blog->bookmarks()->count();
         $this->views        = $blog->views;
 
+        $this->liked        = $blog->getReaction(auth()->user()) !== null;
+    }
+
+    public function react(): void
+    {
+
+        $this->liked = !$this->liked;
+
+        if($this->liked) {
+            $this->blog->react(auth()->user());
+        } else {
+            $this->blog->removeReaction(auth()->user());
+        }
+
+        $this->mount($this->blog, $this->class);
     }
 
     public function render(): View

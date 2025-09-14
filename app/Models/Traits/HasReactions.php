@@ -38,9 +38,9 @@ trait HasReactions
      * Получение реакции пользователя на модель
      *
      * @param User $user
-     * @return Model
+     * @return ?Model
      */
-    public function getReaction(User $user): Model
+    public function getReaction(User $user): ?Model
     {
         return $this
             ->reactions()

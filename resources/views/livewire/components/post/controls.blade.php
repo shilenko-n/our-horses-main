@@ -6,6 +6,7 @@
     <x-post.button
         :active="$liked"
         icon="heart-solid"
+        wire:click="react"
     >
         {{ $likes ?: '0' }}
     </x-post.button>
